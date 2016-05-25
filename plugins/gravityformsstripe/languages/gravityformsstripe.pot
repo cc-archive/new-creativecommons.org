@@ -1,0 +1,314 @@
+# Copyright 2009-2016 Rocketgenius, Inc.
+msgid ""
+msgstr ""
+"Project-Id-Version: Gravity Forms Stripe Add-On 2.0\n"
+"Report-Msgid-Bugs-To: http://www.gravtiyhelp.com\n"
+"POT-Creation-Date: 2016-01-07 21:15:42+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Rocketgenius <customerservice@rocketgenius.com>\n"
+"Language-Team: Rocketgenius <customerservice@rocketgenius.com>\n"
+"X-Generator: Gravity Forms Build Server\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_"
+"attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
+"Project-Id-Version: gravityformsstripe\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-Country: United States\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Textdomain-Support: yes\n"
+
+#: class-gf-stripe.php:97
+msgid "Error validating this key. Please try again later."
+msgstr ""
+
+#: class-gf-stripe.php:153
+msgid "Stripe API"
+msgstr ""
+
+#: class-gf-stripe.php:157
+msgid "Stripe Webhooks"
+msgstr ""
+
+#: class-gf-stripe.php:162
+msgid "Webhooks Enabled?"
+msgstr ""
+
+#: class-gf-stripe.php:168
+msgid "I have enabled the Gravity Forms webhook URL in my Stripe account."
+msgstr ""
+
+#: class-gf-stripe.php:176
+msgid "Settings updated successfully"
+msgstr ""
+
+#: class-gf-stripe.php:194
+msgid "API"
+msgstr ""
+
+#: class-gf-stripe.php:199
+msgid "Live"
+msgstr ""
+
+#: class-gf-stripe.php:203
+msgid "Test"
+msgstr ""
+
+#: class-gf-stripe.php:212
+msgid "Test Secret Key"
+msgstr ""
+
+#: class-gf-stripe.php:219
+msgid "Test Publishable Key"
+msgstr ""
+
+#: class-gf-stripe.php:226
+msgid "Live Secret Key"
+msgstr ""
+
+#: class-gf-stripe.php:233
+msgid "Live Publishable Key"
+msgstr ""
+
+#: class-gf-stripe.php:270
+msgid ""
+"Gravity Forms requires the following URL to be added to your Stripe "
+"account's list of Webhooks."
+msgstr ""
+
+#: class-gf-stripe.php:272
+msgid "View Instructions"
+msgstr ""
+
+#: class-gf-stripe.php:278
+msgid ""
+"Click the following link and log in to access your Stripe Webhooks "
+"management page:"
+msgstr ""
+
+#: class-gf-stripe.php:282
+msgid "Click the \"Add Endpoint\" button above the list of Webhook URLs."
+msgstr ""
+
+#: class-gf-stripe.php:284
+msgid "Enter the following URL in the \"URL\" field:"
+msgstr ""
+
+#: class-gf-stripe.php:287
+msgid "Select \"Live\" from the \"Mode\" drop down."
+msgstr ""
+
+#: class-gf-stripe.php:288
+msgid "Click the \"Create Endpoint\" button."
+msgstr ""
+
+#: class-gf-stripe.php:326
+msgid "Customer Information"
+msgstr ""
+
+#: class-gf-stripe.php:335
+msgid "Email"
+msgstr ""
+
+#: class-gf-stripe.php:344
+msgid "Description"
+msgstr ""
+
+#: class-gf-stripe.php:349 class-gf-stripe.php:355
+msgid "Coupon"
+msgstr ""
+
+#: class-gf-stripe.php:355
+msgid ""
+"Select which field contains the coupon code to be applied to the recurring "
+"charge(s). The coupon must also exist in your Stripe Dashboard."
+msgstr ""
+
+#: class-gf-stripe.php:364
+msgid "You will see this data when viewing a customer page."
+msgstr ""
+
+#: class-gf-stripe.php:366
+msgid "You will see this data when viewing a payment page."
+msgstr ""
+
+#: class-gf-stripe.php:372 class-gf-stripe.php:376
+msgid "Metadata"
+msgstr ""
+
+#: class-gf-stripe.php:388
+msgid "Trial Period"
+msgstr ""
+
+#: class-gf-stripe.php:401
+msgid "Stripe Receipt"
+msgstr ""
+
+#: class-gf-stripe.php:401
+msgid ""
+"Stripe can send a receipt via email upon payment. Select an email field to "
+"enable this feature."
+msgstr ""
+
+#: class-gf-stripe.php:434
+msgid "Do not send receipt"
+msgstr ""
+
+#: class-gf-stripe.php:475 class-gf-stripe.php:530
+msgid "Enabled"
+msgstr ""
+
+#: class-gf-stripe.php:563
+msgid "days"
+msgstr ""
+
+#: class-gf-stripe.php:596
+msgid "Please enter a valid number of days."
+msgstr ""
+
+#: class-gf-stripe.php:620
+msgid "You may only have 20 custom keys."
+msgstr ""
+
+#: class-gf-stripe.php:628
+msgid ""
+"A field has been mapped to a custom key without a name. Please enter a name "
+"for the custom key, remove the metadata item, or return the corresponding "
+"drop down to 'Select a Field'."
+msgstr ""
+
+#: class-gf-stripe.php:631
+msgid ""
+"The name of custom key %s is too long. Please shorten this to 40 characters "
+"or less."
+msgstr ""
+
+#: class-gf-stripe.php:645
+msgid "day(s)"
+msgstr ""
+
+#: class-gf-stripe.php:646
+msgid "week(s)"
+msgstr ""
+
+#: class-gf-stripe.php:647
+msgid "month(s)"
+msgstr ""
+
+#: class-gf-stripe.php:648
+msgid "year(s)"
+msgstr ""
+
+#: class-gf-stripe.php:694
+msgid "Payment Completed"
+msgstr ""
+
+#: class-gf-stripe.php:695
+msgid "Payment Refunded"
+msgstr ""
+
+#: class-gf-stripe.php:696
+msgid "Payment Failed"
+msgstr ""
+
+#: class-gf-stripe.php:697
+msgid "Subscription Created"
+msgstr ""
+
+#: class-gf-stripe.php:698
+msgid "Subscription Canceled"
+msgstr ""
+
+#: class-gf-stripe.php:699
+msgid "Subscription Payment Added"
+msgstr ""
+
+#: class-gf-stripe.php:700
+msgid "Subscription Payment Failed"
+msgstr ""
+
+#: class-gf-stripe.php:1143
+msgid ""
+"Test webhook succeeded. Your Stripe Account and Stripe Add-On are "
+"configured correctly to process webhooks."
+msgstr ""
+
+#: class-gf-stripe.php:1150
+msgid "Webhook from test transaction. Bypassed."
+msgstr ""
+
+#: class-gf-stripe.php:1157
+msgid "Invalid webhook data. Webhook could not be processed."
+msgstr ""
+
+#: class-gf-stripe.php:1170
+msgid "Entry for transaction id: %s was not found. Webhook cannot be processed."
+msgstr ""
+
+#: class-gf-stripe.php:1186 class-gf-stripe.php:1207 class-gf-stripe.php:1240
+msgid "Entry for subscription id: %s was not found. Webhook cannot be processed."
+msgstr ""
+
+#: class-gf-stripe.php:1201 class-gf-stripe.php:1234
+msgid "Subscription line item not found in request"
+msgstr ""
+
+#: class-gf-stripe.php:1226
+msgid "Subscription payment has been paid. Amount: %s. Subscriber Id: %s"
+msgstr ""
+
+#: class-gf-stripe.php:1290
+msgid "Setup fee has been paid."
+msgstr ""
+
+#: class-gf-stripe.php:1292
+msgid "Trial has been paid."
+msgstr ""
+
+#: class-gf-stripe.php:1423
+msgid "Unable to authorize card. No response from Stripe.js."
+msgstr ""
+
+#: class-gf-stripe.php:1446
+msgid "Entry ID: %d"
+msgstr ""
+
+#: class-gf-stripe.php:1450
+msgid "Product: %s"
+msgid_plural "Products: %s"
+msgstr[0] ""
+msgstr[1] ""
+
+#: class-gf-stripe.php:1536
+msgid ""
+"The selected field needs to be on the same page as the Credit Card field or "
+"a previous page."
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Gravity Forms Stripe Add-On"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://www.gravityforms.com"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Integrates Gravity Forms with Stripe, enabling end users to purchase goods "
+"and services through Gravity Forms."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "rocketgenius"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://www.rocketgenius.com"
+msgstr ""
