@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2cbd4a70602cbe8e99f04bc586e88ad0",
-    "content-hash": "0c6b360efd966b459f5aa1bb27ed9228",
+    "hash": "381c921b6658ba9c9c7fbc1493aa8618",
+    "content-hash": "9beedfb402cc2f1ffb6f9d2390e14dcc",
     "packages": [
         {
             "name": "composer/installers",
@@ -362,26 +362,6 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/simple-local-avatars/"
-        },
-        {
-            "name": "wpackagist-plugin/sticky-header",
-            "version": "1.2.2",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/sticky-header/",
-                "reference": "trunk"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/sticky-header.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/sticky-header/"
         },
         {
             "name": "wpackagist-plugin/widget-css-classes",
