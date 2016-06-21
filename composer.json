@@ -39,7 +39,8 @@
 	"wpackagist-plugin/wordpress-seo":"3.3.0",
 	"wpackagist-plugin/wp-super-cache":"1.4.8",
 	"wpackagist-plugin/cas-maestro":"1.1.3",
-  "wpackagist-theme/twentysixteen": "1.2"
+  "wpackagist-theme/twentysixteen": "1.2",
+  "wpackagist-plugin/google-analytics-for-wordpress":"5.5"
     },
     "extra": {
 	"webroot-dir": "docroot/wordpress",
