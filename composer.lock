@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "22477ebcd17db6a9aa234801ba794c0d",
-    "content-hash": "7fe80c9cc992ff11ff14fb6c31aae219",
+    "hash": "bfb764a7965b9bddc14417bbf7f8d10a",
+    "content-hash": "38d833d53493ae4f66160ecb20579528",
     "packages": [
         {
             "name": "composer/installers",
@@ -304,6 +304,26 @@
             "homepage": "https://wordpress.org/plugins/easy-add-thumbnail/"
         },
         {
+            "name": "wpackagist-plugin/google-analytics-for-wordpress",
+            "version": "5.5",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/google-analytics-for-wordpress/",
+                "reference": "tags/5.5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/google-analytics-for-wordpress.5.5.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/google-analytics-for-wordpress/"
+        },
+        {
             "name": "wpackagist-plugin/gravity-forms-google-analytics-event-tracking",
             "version": "1.7.3",
             "source": {
@@ -325,15 +345,15 @@
         },
         {
             "name": "wpackagist-plugin/jetpack",
-            "version": "4.0.3",
+            "version": "4.0.4",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/jetpack/",
-                "reference": "tags/4.0.3"
+                "reference": "tags/4.0.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/jetpack.4.0.3.zip",
+                "url": "https://downloads.wordpress.org/plugin/jetpack.4.0.4.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -425,15 +445,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "3.3.0",
+            "version": "3.3.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/3.3.0"
+                "reference": "tags/3.3.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.3.3.0.zip",
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.3.3.2.zip",
                 "reference": null,
                 "shasum": null
             },
