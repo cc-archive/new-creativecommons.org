@@ -22,7 +22,7 @@
     ],
     "require": {
 	"php": ">=5.5.9",
-	"wordpress": "4.5.2",
+	"wordpress": "4.5.3",
 	"fancyguy/webroot-installer": "1.0.0",
 	"wpackagist-plugin/advanced-sidebar-menu": "6.1.0",
 	"wpackagist-plugin/akismet":"3.1.11",
