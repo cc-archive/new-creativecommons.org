@@ -28,7 +28,7 @@ if ( file_exists( dirname(__FILE__) . '/wp-config-local.php' ) )
  * You can have multiple installations in one database if you give each a unique
  * prefix. Only numbers, letters, and underscores please!
  */
-$table_prefix  = 'wp_';
+$table_prefix  = 'mattl_';
 /**
  * WordPress Localized Language, defaults to English.
  *
