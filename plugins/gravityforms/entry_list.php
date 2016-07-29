@@ -966,7 +966,7 @@ final class GF_Entry_List_Table extends WP_List_Table {
 	}
 
 	/**
-	 * Displays the row action if the column if primary.
+	 * Displays the row action if the column is primary.
 	 *
 	 * @param array $entry
 	 * @param string $column_name
@@ -1092,8 +1092,21 @@ final class GF_Entry_List_Table extends WP_List_Table {
 			?>
 		</div>
 		<?php
+		/**
+		 * Fires at the end of the first entry column
+		 *
+		 * Used to add content to the entry list's first column
+		 *
+		 * @param int    $form_id      The ID of the current form
+		 * @param int    $field_id     The ID of the field
+		 * @param string $value        The value of the field
+		 * @param array  $entry         The Entry object
+		 * @param string $query_string The current page's query string
+		 */
+		do_action( 'gform_entries_first_column', $form_id, $field_id, $value, $entry, $query_string );
+
 		$this->row_index++;
-		return $column_name === $primary ? '<button type="button" class="toggle-row"><span class="screen-reader-text">' . __( 'Show more details' ) . '</span></button>' : '';
+		return '<button type="button" class="toggle-row"><span class="screen-reader-text">' . __( 'Show more details' ) . '</span></button>';
 	}
 
 	/**
