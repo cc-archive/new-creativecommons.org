@@ -146,7 +146,7 @@ function gf_is_match_default( $input, rule, formId, fieldId ) {
             fieldValue = gf_format_number( fieldValue, gf_get_field_number_format( rule.fieldId, formId ) );
         }
 
-        if( gf_matches_operation( fieldValue, rule.value, rule.operator ) ) {
+		if( gf_matches_operation( fieldValue, rule.value, rule.operator ) ) {
             matchCount++;
         }
 
@@ -177,10 +177,13 @@ function gf_format_number( value, fieldNumberFormat ) {
     // transform to a decimal dot number
     value = gformCleanNumber( value, '', '', decimalSeparator );
 
+	/**
+	 * Looking at format specified by wp locale creates issues. When performing conditional logic, all numbers will be formatted to decimal dot and then compared that way. AC
+	 */
     // now transform to number specified by locale
-    if( window['gf_number_format'] && window['gf_number_format'] == 'decimal_comma' ) {
-        value = gformFormatNumber( value, -1, ',', '.' );
-    }
+    // if( window['gf_number_format'] && window['gf_number_format'] == 'decimal_comma' ) {
+    //     value = gformFormatNumber( value, -1, ',', '.' );
+    // }
 
     if( ! value ) {
         value = 0;

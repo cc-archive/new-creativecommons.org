@@ -1,9 +1,9 @@
 # Copyright 2009-2016 Rocketgenius, Inc.
 msgid ""
 msgstr ""
-"Project-Id-Version: Gravity Forms Stripe Add-On 2.0\n"
+"Project-Id-Version: Gravity Forms Stripe Add-On 2.0.9\n"
 "Report-Msgid-Bugs-To: http://www.gravtiyhelp.com\n"
-"POT-Creation-Date: 2016-01-07 21:15:42+00:00\n"
+"POT-Creation-Date: 2016-07-27 16:16:42+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -233,59 +233,63 @@ msgstr ""
 msgid "Subscription Payment Failed"
 msgstr ""
 
-#: class-gf-stripe.php:1143
+#: class-gf-stripe.php:785
+msgid "is not supported. Please enter one of the supported credit cards."
+msgstr ""
+
+#: class-gf-stripe.php:1173
 msgid ""
 "Test webhook succeeded. Your Stripe Account and Stripe Add-On are "
 "configured correctly to process webhooks."
 msgstr ""
 
-#: class-gf-stripe.php:1150
+#: class-gf-stripe.php:1180
 msgid "Webhook from test transaction. Bypassed."
 msgstr ""
 
-#: class-gf-stripe.php:1157
+#: class-gf-stripe.php:1189
 msgid "Invalid webhook data. Webhook could not be processed."
 msgstr ""
 
-#: class-gf-stripe.php:1170
+#: class-gf-stripe.php:1202
 msgid "Entry for transaction id: %s was not found. Webhook cannot be processed."
 msgstr ""
 
-#: class-gf-stripe.php:1186 class-gf-stripe.php:1207 class-gf-stripe.php:1240
+#: class-gf-stripe.php:1218 class-gf-stripe.php:1239 class-gf-stripe.php:1272
 msgid "Entry for subscription id: %s was not found. Webhook cannot be processed."
 msgstr ""
 
-#: class-gf-stripe.php:1201 class-gf-stripe.php:1234
+#: class-gf-stripe.php:1233 class-gf-stripe.php:1266
 msgid "Subscription line item not found in request"
 msgstr ""
 
-#: class-gf-stripe.php:1226
+#: class-gf-stripe.php:1258
 msgid "Subscription payment has been paid. Amount: %s. Subscriber Id: %s"
 msgstr ""
 
-#: class-gf-stripe.php:1290
+#: class-gf-stripe.php:1322
 msgid "Setup fee has been paid."
 msgstr ""
 
-#: class-gf-stripe.php:1292
+#: class-gf-stripe.php:1324
 msgid "Trial has been paid."
 msgstr ""
 
-#: class-gf-stripe.php:1423
+#: class-gf-stripe.php:1455
 msgid "Unable to authorize card. No response from Stripe.js."
 msgstr ""
 
-#: class-gf-stripe.php:1446
+#: class-gf-stripe.php:1478
 msgid "Entry ID: %d"
 msgstr ""
 
-#: class-gf-stripe.php:1450
+#: class-gf-stripe.php:1482
 msgid "Product: %s"
 msgid_plural "Products: %s"
 msgstr[0] ""
 msgstr[1] ""
 
-#: class-gf-stripe.php:1536
+#: class-gf-stripe.php:1568
 msgid ""
 "The selected field needs to be on the same page as the Credit Card field or "
 "a previous page."

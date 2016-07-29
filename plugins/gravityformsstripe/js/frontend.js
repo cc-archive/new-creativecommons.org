@@ -29,7 +29,7 @@ window.GFStripe = null;
 
             // bind Stripe functionality to submit event
             $( '#gform_' + this.formId ).submit( function( event ){
-                if ( $(this).data('gfstripesubmitting') ) {
+                if ($(this).data('gfstripesubmitting') || $('#gform_save_' + GFStripeObj.formId).val() == 1) {
                     return;
                 } else {
                     event.preventDefault();

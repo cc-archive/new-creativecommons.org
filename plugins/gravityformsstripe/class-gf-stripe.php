@@ -708,7 +708,7 @@ class GFStripe extends GFPaymentAddOn {
 
 		add_filter( 'gform_register_init_scripts', array( $this, 'register_init_scripts' ), 10, 3 );
 		add_filter( 'gform_field_content', array( $this, 'add_stripe_inputs' ), 10, 5 );
-		add_filter( 'gform_pre_validation', array( $this, 'pre_validation' ), 20 );
+		add_filter( 'gform_field_validation', array( $this, 'pre_validation' ), 10, 4 );
 
 		parent::init();
 
@@ -760,30 +760,37 @@ class GFStripe extends GFPaymentAddOn {
 	# SUBMISSION
 
 	/**
-	 * Make sure credit card field is not marked as required.
-	 * Stripe will erase some of the card field inputs; if the field is marked as required it would fail standard validation.
+	 * Validate the card type and prevent the field from failing required validation, Stripe.js will handle the required validation.
 	 *
-	 * @param array $form The Form Object currently being processed.
+	 * The card field inputs are erased on submit, this will cause two issues:
+	 * 1. The field will fail standard validation if marked as required.
+	 * 2. The card type validation will not be performed.
 	 *
-	 * @return array $form
+	 * @param array $result The field validation result and message.
+	 * @param mixed $value The field input values; empty for the credit card field as they are cleared by frontend.js
+	 * @param array $form The Form currently being processed.
+	 * @param GF_Field $field The field currently being processed.
+	 *
+	 * @return array
 	 */
-	public function pre_validation( $form ) {
-		if ( ! $this->has_feed( $form['id'] ) ) {
-			return $form;
-		}
+	public function pre_validation( $result, $value, $form, $field ) {
+		if ( $field->type == 'creditcard' && rgpost( 'stripe_credit_card_last_four' ) ) {
+			$this->populate_credit_card_last_four( $form );
 
-		foreach ( $form['fields'] as &$field ) {
-			if ( $field->type != 'creditcard' ) {
-				continue;
+			$card_type = rgpost( 'stripe_credit_card_type' );
+			$card_slug = $this->get_card_slug( $card_type );
+
+			if ( ! $field->is_card_supported( $card_slug ) ) {
+				$result['is_valid'] = false;
+				$result['message']  = $card_type . ' ' . esc_html__( 'is not supported. Please enter one of the supported credit cards.', 'gravityforms' );
+			} else {
+				$result['is_valid'] = true;
+				$result['message']  = '';
 			}
-
-			$field->isRequired = false;
-			break;
 		}
 
-		return $form;
+		return $result;
 	}
-
 
 	/**
 	 * Initialize authorizing the transaction for the product & services type feed or return the Stripe.js error.
@@ -797,7 +804,6 @@ class GFStripe extends GFPaymentAddOn {
 	 */
 	public function authorize( $feed, $submission_data, $form, $entry ) {
 
-		$this->populate_credit_card_last_four( $form );
 		$this->include_stripe_api();
 
 		if ( $this->get_stripe_js_error() ) {
@@ -889,8 +895,9 @@ class GFStripe extends GFPaymentAddOn {
 				if ( ! empty( $field_value ) ) {
 					//trim to 500 characters per Stripe requirement
 					$field_value = substr( $field_value, 0, 500 );
+					$metadata[ $meta['custom_key'] ] = $field_value;
 				}
-				$metadata[ $meta['custom_key'] ] = $field_value;
+
 			}
 		}
 
@@ -913,7 +920,6 @@ class GFStripe extends GFPaymentAddOn {
 	 */
 	public function subscribe( $feed, $submission_data, $form, $entry ) {
 
-		$this->populate_credit_card_last_four( $form );
 		$this->include_stripe_api();
 
 		if ( $this->get_stripe_js_error() ) {
@@ -922,10 +928,10 @@ class GFStripe extends GFPaymentAddOn {
 
 		$payment_amount        = $submission_data['payment_amount'];
 		$single_payment_amount = $submission_data['setup_fee'];
-		$trial_period_days     = rgars( $feed, 'meta/trialPeriod' ) ? rgars( $feed, 'meta/trialPeriod' ) : null;
+		$trial_period_days     = rgars( $feed, 'meta/trialPeriod' ) ? $submission_data['trial'] : null;
 		$currency              = rgar( $entry, 'currency' );
 
-		$plan_id = $this->get_subscription_plan_id( $feed, $payment_amount );
+		$plan_id = $this->get_subscription_plan_id( $feed, $payment_amount, $trial_period_days );
 		$plan    = $this->get_plan( $plan_id );
 
 		if ( rgar( $plan, 'error_message' ) ) {
@@ -971,6 +977,20 @@ class GFStripe extends GFPaymentAddOn {
 
 			$customer = Stripe_Customer::create( $customer_meta );
 
+			if ( has_filter( 'gform_stripe_customer_after_create' ) ) {
+				$this->log_debug( __METHOD__ . '(): Executing functions hooked to gform_stripe_customer_after_create.' );
+			}
+			/**
+			 * Allow custom actions to be performed between the customer being created and subscribed to the plan.
+			 *
+			 * @param Stripe_Customer $customer The Stripe customer object.
+			 * @param array $feed The feed currently being processed.
+			 * @param array $entry The entry currently being processed.
+			 * @param array $form The form currently being processed.
+			 *
+			 */
+			do_action( 'gform_stripe_customer_after_create', $customer, $feed, $entry, $form );
+
 			$subscription = $customer->updateSubscription( array( 'plan' => $plan->id ) );
 
 
@@ -1004,12 +1024,12 @@ class GFStripe extends GFPaymentAddOn {
 	 *
 	 * @param array $feed The feed object currently being processed.
 	 * @param float|int $payment_amount The recurring amount.
+	 * @param int $trial_period_days The number of days the trial should last.
 	 *
 	 * @return string
 	 */
-	public function get_subscription_plan_id( $feed, $payment_amount ) {
+	public function get_subscription_plan_id( $feed, $payment_amount, $trial_period_days ) {
 
-		$trial_period_days = rgars( $feed, 'meta/trialPeriod' );
 		$safe_trial_period = $trial_period_days ? 'trial' . $trial_period_days . 'days' : '';
 
 		$safe_feed_name     = str_replace( ' ', '', strtolower( $feed['meta']['feedName'] ) );
@@ -1073,6 +1093,7 @@ class GFStripe extends GFPaymentAddOn {
 		try {
 
 			$charge->description = $this->get_payment_description( $entry, $submission_data, $feed );
+			$charge->metadata = $this->get_stripe_meta_data( $feed, $entry, $form );
 			$charge->save();
 			$charge = $charge->capture();
 
@@ -1109,6 +1130,15 @@ class GFStripe extends GFPaymentAddOn {
 	public function process_subscription( $authorization, $feed, $submission_data, $form, $entry ) {
 
 		gform_update_meta( $entry['id'], 'stripe_customer_id', $authorization['subscription']['customer_id'] );
+
+		// update to user meta post entry creation so entry ID is available
+		try {
+			$customer = Stripe_Customer::retrieve( $authorization['subscription']['customer_id'] );
+			$customer->metadata = $this->get_stripe_meta_data( $feed, $entry, $form );
+			$customer->save();
+		} catch ( Stripe_Error $e ) {
+			$this->log_debug( __METHOD__ . "(): Stripe_Customer: " . $e->getMessage() );
+		}
 
 		return parent::process_subscription( $authorization, $feed, $submission_data, $form, $entry );
 	}
@@ -1154,6 +1184,8 @@ class GFStripe extends GFPaymentAddOn {
 			//To make sure the request came from Stripe, getting the event object again from Stripe (based on the ID in the response)
 			$event = $this->get_stripe_event( $response['id'] );
 		} catch ( Stripe_Error $e ) {
+			$this->log_error( __METHOD__ . '(): Unable to retrieve Stripe Event object. ' . $e->getMessage() );
+
 			return new WP_Error( 'invalid_request', __( 'Invalid webhook data. Webhook could not be processed.', 'gravityformsstripe' ), array( 'status_header' => 500 ) );
 		}
 
@@ -1536,6 +1568,44 @@ class GFStripe extends GFPaymentAddOn {
 			$this->set_field_error( $field, esc_html__( 'The selected field needs to be on the same page as the Credit Card field or a previous page.', 'gravityformsstripe' ) );
 		}
 
+	}
+
+	/**
+	 * Get the slug for the card type returned by Stripe.js
+	 *
+	 * @param string $type The possible types are "Visa", "MasterCard", "American Express", "Discover", "Diners Club", and "JCB" or "Unknown".
+	 *
+	 * @return string
+	 */
+	public function get_card_slug( $type ) {
+
+		if ( $type ) {
+			$card_types = GFCommon::get_card_types();
+
+			foreach ( $card_types as $card ) {
+				if ( $type == rgar( $card, 'name' ) ) {
+					return rgar( $card, 'slug' );
+				}
+			}
+		}
+
+		return $type;
+	}
+
+	/**
+	 * Add the value of the trialPeriod property to the order data which is to be included in the $submission_data.
+	 *
+	 * @param array $feed The feed currently being processed.
+	 * @param array $form The form currently being processed.
+	 * @param array $entry The entry currently being processed.
+	 *
+	 * @return array
+	 */
+	public function get_order_data( $feed, $form, $entry ) {
+		$order_data          = parent::get_order_data( $feed, $form, $entry );
+		$order_data['trial'] = rgars( $feed, 'meta/trialPeriod' );
+
+		return $order_data;
 	}
 
 }
