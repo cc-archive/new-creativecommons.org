@@ -38,10 +38,13 @@ $table_prefix  = 'mattl_';
  * language support.
  */
 define('WPLANG', '');
+define('WP_CACHE', true);
+define('WPCACHEHOME',
+       dirname(__FILE__) . '/wp-content/plugins/wp-super-cache/');
 /* That's all, stop editing! Happy blogging. */
 define('WP_DEFAULT_THEME', 'creativecommons.org');
 /** Absolute path to the WordPress directory. */
 if ( !defined('ABSPATH') )
-	define('ABSPATH', dirname(__FILE__) . '/WordPress/');
+	define('ABSPATH', dirname(__FILE__) . '/wordpress/');
 /** Sets up WordPress vars and included files. */
 require_once(ABSPATH . 'wp-settings.php');
