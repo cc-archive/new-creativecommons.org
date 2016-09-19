@@ -26,7 +26,6 @@
 	"fancyguy/webroot-installer": "1.0.0",
 	"wpackagist-plugin/advanced-sidebar-menu": "6.1.2",
 	"wpackagist-plugin/akismet":"3.2",
-	"wpackagist-plugin/atom-twitter-feeds": "1.0.0",
 	"wpackagist-plugin/better-search-replace":"1.2.10",
 	"wpackagist-plugin/breadcrumb-navxt": "5.5.1",
 	"wpackagist-plugin/cas-maestro": "1.1.3",
@@ -44,7 +43,11 @@
 	"wpackagist-plugin/co-authors-plus":"*"
     },
     "extra": {
-	"webroot-dir": "docroot/wordpress",
-	"webroot-package": "wordpress"
+      "webroot-dir": "docroot/wordpress",
+      "webroot-package": "wordpress",
+      "installer-paths": {
+        "docroot/wp-content/plugins/{$name}/": ["type:wordpress-plugin"],
+        "docroot/wp-content/themes/{$name}/": ["type:wordpress-theme"]
+      }
     }
 }
