@@ -1797,6 +1797,16 @@ class GFPayPal extends GFPaymentAddOn {
 		$payment_amount      = GFCommon::to_number( rgpost( 'payment_amount' ) );
 		$payment_transaction = rgpost( 'paypal_transaction_id' );
 		$payment_date        = rgpost( 'payment_date' );
+
+		$status_unchanged = $entry['payment_status'] == $payment_status;
+		$amount_unchanged = $entry['payment_amount'] == $payment_amount;
+		$id_unchanged     = $entry['transaction_id'] == $payment_transaction;
+		$date_unchanged   = $entry['payment_date'] == $payment_date;
+
+		if ( $status_unchanged && $amount_unchanged && $id_unchanged && $date_unchanged ) {
+			return;
+		}
+
 		if ( empty( $payment_date ) ) {
 			$payment_date = gmdate( 'y-m-d H:i:s' );
 		} else {
@@ -1848,7 +1858,7 @@ class GFPayPal extends GFPaymentAddOn {
 
 		if ( rgars( $feed, 'meta/delayNotification' ) ) {
 			//sending delayed notifications
-			$notifications = rgars( $feed, 'meta/selectedNotifications' );
+			$notifications = $this->get_notifications_to_send( $form, $feed );
 			GFCommon::send_notifications( $notifications, $form, $entry, true, 'form_submission' );
 		}
 
@@ -1857,6 +1867,32 @@ class GFPayPal extends GFPaymentAddOn {
 			$this->log_debug( __METHOD__ . '(): Executing functions hooked to gform_paypal_fulfillment.' );
 		}
 
+	}
+
+	/**
+	 * Retrieve the IDs of the notifications to be sent.
+	 *
+	 * @param array $form The form which created the entry being processed.
+	 * @param array $feed The feed which processed the entry.
+	 *
+	 * @return array
+	 */
+	public function get_notifications_to_send( $form, $feed ) {
+		$notifications_to_send  = array();
+		$selected_notifications = rgars( $feed, 'meta/selectedNotifications' );
+
+		if ( is_array( $selected_notifications ) ) {
+			// Make sure that the notifications being sent belong to the form submission event, just in case the notification event was changed after the feed was configured.
+			foreach ( $form['notifications'] as $notification ) {
+				if ( rgar( $notification, 'event' ) != 'form_submission' || ! in_array( $notification['id'], $selected_notifications ) ) {
+					continue;
+				}
+
+				$notifications_to_send[] = $notification['id'];
+			}
+		}
+
+		return $notifications_to_send;
 	}
 
 	private function is_valid_initial_payment_amount( $entry_id, $amount_paid ) {

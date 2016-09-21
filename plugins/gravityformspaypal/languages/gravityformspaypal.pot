@@ -1,9 +1,9 @@
 # Copyright 2009-2016 Rocketgenius, Inc.
 msgid ""
 msgstr ""
-"Project-Id-Version: Gravity Forms PayPal Standard Add-On 2.6.4\n"
+"Project-Id-Version: Gravity Forms PayPal Standard Add-On 2.7.2\n"
 "Report-Msgid-Bugs-To: http://www.gravtiyhelp.com\n"
-"POT-Creation-Date: 2016-06-14 12:18:22+00:00\n"
+"POT-Creation-Date: 2016-09-19 09:10:15+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -442,7 +442,7 @@ msgstr ""
 msgid "Please wait..."
 msgstr ""
 
-#: class-gf-paypal.php:1833
+#: class-gf-paypal.php:1843
 msgid ""
 "Payment information was manually updated. Status: %s. Amount: %s. "
 "Transaction Id: %s. Date: %s"
