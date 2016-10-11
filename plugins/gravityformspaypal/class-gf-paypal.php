@@ -606,11 +606,12 @@ class GFPayPal extends GFPaymentAddOn {
 
 		//URL that will listen to notifications from PayPal
 		$ipn_url = urlencode( get_bloginfo( 'url' ) . '/?page=gf_paypal_ipn' );
+    //AB/CC: Removing the IPN parameter so that account IPN setting will be honoured.
 
 		$business_email = urlencode( trim( $feed['meta']['paypalEmail'] ) );
 		$custom_field   = $entry['id'] . '|' . wp_hash( $entry['id'] );
 
-		$url .= "?notify_url={$ipn_url}&charset=UTF-8&currency_code={$currency}&business={$business_email}&custom={$custom_field}{$invoice}{$customer_fields}{$page_style}{$continue_text}{$cancel_url}{$disable_note}{$disable_shipping}{$return_url}";
+		$url .= "?charset=UTF-8&currency_code={$currency}&business={$business_email}&custom={$custom_field}{$invoice}{$customer_fields}{$page_style}{$continue_text}{$cancel_url}{$disable_note}{$disable_shipping}{$return_url}";
 		$query_string = '';
 
 		switch ( $feed['meta']['transactionType'] ) {
