@@ -21,21 +21,24 @@ class GFExport {
 				return;
 			}
 
-			$forms = RGFormsModel::get_form_meta_by_id( $selected_forms );
-
-			$forms = self::prepare_forms_for_export( $forms );
-
-			$forms['version'] = GFForms::$version;
-
-			$forms_json = json_encode( $forms );
-
-			$filename = 'gravityforms-export-' . date( 'Y-m-d' ) . '.json';
-			header( 'Content-Description: File Transfer' );
-			header( "Content-Disposition: attachment; filename=$filename" );
-			header( 'Content-Type: application/json; charset=' . get_option( 'blog_charset' ), true );
-			echo $forms_json;
-			die();
+			self::export_forms( $selected_forms );
 		}
+	}
+
+	public static function export_forms( $form_ids ) {
+
+		$forms = GFFormsModel::get_form_meta_by_id( $form_ids );
+		$forms = self::prepare_forms_for_export( $forms );
+
+		$forms['version'] = GFForms::$version;
+		$forms_json       = json_encode( $forms );
+
+		$filename = 'gravityforms-export-' . date( 'Y-m-d' ) . '.json';
+		header( 'Content-Description: File Transfer' );
+		header( "Content-Disposition: attachment; filename=$filename" );
+		header( 'Content-Type: application/json; charset=' . get_option( 'blog_charset' ), true );
+		echo $forms_json;
+		die();
 	}
 
 	public static function export_page() {
