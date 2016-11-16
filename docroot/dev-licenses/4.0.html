@@ -652,7 +652,7 @@ Join by December 31.<span></h4>
 everyone wins.</span></h2>
             <div class="donate-box">
               <div class="widget-inner">
-                <div class="gf_browser_chrome gform_wrapper" id="gform_wrapper_10"><form method="post" enctype="multipart/form-data" id="gform_10" action="/">
+                <div class="gf_browser_chrome gform_wrapper" id="gform_wrapper_10"><form method="get" id="gform_10" action="/donate">
                   <div class="gform_body">
                     <ul id="gform_fields_10" class="gform_fields top_label form_sublabel_below description_below">
                       <li id="field_10_2" class="gfield gfield_html gfield_html_formatted gfield_no_follows_desc field_sublabel_below field_description_below"><h2><span>Contribute today to Creative Commons</span></h2></li>
@@ -660,24 +660,21 @@ everyone wins.</span></h2>
                         <label class="gfield_label"></label>
                         <div class="ginput_container ginput_container_radio">
                           <ul class="gfield_radio" id="input_10_1">
-                            <li class="gchoice_10_1_0"><input name="input_1" type="radio" value="$100" id="choice_10_1_0" tabindex="1"><label for="choice_10_1_0" id="label_10_1_0">$100</label></li>
-                            <li class="gchoice_10_1_1"><input name="input_1" type="radio" value="$50" checked="checked" id="choice_10_1_1" tabindex="2"><label for="choice_10_1_1" id="label_10_1_1">$50</label></li>
-                            <li class="gchoice_10_1_2"><input name="input_1" type="radio" value="$25" id="choice_10_1_2" tabindex="3"><label for="choice_10_1_2" id="label_10_1_2">$25</label></li>
-                            <li class="gchoice_10_1_4"><input name="input_1" type="radio" value="gf_other_choice" id="choice_10_1_4" tabindex="5" onfocus="$(this).next('input').focus();"><input id="input_10_1_other" name="input_1_other" type="text" value="Other" aria-label="Other" onfocus="$(this).prev(&quot;input&quot;)[0].click(); if($(this).val() == &quot;Other&quot;) { $(this).val(&quot;&quot;); }" onblur="if($(this).val().replace(&quot; &quot;, &quot;&quot;) == &quot;&quot;) { $(this).val(&quot;Other&quot;); }" tabindex="5"></li>
+                            <li class="gchoice_10_1_0"><input name="amount" type="radio" value="$100" id="choice_10_1_0" tabindex="1"><label for="choice_10_1_0" id="label_10_1_0">$100</label></li>
+                            <li class="gchoice_10_1_1"><input name="amount" type="radio" value="$50" checked="checked" id="choice_10_1_1" tabindex="2"><label for="choice_10_1_1" id="label_10_1_1">$50</label></li>
+                            <li class="gchoice_10_1_2"><input name="amount" type="radio" value="$25" id="choice_10_1_2" tabindex="3"><label for="choice_10_1_2" id="label_10_1_2">$25</label></li>
+                            <li class="gchoice_10_1_4"><input name="amount" type="radio" value="gf_other_choice" id="choice_10_1_4" tabindex="5" onfocus="$(this).next('input').focus();"><input id="input_10_1_other" name="amount_other" type="text" value="Other" aria-label="Other" onfocus="$(this).prev(&quot;input&quot;)[0].click(); if($(this).val() == &quot;Other&quot;) { $(this).val(&quot;&quot;); }" onblur="if($(this).val().replace(&quot; &quot;, &quot;&quot;) == &quot;&quot;) { $(this).val(&quot;Other&quot;); }" tabindex="5"></li>
                           </ul>
                         </div>
                       </li>
                     </ul>
                   </div>
                   <div class="gform_footer top_label">
-                    <input type="submit" id="gform_submit_button_10" class="gform_button button" value="Next" tabindex="6" onclick="if(window[&quot;gf_submitting_10&quot;]){return false;}  window[&quot;gf_submitting_10&quot;]=true;  " onkeypress="if( event.keyCode == 13 ){ if(window[&quot;gf_submitting_10&quot;]){return false;} window[&quot;gf_submitting_10&quot;]=true;  $(&quot;#gform_10&quot;).trigger(&quot;submit&quot;,[true]); }">
-                    <input type="hidden" class="gform_hidden" name="is_submit_10" value="1">
-                    <input type="hidden" class="gform_hidden" name="gform_submit" value="10">
-                    <input type="hidden" class="gform_hidden" name="gform_unique_id" value="">
-                    <input type="hidden" class="gform_hidden" name="state_10" value="WyJbXSIsImE5MjhkODIxMzc5MWZhMGYxMDBjZGRjNTM2YTg4NDQ2Il0=">
-                    <input type="hidden" class="gform_hidden" name="gform_target_page_number_10" id="gform_target_page_number_10" value="0">
-                    <input type="hidden" class="gform_hidden" name="gform_source_page_number_10" id="gform_source_page_number_10" value="1">
-                    <input type="hidden" name="gform_field_values" value="">
+
+                    <input type="hidden" name="type" value="One Time">
+                    <input type="hidden" name="utm_content" value="eoy2016_deed">
+
+                    <input type="submit" id="gform_submit_button_10" class="gform_button button" value="Next" tabindex="6">
                 </div>
               </form>
             </div>
