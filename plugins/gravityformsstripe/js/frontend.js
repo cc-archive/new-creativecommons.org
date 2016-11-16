@@ -46,6 +46,7 @@ window.GFStripe = null;
                         name:       form.find( '#' + ccInputPrefix + '5').val()
                     };
 
+
                 GFStripeObj.form = form;
 
                 Stripe.card.createToken( cc, function( status, response ) {
@@ -81,7 +82,8 @@ window.GFStripe = null;
 
                 }
 
-                input.attr( 'name', null );
+                // name attribute is now removed from markup in GFStripe::add_stripe_inputs()
+                //input.attr( 'name', null );
 
             }
 
