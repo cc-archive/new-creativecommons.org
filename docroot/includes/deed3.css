@@ -931,7 +931,7 @@ ol.arabic-markers {
 /* -- Yellow Ribbon -- */
 #deed-donate-slide .yellow-ribbon {
   background-color: #FEEB32;
-  box-shadow: 0px 6px 5px -2px rgba($black, 0.5);
+  box-shadow: 0px 6px 5px -2px rgba(0, 0, 0, 0.5);
   box-sizing: border-box;
   color: #000;
   font-weight: 600;
@@ -982,6 +982,7 @@ ol.arabic-markers {
 @media (min-width: 48.9375em) { /* $table-md-layout */
   #deed-donate-slide .yellow-ribbon {
   	font-size: 20px;
+  	margin-bottom: 30px;
     padding: 18px 0px;
    }
 
@@ -997,21 +998,72 @@ ol.arabic-markers {
 }
 
 @media (min-width: 56.875em) { /* $desktop-sm-layout */
-  font-size: 22px;
-  margin-bottom: 30px;
+  #deed-donate-slide .yellow-ribbon {
+  	font-size: 22px;
+    margin-bottom: 40px;
+  }
 }
 
 @media (min-width: 75em) { /* $desktop-lg-layout */
-  font-size: 24px;
+  #deed-donate-slide .yellow-ribbon { font-size: 24px; }
 }
 /* -- End of: Yellow Ribbon -- */
 
-#deed-donate-slide h2{
-  font-size: 2em;
-  line-height: 28px;
-  margin-top: 0px;
-  margin-bottom: 0px;
+/* -- Donate form: title -- */
+.donate-box h2 {
+  align-items: center;
+  color: #000;
+  display: block;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1em;
+  margin: 0px;
+  min-height: 60px;
+  text-align: center;
 }
+
+.donate-box h2 .share-wins { display: block; }
+
+.donate-box h2 .contribute-today {
+  display: block;
+  font-size: 0.7em;
+  line-height: 1.1em;
+  margin-top: 0.5em;
+}
+
+@media (min-width: 620px) {
+
+  .donate-box h2 {
+    background: url('cc_heart.png') 6% center no-repeat;
+    background-size: 66px;
+    padding-left: 18%;
+    padding-top: 5px;
+    text-align: left;
+  }
+}
+
+@media (min-width: 44.375em) { /* $tablet-sm-layout */
+
+  .donate-box h2 {
+  	background-position: 16% center;
+  	padding-left: 26%;
+  }
+}
+
+@media (min-width: 75em) { /* $desktop-lg-layout */
+
+  .donate-box h2 {
+  	background-image: none;
+  	padding-left: 0;
+  }
+
+  .donate-box h2 .contribute-today { display: none; }
+}
+/* -- End of: Donate form: title -- */
+
+#deed-donate-slide .no-wrap { white-space: nowrap; }
+
+.donate-box .gform_fields { margin-top: 0; }
 
 .slide-close {
 	background: url('../images/deed/slide-close.png') no-repeat center center;
@@ -1076,16 +1128,8 @@ img.slide-logo { padding-top: 40px; }
 
 /* Donate box */
 
-.donate-box :after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
 .donate-box {
-  background: $grey-lighter;
-  margin: 0 !important;
-  padding: 30px 0;
+  margin-bottom: 30px;
   position: relative;
 }
 
@@ -1102,7 +1146,7 @@ img.slide-logo { padding-top: 40px; }
 
 .donate-box .widget-inner .gform_fields > li { margin: 0; }
 
-.donate-box .widget-inner h2 {
+/*.donate-box .widget-inner h2 {
   align-items: center;
   background-size: 66px;
   display: flex;
@@ -1110,7 +1154,7 @@ img.slide-logo { padding-top: 40px; }
   margin-bottom: 20px;
   min-height: 60px;
   padding-left: 80px;
-}
+}*/
 
 .donate-box .widget-inner  #field_2_1 > label { display: none; }
 
@@ -1118,10 +1162,6 @@ img.slide-logo { padding-top: 40px; }
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
-}
-.donate-box .widget-inner h2 {
-  color: black;
-  padding-left: 0;
 }
 
 .donate-box .widget-inner ul {
