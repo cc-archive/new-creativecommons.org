@@ -1109,6 +1109,23 @@ ol.arabic-markers {
 	transition:         all .3s ease-in-out;
 }
 
+.slide-trigger img.cc-logo {
+  display: block;
+  left: -25%;
+  margin: 0 auto -5% auto;
+  max-width: 150%;
+  position: relative;
+  top: -10%;
+}
+
+@media (min-width: 56.875em) { /* $desktop-sm-layout */
+  .slide-trigger img.cc-logo {
+  	left: 0;
+    margin-bottom: 0;
+    max-width: 100%;
+   }
+}
+
 .slide-trigger p {
 	margin: 0;
 	font-weight: 600;
@@ -1380,6 +1397,13 @@ img.slide-logo { padding-top: 40px; }
 }
 
 /* end donate box */
+#deed-donate-slide .footer-note {
+	font-size: 22px;
+	line-height: 1.3em;
+	margin: 30px auto;
+}
+
+#deed-donate-slide .footer-note p { font-weight: normal; }
 
 /* --- narrow screens --- */
 @media screen and (max-width: 1420px) {
