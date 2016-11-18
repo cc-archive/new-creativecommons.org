@@ -1316,20 +1316,26 @@ img.slide-logo { padding-top: 40px; }
   width: 100%;
 }
 
-.gform_button[value="Next"],
 .gform_button[value="Donate Now"] {
-  background: url('/includes/donate-button-sprite.png') no-repeat right top;
+  background: url('donate-button-bevel-sprite.png') no-repeat right top;
   background-size: auto 94px;
   box-shadow: none;
   border: 0 none;
   color: white;
-  font-size: 2em;
-  font-weight: bold;
+  font-size: 20px;
+  line-height: 1em;
   height: 47px;
   margin: 0 10px 0 0px !important;
-  text-transform: none;
+  max-width: 232px;
+  text-transform: none !important;
   width: 100%;
 }
+
+.gform_button[value="Donate Now"]:hover,
+.gform_button[value="Donate Now"]:focus {
+  background-position: right bottom;
+}
+
 
 /* end donate box */
 
