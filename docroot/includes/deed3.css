@@ -1165,26 +1165,70 @@ img.slide-logo { padding-top: 40px; }
 }
 
 .donate-box .widget-inner ul {
-  padding-left: 0px;
+  padding: 0px;
   list-style-type: none;
 }
 
+/* Radio buttons */
+.gchoice_10_1_3 { display: none; }
+
 .donate-box .widget-inner .gfield_radio > li {
-  flex: 0 0 42%;
+	box-sizing: border-box;
+  flex: 0 0 48%;
   margin: 0 0 20px 0;
   overflow: visible;
-  border-color: #d4d4d4;
-  border-radius: 3px;
-  border-style: solid;
-  border-width: 4px 4px 4px 4px;
   margin-top: 10px;
   margin-bottom: 0;
   position: relative;
 }
 
-.donate-box .widget-inner .gfield_radio > li :last-child {}
+.donate-box .widget-inner .gfield_radio > li:last-child {
+	border-color: #d4d4d4;
+	border-radius: 3px;
+	border-style: solid;
+	border-width: 4px 4px 4px 40px;
+	height: 44px;
+	margin-bottom: 0;
+	position: relative;
+}
+
+.donate-box .widget-inner .gfield_radio > li:last-child::before {
+	content: "$";
+	/*font-family: "cc-fontello";*/
+	font-style: normal;
+	font-weight: bold;
+	speak: none;
+	display: inline-block;
+	text-decoration: inherit;
+	width: 1em;
+	margin-right: .2em;
+	text-align: center;
+	opacity: .8;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1em;
+	margin-left: .2em;
+	font-size: 1.2rem;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3);
+	color: #464646;
+	left: -33px;
+	position: absolute;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+.donate-box .widget-inner .gfield_radio > li:last-child input {
+  line-height: 1.6em;
+  padding: 5px 4px;
+}
 
 .donate-box .widget-inner .gfield_radio > li.selected { border-color: #01A635; }
+
+.donate-box .widget-inner .gfield_radio > li.selected:last-child::before { color: #FFF; }
 
 .donate-box .widget-inner .gfield_radio > li input {
   background: #F3F3F3;
@@ -1233,6 +1277,11 @@ img.slide-logo { padding-top: 40px; }
   width: 100%;
 }
 
+.donate-box .widget-inner .gfield_radio > li label:hover {
+	background: linear-gradient(0deg, #D2D2D2, #A1A1A1);
+  border-color: #b2b2b2;
+}
+
 .donate-box .widget-inner .gfield_radio > li input[type="radio"]:checked + label {
   background: #01A635;
   border-color: #018d2d;
@@ -1242,13 +1291,33 @@ img.slide-logo { padding-top: 40px; }
   color: #fff;
 }
 
+@media (min-width: 44.375em) { /* $tablet-sm-layout */
+
+  .donate-box .widget-inner .gfield_radio {
+      margin: 20px 0;
+  }
+
+  .donate-box .widget-inner .gfield_radio > li {
+        flex-basis: 15%;
+        margin-bottom: 0!important;
+  }
+
+  .donate-box .widget-inner .gfield_radio > li.gchoice_10_1_3 { display: block; }
+
+  .donate-box .widget-inner .gfield_radio > li:last-child {
+    flex-basis: 25%;
+  }
+}
+
+/* End of: Radio buttons */
 .gform_footer {
   margin: 0;
   padding: 0;
   width: 100%;
 }
 
-.gform_button[value="Next"] {
+.gform_button[value="Next"],
+.gform_button[value="Donate Now"] {
   background: url('/includes/donate-button-sprite.png') no-repeat right top;
   background-size: auto 94px;
   box-shadow: none;
