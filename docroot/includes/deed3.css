@@ -1424,20 +1424,13 @@ img.slide-logo { padding-top: 40px; }
   }
   #deed-donate-slide.slider.reveal { margin-left: calc(50% - 630px); }
 }
-
-*/
 @media screen and (max-width: 1280px) {
   #deed-donate-slide.slider {
-  	overflow: hidden;
-  	width: 320px;
-    /*width: 240px;*/
+    width: 240px;
   }
-  #deed-donate-slide.slider.reveal {
-  	margin-left: 0;
-    /*margin-left: calc(50% - 630px);*/
-  }
+  #deed-donate-slide.slider.reveal { margin-left: calc(50% - 630px); }
 }
-
+*/
 @media screen and (max-width: 1220px) {
 
   #deed-donate-slide .manual-wrap { white-space: normal; }
@@ -1478,4 +1471,14 @@ img.slide-logo { padding-top: 40px; }
 	.slide-trigger button {
 		margin: 5px 0 0;
 	}
+}
+
+@media screen and (min-width: 1221px) {
+  #deed-donate-slide.slider {
+  	overflow: hidden;
+  	width: 320px;
+  }
+  #deed-donate-slide.slider.reveal {
+  	margin-left: 0;
+  }
 }
