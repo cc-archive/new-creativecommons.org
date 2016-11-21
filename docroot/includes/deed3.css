@@ -900,6 +900,8 @@ ol.arabic-markers {
 ------------------------------------ */
 #deed-donate-slide {
 	font-family: "Source Sans Pro", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 #deed-donate-slide button,
@@ -948,10 +950,11 @@ ol.arabic-markers {
   box-shadow: 0px 6px 5px -2px rgba(0, 0, 0, 0.5);
   box-sizing: border-box;
   color: #000;
+  font-size: 16px;
   font-weight: 600;
   height: 62px;
   line-height: 1.3em;
-  margin: 20px auto 10px auto;
+  margin: 20px auto;
   padding: 10px 0px;
   position: relative;
   width: 80%;
@@ -1406,9 +1409,10 @@ img.slide-logo { padding-top: 40px; }
 
 /* end donate box */
 #deed-donate-slide .footer-note {
-	font-size: 22px;
+	font-size: 18px;
 	line-height: 1.3em;
 	margin: 30px auto;
+	padding: 0 20px;
 }
 
 #deed-donate-slide .footer-note p { font-weight: normal; }
