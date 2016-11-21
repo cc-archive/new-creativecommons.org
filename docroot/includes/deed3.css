@@ -920,13 +920,15 @@ ol.arabic-markers {
 	color: #fff;
 }
 #deed-donate-slide.slider {
-	width: 340px;
+	width: 100%;
+	/*width: 340px;*/
 	margin: 0 auto 0 -280px;
 	position: absolute;
 	left: 0;
+	overflow: scroll;
 	top: 45px;
 	z-index: 1000;
-	display: table;
+	/*display: table;*/
 	-moz-box-shadow:    1px 2px 6px rgba(0,0,0,.3);
 	-webkit-box-shadow: 1px 2px 6px rgba(0,0,0,.3);
 	box-shadow:         1px 2px 6px rgba(0,0,0,.3);
@@ -1105,6 +1107,7 @@ ol.arabic-markers {
 .slide-trigger {
 	display: block;
 	background-color: #158B95;
+	overflow: hidden;
 	padding: 15px;
 	-webkit-transition: all .3s ease-in-out;
 	-moz-transition:    all .3s ease-in-out;
