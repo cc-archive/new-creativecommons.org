@@ -954,7 +954,7 @@ ol.arabic-markers {
   font-weight: 600;
   height: 62px;
   line-height: 1.3em;
-  margin: 20px auto;
+  margin: 5px auto;
   padding: 10px 0px;
   position: relative;
   width: 80%;
@@ -985,19 +985,19 @@ ol.arabic-markers {
   z-index: 2;
 }
 
-@media screen and (min-width: 480px) and (max-width: 1220px) {
+@media screen and (min-width: 480px) and (max-width: 1219px) {
 	#deed-donate-slide .yellow-ribbon {
 	  font-size: 18px;
 	  padding: 10px 5%;
 	}
 }
 
-@media screen and (min-width: 620px) and (max-width: 1220px) {
+@media screen and (min-width: 620px) and (max-width: 1219px) {
 
   #deed-donate-slide .yellow-ribbon { padding: 18px 0px; }
 }
 
-@media screen and (min-width: 48.9375em) and (max-width: 1220px) { /* $table-md-layout */
+@media screen and (min-width: 48.9375em) and (max-width: 1219px) { /* $table-md-layout */
 
   #deed-donate-slide .yellow-ribbon {
   	font-size: 20px;
@@ -1016,7 +1016,7 @@ ol.arabic-markers {
   }
 }
 
-@media screen and (min-width: 56.875em) and (max-width: 1220px) { /* $desktop-sm-layout */
+@media screen and (min-width: 56.875em) and (max-width: 1219px) { /* $desktop-sm-layout */
 
   #deed-donate-slide .yellow-ribbon {
   	font-size: 22px;
@@ -1024,17 +1024,21 @@ ol.arabic-markers {
   }
 }
 
-@media screen and (min-width: 75em) and (max-width: 1220px) { /* $desktop-lg-layout */
+@media screen and (min-width: 75em) and (max-width: 1219px) { /* $desktop-lg-layout */
 
   #deed-donate-slide .yellow-ribbon { font-size: 24px; }
 }
 /* -- End of: Yellow Ribbon -- */
+#gform_fields_10 { display: none; }
+
+@media screen and (min-width: 48.9375em) { /* $tablet-md-layout */
+  #gform_fields_10 { display: block; }
+}
 
 /* -- Donate form: title -- */
 .donate-box h2 {
   align-items: center;
   color: #000;
-  display: block;
   font-size: 26px;
   font-weight: 700;
   line-height: 1em;
@@ -1043,8 +1047,6 @@ ol.arabic-markers {
   text-align: center;
 }
 
-.donate-box h2 .share-wins { display: block; }
-
 .donate-box h2 .contribute-today {
   display: block;
   font-size: 0.7em;
@@ -1052,7 +1054,11 @@ ol.arabic-markers {
   margin-top: 0.5em;
 }
 
-@media screen and (min-width: 620px) and (max-width: 1220px) {
+@media screen and (min-width: 620px) {
+  .donate-box h2 { display: block; }
+}
+
+@media screen and (min-width: 620px) and (max-width: 1219px) {
 
   .donate-box h2 {
     background: url('cc_heart.png') 6% center no-repeat;
@@ -1063,15 +1069,15 @@ ol.arabic-markers {
   }
 }
 
-@media screen and (min-width: 44.375em) and (max-width: 1220px) { /* $tablet-sm-layout */
+@media screen and (min-width: 44.375em) and (max-width: 1219px) { /* $tablet-sm-layout */
 
-  .donate-box h2 {
+  /*.donate-box h2 {
   	background-position: 16% center;
   	padding-left: 26%;
-  }
+  }*/
 }
 
-@media screen and (min-width: 75em) and (max-width: 1220px) { /* $desktop-lg-layout */
+@media screen and (min-width: 61.5625em) and (max-width: 1219px) { /* $desktop-lg-layout */
 
   /*.donate-box h2 .contribute-today { display: none; }*/
 
@@ -1121,20 +1127,20 @@ ol.arabic-markers {
 
 .slide-trigger img.cc-logo {
   display: block;
-  left: -25%;
-  margin: 0 auto -5% auto;
-  max-width: 150%;
-  position: relative;
-  top: -10%;
+  left: 50%;
+  margin: 0;
+  max-width: 200%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
-@media screen and (min-width: 56.875em) and (max-width: 1220px) { /* $desktop-sm-layout */
-
-  .slide-trigger img.cc-logo {
-  	left: 0;
-    margin-bottom: 0;
-    max-width: 100%;
-   }
+@media screen and (min-width: 1220px) {
+	.slide-trigger img.cc-logo {
+	  left: -25%;
+	  position: relative;
+    transform: translateY(0);
+	}
 }
 
 .slide-trigger p {
@@ -1173,19 +1179,26 @@ img.slide-logo { padding-top: 40px; }
 /* Donate box */
 
 .donate-box {
-  margin-bottom: 30px;
+  position: relative;
+}
+
+.donate-box .widget-inner {
+  margin-left: 10px;
+  margin-right: 10px;
   position: relative;
 }
 
 .donate-box .gform_wrapper { margin: 0; }
 
-.donate-box .widget-inner {
-  margin-left: 10px;
-  margin-right: 10px;
-  background: #F3F3F3;
-  border-top: 10px solid #01A635;
-  padding: 20px;
-  position: relative;
+@media screen and (min-width: 48.9375em) { /* $table-md-layout */
+
+	.donate-box { margin-bottom: 30px; }
+
+	.donate-box .widget-inner {
+	  background: #F3F3F3;
+	  border-top: 10px solid #01A635;
+    padding: 20px;
+	}
 }
 
 .donate-box .widget-inner .gform_fields > li { margin: 0; }
@@ -1335,7 +1348,7 @@ img.slide-logo { padding-top: 40px; }
   color: #fff;
 }
 
-@media screen and (min-width: 44.375em) and (max-width: 1220px) { /* $tablet-sm-layout */
+@media screen and (min-width: 44.375em) and (max-width: 1219px) { /* $tablet-sm-layout */
 
   .donate-box .widget-inner .gfield_radio {
       margin: 20px 0;
@@ -1353,7 +1366,7 @@ img.slide-logo { padding-top: 40px; }
   }
 }
 
-@media screen and (min-width: 75em) and (max-width: 1220px) { /* $desktop-lg-layout */
+@media screen and (min-width: 61.5625em) and (max-width: 1219px) { /* $desktop-sm-layout */
 	.donate-box .widget-inner .gfield_radio {
 		padding-right: 200px;
 	}
@@ -1386,7 +1399,7 @@ img.slide-logo { padding-top: 40px; }
   background-position: right bottom;
 }
 
-@media screen and (min-width: 75em) and (max-width: 1220px) { /* $desktop-lg-layout */
+@media screen and (min-width: 61.5625em) and (max-width: 1219px) { /* $desktop-lg-layout */
 
   .donate-box form {
     background: url('cc_heart.png') left center no-repeat;
@@ -1408,11 +1421,17 @@ img.slide-logo { padding-top: 40px; }
 }
 
 /* end donate box */
-#deed-donate-slide .footer-note {
-	font-size: 18px;
-	line-height: 1.3em;
-	margin: 30px auto;
-	padding: 0 20px;
+
+#deed-donate-slide .footer-note { display: none; }
+
+@media screen and (min-width: 620px) {
+
+	#deed-donate-slide .footer-note {
+		font-size: 18px;
+		line-height: 1.3em;
+		margin: 30px auto;
+		padding: 0 20px;
+	}
 }
 
 #deed-donate-slide .footer-note p { font-weight: normal; }
@@ -1438,13 +1457,13 @@ img.slide-logo { padding-top: 40px; }
   #deed-donate-slide.slider.reveal { margin-left: calc(50% - 630px); }
 }
 */
-@media screen and (max-width: 1220px) {
+@media screen and (max-width: 1219px) {
 
   #deed-donate-slide .manual-wrap { white-space: normal; }
   #deed-donate-slide.slider.reveal { margin-left: 0; }
 
 	#deed-donate-slide.slider {
-    top: 0;
+    top: auto;
 		z-index: 100;
 		position: fixed;
 		left: 0;
@@ -1458,10 +1477,12 @@ img.slide-logo { padding-top: 40px; }
 		-ms-transition:    bottom .5s ease-in-out;
 		transition:         bottom .5s ease-in-out;
 	}
+
 	#deed-donate-slide.reveal { bottom: 0; }
 
 	.slide-close {
-		background: url('../images/deed/slide-close-mobile.png') no-repeat center center;
+		background: #FFF url('../images/deed/slide-close-mobile.png') no-repeat center center;
+		border-radius: 50%;
 		width: 33px;
 		height: 33px;
 		top: 5px;
@@ -1480,7 +1501,7 @@ img.slide-logo { padding-top: 40px; }
 	}
 }
 
-@media screen and (min-width: 1221px) {
+@media screen and (min-width: 1220px) {
   #deed-donate-slide.slider {
   	overflow: hidden;
   	width: 320px;
