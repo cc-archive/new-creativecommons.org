@@ -1137,9 +1137,10 @@ ol.arabic-markers {
 
 @media screen and (min-width: 1220px) {
 	.slide-trigger img.cc-logo {
-	  left: -25%;
+	  left: 50%;
 	  position: relative;
-    transform: translateY(0);
+	  top: 0;
+    transform: translateX(-50%);
 	}
 }
 
