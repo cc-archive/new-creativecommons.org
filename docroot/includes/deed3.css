@@ -955,6 +955,7 @@ ol.arabic-markers {
   height: 62px;
   line-height: 1.3em;
   margin: 5px auto;
+  max-width: 600px;
   padding: 10px 0px;
   position: relative;
   width: 80%;
@@ -1028,11 +1029,17 @@ ol.arabic-markers {
 
   #deed-donate-slide .yellow-ribbon { font-size: 24px; }
 }
-/* -- End of: Yellow Ribbon -- */
-#gform_fields_10 { display: none; }
 
-@media screen and (min-width: 48.9375em) { /* $tablet-md-layout */
-  #gform_fields_10 { display: block; }
+@media screen and (min-width: 1220px) {
+  #deed-donate-slide .yellow-ribbon { margin: 110px auto 10px auto; }
+}
+
+/* -- End of: Yellow Ribbon -- */
+
+form#gform_10 > .gform_body { display: none; }
+
+@media screen and (min-width: 1220px) {
+  form#gform_10 > .gform_body { display: block; }
 }
 
 /* -- Donate form: title -- */
@@ -1053,43 +1060,6 @@ ol.arabic-markers {
   line-height: 1.1em;
   margin-top: 0.5em;
 }
-
-@media screen and (min-width: 620px) {
-  .donate-box h2 { display: block; }
-}
-
-@media screen and (min-width: 620px) and (max-width: 1219px) {
-
-  .donate-box h2 {
-    background: url('cc_heart.png') 6% center no-repeat;
-    background-size: 66px;
-    padding-left: 18%;
-    padding-top: 5px;
-    text-align: left;
-  }
-}
-
-@media screen and (min-width: 44.375em) and (max-width: 1219px) { /* $tablet-sm-layout */
-
-  /*.donate-box h2 {
-  	background-position: 16% center;
-  	padding-left: 26%;
-  }*/
-}
-
-@media screen and (min-width: 61.5625em) and (max-width: 1219px) { /* $desktop-lg-layout */
-
-  /*.donate-box h2 .contribute-today { display: none; }*/
-
-  .donate-box h2 {
-    background-image: none;
-    font-size: 44px;
-    min-height: auto;
-    padding-left: 0;
-  }
-
-  .donate-box h2 .share-wins { display: none; }
-}
 /* -- End of: Donate form: title -- */
 
 #deed-donate-slide .no-wrap { white-space: nowrap; }
@@ -1097,15 +1067,17 @@ ol.arabic-markers {
 .donate-box .gform_fields { margin-top: 0; }
 
 .slide-close {
-	background: url('../images/deed/slide-close.png') no-repeat center center;
-	width: 16px;
+	background: url('../images/deed/slide-close.png') no-repeat 1px 2px;
+	border: 2px solid #FFF;
+	border-radius: 50%;
+	width: 18px;
 	height: 17px;
 	display: block;
 	cursor: pointer;
+	opacity: .9;
 	position: absolute;
 	right: 5px;
 	top: 5px;
-	opacity: .6;
 	text-indent: -99999px;
 	z-index: 999; }
 .slide-close:hover { opacity: 1; }
@@ -1137,9 +1109,8 @@ ol.arabic-markers {
 
 @media screen and (min-width: 1220px) {
 	.slide-trigger img.cc-logo {
-	  left: 50%;
-	  position: relative;
-	  top: 0;
+		max-width: 300%;
+	  top: -7%;
     transform: translateX(-50%);
 	}
 }
@@ -1191,7 +1162,7 @@ img.slide-logo { padding-top: 40px; }
 
 .donate-box .gform_wrapper { margin: 0; }
 
-@media screen and (min-width: 48.9375em) { /* $table-md-layout */
+@media screen and (min-width: 1220px) {
 
 	.donate-box { margin-bottom: 30px; }
 
@@ -1400,27 +1371,6 @@ img.slide-logo { padding-top: 40px; }
   background-position: right bottom;
 }
 
-@media screen and (min-width: 61.5625em) and (max-width: 1219px) { /* $desktop-lg-layout */
-
-  .donate-box form {
-    background: url('cc_heart.png') left center no-repeat;
-    background-size: 100px;
-    padding-left: 15%;
-  }
-
-  .donate-box .gfield_radio {
-    padding-right: 200px;
-  }
-
-  .donate-box .gform_footer {
-    bottom: 38px;
-    /* left: auto; */
-    position: absolute;
-    right: 20px;
-    width: auto;
-  }
-}
-
 /* end donate box */
 
 #deed-donate-slide .footer-note { display: none; }
@@ -1481,7 +1431,7 @@ img.slide-logo { padding-top: 40px; }
 
 	#deed-donate-slide.reveal { bottom: 0; }
 
-	.slide-close {
+	/*.slide-close {
 		background: #FFF url('../images/deed/slide-close-mobile.png') no-repeat center center;
 		border-radius: 50%;
 		width: 33px;
@@ -1489,7 +1439,7 @@ img.slide-logo { padding-top: 40px; }
 		top: 5px;
 		right: 5px;
 		opacity: .8;
-	}
+	}*/
 
 	.slide-trigger {
 		padding: 10px;
