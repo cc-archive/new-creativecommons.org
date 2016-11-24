@@ -1,39 +1,22 @@
 ---------------------------------------------------
-Version 2.0.9
-	- Fixed issue which could occur when saving an incomplete submission.
-
-	---------------------------------------------------
-Version 2.0.8
-	- Fixed issue when sending empty meta data.
-
----------------------------------------------------
-Version 2.0.7
-    - Fixed an issue where entry ID was not correctly populated in customer metadata (for subscription feeds)
-
----------------------------------------------------
-Version 2.0.6
-    - Fixed an issue where entry ID was not correctly populated in charge metadata
-
----------------------------------------------------
-Version 2.0.5
-    - Fixed an issue with the trial property from the $submission_data not being used when generating the plan id.
-
----------------------------------------------------
-Version 2.0.4
-    - Fixed an issue with the trial property from the $submission_data not being used.
-
----------------------------------------------------
-Version 2.0.3
-    - Fixed an issue with the card type validation.
-    - Fixed an issue which caused the credit card field required indicator to be missing when the form is displayed after a validation failure.
-
----------------------------------------------------
-Version 2.0.2
+Version 2.1
+    - Added the gform_stripe_subscription_cancel_at_period_end filter. See https://www.gravityhelp.com/documentation/article/gform_stripe_subscription_cancel_at_period_end/
+    - Added the gform_stripe_charge_authorization_only filter. See https://www.gravityhelp.com/documentation/article/gform_stripe_charge_authorization_only/
+    - Added the gform_stripe_customer_id filter. See https://www.gravityhelp.com/documentation/article/gform_stripe_customer_id/
     - Added logging of error retrieving Stripe Event object.
-
----------------------------------------------------
-Version 2.0.1
     - Added the 'gform_stripe_customer_after_create' hook allowing custom actions to be performed between the customer being created and subscribed to the plan. See https://www.gravityhelp.com/documentation/article/gform_stripe_customer_after_create/
+    - Updated included Stripe API library to latest version.
+    - Updated subscription process to define subscription when customer is created if 'gform_stripe_customer_after_create' filter is not defined.
+    - Updated to only repopulate the card field within the last four digits on successful form submission.
+    - Fixed a JavaScript error which occurred when the frontend scripts were included when the form had an active feed but no credit card field.
+    - Fixed an issue where entry ID was not correctly populated in charge metadata.
+    - Fixed an issue where entry ID was not correctly populated in customer metadata (for subscription feeds).
+    - Fixed an issue which caused the credit card field required indicator to be missing when the form is displayed after a validation failure.
+    - Fixed an issue with the card type validation.
+    - Fixed an issue with the trial property from the $submission_data not being used.
+    - Fixed an issue with the trial property from the $submission_data not being used when generating the plan id.
+	- Fixed issue when sending empty meta data.
+	- Fixed issue which could occur when saving an incomplete submission.
 
 ---------------------------------------------------
 Version 2.0
