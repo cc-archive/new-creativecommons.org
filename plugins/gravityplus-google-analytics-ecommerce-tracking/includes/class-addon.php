@@ -324,6 +324,12 @@ class GFP_Google_Analytics_Ecommerce_Addon extends GFFeedAddOn {
 			return;
 		}
 
+    // CC modification - not sending paypal transactions to
+    if ( $entry[14] == 'PayPal' && $entry['payment_status'] == 'Processing' ) {
+      $this->log_debug( __( 'Not sending Processing PayPal Transactions to GA.', 'gravityplus-google-analytics-ecommerce-tracking' ) );
+      return;
+    }
+
 		$ecommerce_data = $this->get_order_data( $feed, $entry, $form );
 
 		$ecommerce_data[ 'transaction' ][ 'tid' ] = $ecommerce_data[ 'item' ][ 'tid' ] = $settings[ 'tracking_id' ];
