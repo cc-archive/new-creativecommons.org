@@ -1,3 +1,4 @@
+<?php $version = '4.7.2'; ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN" "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dct="http://purl.org/dc/terms/" xmlns:frbr="http://purl.org/vocab/frbr/core#" xml:lang="en">
 
@@ -7,12 +8,12 @@
     <title>Creative Commons &mdash; Attribution 4.0 International &mdash; CC BY 4.0 </title>
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel='stylesheet' id='cc-google-fonts-css' href='//fonts.googleapis.com/css?family=Source+Sans+Pro%3A400%2C600%2C700%7CRoboto+Condensed&#038;ver=4.7.2' type='text/css' media='all' />
-    <link rel='stylesheet' id='cc-fontello-css' href='/wp-content/themes/cc/fonts/fontello/css/cc-fontello.css?ver=4.7.2' type='text/css' media='all' />
-    <link rel="stylesheet" id="twentysixteen-jetpack-css" href="/wp-content/plugins/jetpack/modules/theme-tools/compat/twentysixteen.css?ver=4.6" type="text/css" media="all">
-    <link rel='stylesheet' id='parent-style-css' href='https://creativecommons.org/wp-content/themes/twentysixteen/style.css?ver=4.7.2' type='text/css' media='all'/>
-    <link rel='stylesheet' id='cc-style-css' href='/wp-content/themes/cc/css/app.css?ver=20170104' type='text/css' media='all' />
-    <link rel="stylesheet" type="text/css" href="/includes/deed3.css" media="screen" />
+    <link rel='stylesheet' id='cc-google-fonts-css' href='//fonts.googleapis.com/css?family=Source+Sans+Pro%3A400%2C600%2C700%7CRoboto+Condensed&#038;ver=<?php print $version; ?>' type='text/css' media='all' />
+    <link rel='stylesheet' id='cc-fontello-css' href='/wp-content/themes/cc/fonts/fontello/css/cc-fontello.css?ver=<?php print $version; ?>' type='text/css' media='all' />
+    <link rel="stylesheet" id="twentysixteen-jetpack-css" href="/wp-content/plugins/jetpack/modules/theme-tools/compat/twentysixteen.css?ver=<?php print $version; ?>" type="text/css" media="all">
+    <link rel='stylesheet' id='parent-style-css' href='/wp-content/themes/twentysixteen/style.css?ver=<?php print $version; ?>' type='text/css' media='all'/>
+    <link rel='stylesheet' id='cc-style-css' href='/wp-content/themes/cc/css/app.css?ver=<?php print $version; ?>' type='text/css' media='all' />
+    <link rel="stylesheet" type="text/css" href="/includes/deed4.css" media="screen" />
     <link rel="stylesheet" type="text/css" media="print" href="/includes/deed3-print.css" />
     <link rel="stylesheet" type="text/css" href="/includes/jurisdictions.css" media="screen" />
     <!--[if lt IE 7]>
@@ -46,7 +47,7 @@
 -->
   </head>
 
-  <body typeof="cc:License" about="http://creativecommons.org/licenses/by/4.0/" class="home">
+  <body typeof="cc:License" about="http://creativecommons.org/licenses/by/4.0/" class="license">
     <div id="page" class="site">
       <div class="site-inner">
         <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
@@ -119,8 +120,8 @@
           </aside>
           <div id="primary" class="content-area">
             <main id="main" class="site-main" role="main">
-              <div id="deed" class="green" dir="ltr" style="text-align: left">
-                <div id="deed-head">
+              <div id="deed" class="container" dir="ltr" style="text-align: left">
+                <div id="deed-head" class="row">
                   <div id="cc-logo">
                     <img src="/images/deed/cc-logo.jpg" alt="cc logo" />
                   </div>
@@ -132,14 +133,12 @@
                   <h1><span>Creative Commons License Deed</span></h1>
                   <div id="deed-license">
                     <h2>
-<span property="dc:title dct:title" style="display: inline;">Attribution 4.0 International</span>
-<span style="display: inline-block; font-size: 14px; padding-left: 2px;">
-(<span property="dc:identifier dct:identifier" style="display: inline; font-size: 12px;">CC BY 4.0</span>)
-</span>
-</h2>
+                      <span property="dc:title dct:title" style="display: inline;">Attribution 4.0 International</span>
+                      <span property="dc:identifier dct:identifier" style="display: inline;">(CC BY 4.0)</span>
+                    </h2>
                   </div>
                 </div>
-                <div id="deed-main" dir="ltr" style="text-align: left">
+                <div id="deed-main" dir="ltr" style="text-align: left" class="row">
                   <div id="legalcode-block">
                     <div id="help_disclaimer_popup" class="help_panel">
                       <div class="hd">Disclaimer</div>
@@ -150,24 +149,20 @@
                     </div>
                     <div id="deed-disclaimer">
                       <div class="summary">
-                        This is a human-readable summary of (and not a substitute for) the <a href="legalcode" class="fulltext">license</a>.
-                      </div>
-                      <div class="disclaimer">
-                        <a href="#" id="disclaimer_popup" class="helpLink">
-Disclaimer
-</a>
+                        This is a human-readable summary of and not a substitute for the <a href="legalcode" class="fulltext">full license</a>.
+                        <a href="#" id="disclaimer_popup">Disclaimer</a>.
                       </div>
                     </div>
                   </div>
-                  <div id="deed-main-content" class="">
+                  <div id="deed-main-content" class="row">
                     <div id="libre">
                       <a href="http://freedomdefined.org/">
                         <img src="/images/deed/seal.png" style="border: 0" alt="This license is acceptable for Free Cultural Works." />
                       </a>
                     </div>
-                    <div id="deed-rights" dir="ltr" style="text-align: left">
-                      <h3 resource="http://creativecommons.org/ns#Reproduction" rel="cc:permits">You are free to:</h3>
-                      <ul class="license-properties">
+                    <div id="deed-rights" dir="ltr" style="text-align: left" class="row">
+                      <h3 style="text-align: center" resource="http://creativecommons.org/ns#Reproduction" rel="cc:permits">You are free to:</h3>
+                      <ul class="license-properties col-md-offset-2 col-md-8">
                         <li class="license share" rel="cc:permits" resource="http://creativecommons.org/ns#Distribution">
                           <strong>Share</strong> &mdash; copy and redistribute the material in any medium or format
                         </li>
@@ -181,13 +176,13 @@ Disclaimer
                           <span id="devnations-container" />
                         </li>
                       </ul>
-                      <ul id="license-freedoms-no-icons">
+                      <ul id="license-freedoms-no-icons" style="text-align: center" class="col-md-12">
                         <li class="license">The licensor cannot revoke these freedoms as long as you follow the license terms.</li>
                       </ul>
                     </div>
-                    <div id="deed-conditions">
-                      <h3>Under the following terms:</h3>
-                      <ul dir="ltr" style="text-align: left" class="license-properties">
+                    <div id="deed-conditions" class="row">
+                      <h3 style="text-align: center">Under the following terms:</h3>
+                      <ul dir="ltr" style="text-align: left" class="license-properties col-md-offset-2 col-md-8">
                         <li class="license by">
                           <p>
                             <strong>Attribution</strong> &mdash; <span rel="cc:requires" resource="http://creativecommons.org/ns#Attribution">You must give <a href="#" id="appropriate_credit_popup" class="helpLink">appropriate credit</a></span>, provide a link to the license, and <span rel="cc:requires" resource="http://creativecommons.org/ns#Notice"><a href="#" id="indicate_changes_popup" class="helpLink">indicate if changes were made</a></span>. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
@@ -216,16 +211,16 @@ Attribute this work:
                         </li>
                       </ul>
                     </div>
-                    <ul id="deed-conditions-no-icons">
-                      <li class="license">
-                        <strong>No additional restrictions</strong> &mdash; You may not apply legal terms or <a href="#" id="technological_measures_popup" class="helpLink">technological measures</a> that legally restrict others from doing anything the license permits.
-                      </li>
-                    </ul>
-                    <div id="deed-understanding">
-                      <h3>
-Notices:
-</h3>
-                      <ul class="understanding license-properties">
+                    <div class="row">
+                      <ul id="deed-conditions-no-icons" class="col-md-offset-2 col-md-8">
+                        <li class="license">
+                          <strong>No additional restrictions</strong> &mdash; You may not apply legal terms or <a href="#" id="technological_measures_popup" class="helpLink">technological measures</a> that legally restrict others from doing anything the license permits.
+                        </li>
+                      </ul>
+                    </div>
+                    <div id="deed-understanding" class="row">
+                      <h3 style="text-align: center">Notices:</h3>
+                      <ul class="understanding license-properties col-md-offset-2 col-md-8">
                         <li class="license">
                           You do not have to comply with the license for elements of the material in the public domain or where your use is permitted by an applicable <a href="#" id="exception_or_limitation_popup" class="helpLink">exception or limitation</a>.
                         </li>
@@ -302,8 +297,9 @@ Notices:
                   </div>
                 </div>
               </div>
-              <div id="footer">
-                <p>
+            </div>
+              <div class="row" id="footer">
+                <p style="text-align: center">
                   <a href="https://wiki.creativecommons.org/FAQ">Learn more</a> about CC licensing, or <a id="get_this" href="/choose/results-one?license_code=by&amp;amp;jurisdiction=&amp;amp;version=4.0&amp;amp;lang=en">use the license</a> for your own material.
                 </p>
                 <noscript>
@@ -319,7 +315,8 @@ Notices:
                     </div>
                   </div>
                 </noscript>
-                <div id="languages">
+                <div id="languages" class="container">
+                  <div class="row">
                   <span dir="ltr" style="text-align: left">
 This page is available in the following languages:
 </span>
@@ -363,9 +360,10 @@ This page is available in the following languages:
                   <a title="日本語" rel="alternate nofollow frbr:translation" rev="frbr:translationOf" href="./deed.ja" hreflang="ja" xml:lang="ja">日本語</a>
                   <a title="華語 (台灣)" rel="alternate nofollow frbr:translation" rev="frbr:translationOf" href="./deed.zh_TW" hreflang="zh_TW" xml:lang="zh_TW">華語 (台灣)</a>
                   <a title="한국어" rel="alternate nofollow frbr:translation" rev="frbr:translationOf" href="./deed.ko" hreflang="ko" xml:lang="ko">한국어</a>
+                  </div>
                 </div>
               </div>
-              <div class="site-footer-wrapper">
+              <div class="site-footer-wrapper row">
                 <footer id="colophon" class="site-footer sticky-nav-main" role="contentinfo">
                   <div class="cc-footer">
                     <div class="column cc-footer-main">
@@ -381,24 +379,12 @@ This page is available in the following languages:
                             <li id="menu-item-48797" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-48797"><a href="https://creativecommons.org/terms/">Terms</a></li>
                           </ul>
                         </div>
-                        <div class="cc-footer-links-search">
-                          <form role="search" method="get" class="search-form" action="https://creativecommons.org/">
-                            <label> <span class="screen-reader-text">Search for:</span>
-                              <input type="search" class="search-field" placeholder="Search the website" value="" name="s" title="Search for:" /> </label>
-                            <button type="submit" class="search-submit" value="Search"> <span class="screen-reader-text">Search</span> </button>
-                          </form>
-                        </div>
                       </div>
                     </div>
                     <div class="column cc-footer-contact">
                       <h6><a href="/about/contact">We'd love to hear from you!</a></h6>
-                      <address>
-                        Creative Commons
-                        <br/> PO Box 1866, Mountain View, CA 94042
-                      </address>
                       <ul>
                         <li><a href="mailto:info@creativecommons.org" class="mail">info@creativecommons.org</a></li>
-                        <li><a href="tel:1-415-429-6753">1-415-429-6753</a></li>
                         <li><a style="color: white" href="/faq">Frequently Asked Questions</a></li>
                       </ul>
                     </div>
@@ -414,13 +400,6 @@ This page is available in the following languages:
                           <p class="website-credit">Website by <a class="subfoot" href="http://affinitybridge.com/" target="blank"> Affinity Bridge</a>.</p>
                         </div>
                       </aside>
-                    </div>
-                    <div class="column cc-footer-search">
-                      <form role="search" method="get" class="search-form" action="https://creativecommons.org/">
-                        <label> <span class="screen-reader-text">Search for:</span>
-                          <input type="search" class="search-field" placeholder="Search the website" value="" name="s" title="Search for:" /> </label>
-                        <button type="submit" class="search-submit" value="Search"> <span class="screen-reader-text">Search</span> </button>
-                      </form>
                     </div>
                   </div>
                 </footer>
