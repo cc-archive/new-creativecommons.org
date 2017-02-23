@@ -432,10 +432,10 @@ h3 {
 
 #libre {
     position: absolute;
-    right: 25px;
-    top: -100px;
-    width: 100px;
-    height: 100px;
+    right: 20px;
+    top: 0px;
+    width: 140px;
+    height: 140px;
 }
 #librepd {
     width: 150px;
@@ -443,10 +443,9 @@ h3 {
 }
 
 #libre img, #libre a, #librepd img, #librepd a {
-    width: 75px;
-    height: 75px;
+    width: 140px;
+    height: 140px;
     border: none !important;
-    margin-top: 2px;
 }
 
 div.bd p {
