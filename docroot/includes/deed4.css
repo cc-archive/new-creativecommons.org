@@ -350,9 +350,24 @@ li.devnations {
 li.no-endorse{
     background: url("/images/deed/no-endorse.png") 0 0 no-repeat;
 }
-li.by {
-    background: url("/images/deed/by.png") 0 0 no-repeat;
+
+li.by::before {
+    margin-left: -100px;
+    background-image: url('/images/deed/attribution_icon_blue_x2.png');
+    background-size: 61px 61px;
+    display: inline-block;
+    width: 61px;
+    height: 61px;
+    content:"";
 }
+li.by {
+
+}
+
+li.by p {
+  margin-top: -61px;
+}
+
 li.nc {
     background: url("/images/deed/nc.png") 0 0 no-repeat;
 }
@@ -370,7 +385,7 @@ li.nd {
 }
 li.sampling, li.samplingplus{
     background: url("/images/deed/sampling.png") 0 0 no-repeat;
-}	
+}
 li.more {
     background: url("/images/deed/more.png") 0 0 no-repeat;
 }
