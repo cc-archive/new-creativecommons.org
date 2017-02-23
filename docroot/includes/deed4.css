@@ -5,7 +5,7 @@ body.rtl {
 }
 
 h3 {
-    font-size: 1.25em;
+    font-size: 1.75em;
 }
 
 #cc-logo { display: none; }
@@ -153,10 +153,7 @@ body.rtl #deed-main {
     position: absolute;
     bottom: 20px;
     color: #333;
-    /*			padding-top: 90px;*/
-    /*			padding-top: 50px;*/
     font-size: 2em;
-    /*			font-size: 300%;*/
     text-shadow: 0 1px 0 #fff;
     line-height: 1.2;
     margin: 0;
@@ -264,6 +261,10 @@ body.rtl #deed-foot {
 #deed-foot p {
     margin: 0 20px;
     padding: 0;
+}
+
+hr {
+  background: #ffffff;
 }
 
 a {
@@ -441,7 +442,7 @@ blockquote {
 h3 {
     padding-top: 10px;
     padding-left: 10px;
-    margin-top:  1.75em;
+    margin-top:  1.25em;
     margin-bottom:  1.25em;
 }
 
