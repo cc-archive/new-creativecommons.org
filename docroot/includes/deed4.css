@@ -59,9 +59,18 @@ body.rtl {
     display: none;
 }	
 
-#deed-head span#cc-logo, #deed-head span#cc-attribution, #deed-head span#cc-license-title {
+#deed-head span.cc-license-icons, #deed-head span#cc-logo, #deed-head span#cc-attribution, #deed-head span#cc-license-title {
   display: inline;
 }
+
+/* Desktop small and smaller */
+@media only screen and (max-width : 992px) {
+  #deed-head span.cc-license-icons {
+    display: block;
+    margin-bottom: 12px;
+  }
+}
+
 
 #cc-logo img, #cc-attribution img {
   width: 62px;
@@ -157,6 +166,14 @@ body.rtl #deed-main {
     line-height: 1.1;
 }
 
+/* Desktop small and smaller */
+@media only screen and (max-width : 992px) {
+  #deed-license h2 {
+    font-size: 1.8em;
+  }
+}
+
+
 .pd #deed-license {
     position: relative;
     height: 100px;
@@ -194,6 +211,13 @@ body.rtl #deed-main {
 #deed-rights {
     padding: 0;
 }
+
+@media only screen and (max-width : 710px) {
+  #deed-rights {
+    max-width: 80%;
+  }
+}
+
 
 #deed-conditions {
     padding: 0;
@@ -384,6 +408,31 @@ li.by p {
   margin-top: -61px;
 }
 
+/* Desktop small and smaller */
+@media only screen and (max-width : 992px) {
+  li.by::before {
+    margin-left: -80px;
+  }
+  li.by {
+    padding-left: 70px;
+  }
+}
+
+/* Desktop small and smaller */
+@media only screen and (max-width : 710px) {
+  li.by::before {
+    margin-left: -60px;
+    width: 42px;
+    height: 42px;
+    background-size: 42px 42px;
+  }
+  li.by {
+    padding-left: 60px;
+  }
+}
+
+
+
 li.nc {
     background: url("/images/deed/nc.png") 0 0 no-repeat;
 }
@@ -476,6 +525,20 @@ h3 {
     height: 140px;
     border: none !important;
 }
+
+@media only screen and (max-width : 710px) {
+  #libre {
+      width: 100px;
+      height: 100px;
+  }
+
+  #libre img, #libre a, #librepd img, #librepd a {
+      width: 100px;
+      height: 100px;
+      border: none !important;
+  }
+}
+
 
 div.bd p {
     color: #111;
@@ -1149,3 +1212,7 @@ margin-top: 30px;
 .a-nobreak a {
         white-space:nowrap;
 }
+
+
+
+
