@@ -40,14 +40,12 @@ h3 {
 
 
 #deed {
-    background: #00B5DA;
     color: #333;
-    margin: 20px auto;
     text-align: center;
 }
 
 #deed-head {
-    margin: 0 auto;
+    background: #00B5DA;
     position: relative;
 }
 
