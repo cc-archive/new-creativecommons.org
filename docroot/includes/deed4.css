@@ -4,12 +4,6 @@ body.rtl {
     direction: rtl;
 }
 
-h3 {
-    font-size: 1.75em;
-}
-
-#cc-logo { display: none; }
-
 #deed-bg {}
 
 .mockup-badge {
@@ -56,6 +50,19 @@ h3 {
 #deed-head span, #deed-foot span {
     display: none;
 }	
+
+#deed-head span#cc-logo, #deed-head span#cc-attribution, #deed-head span#cc-license-title {
+  display: inline;
+}
+
+#cc-logo img, #cc-attribution img {
+  width: 62px;
+  height: 62px;
+}
+
+#deed-head span#cc-license-title {
+  padding-left: 18px;
+}
 
 #cc-link a {
     display: block;
@@ -137,7 +144,7 @@ body.rtl #deed-main {
 }
 #deed-license h2 {
     margin: 0;
-    font-size: 1.46em;
+    font-size: 2em;
     padding-top: 40px;
     line-height: 1.1;
 }
@@ -263,6 +270,8 @@ body.rtl #deed-foot {
 
 hr {
   background: #ffffff;
+  margin-bottom: 0px;
+  margin-top: 18px;
 }
 
 a {
@@ -429,7 +438,6 @@ li a {
     text-decoration: none;
 }
 
-
 blockquote {
     padding:  8px;
     background-color:  #eee;
@@ -438,10 +446,9 @@ blockquote {
 }
 
 h3 {
-    padding-top: 10px;
-    padding-left: 10px;
-    margin-top:  1.25em;
-    margin-bottom:  1.25em;
+    font-size: 1.75em;
+    margin-top:  1em;
+    margin-bottom:  1em;
 }
 
 #libre {
@@ -506,7 +513,6 @@ div.bd p {
     margin-right: 0.5em;
 }
 
-
 /* This is for the GNU/GPL license: list must start at 0 and the attribute start='0' is not allowed in xhtml*/
 ol.gpl { counter-reset: item -1}
 li.gpl { list-style: none;}
@@ -526,7 +532,7 @@ li.gpl:before {
 div#languages {
     text-align: center;
     font-size: 0.9em;
-    padding-bottom: 70px;
+    padding-bottom: 50px;
 }
 
 div#languages a {
@@ -542,7 +548,7 @@ div#languages p {
 
 #help_publicity_rights, #help_endorsement, #help_citation_help, #help_who_is_affirmer, #help_disclaimer {
     visibility: hidden;
-    height: 0;  
+    height: 0;
 }
 
 #help_publicity_rights_c > #help_publicity_rights,
@@ -567,11 +573,18 @@ ol.arabic-markers {
     text-align: left;
 }
 
-@media screen and (max-width: 788px) {
+
+#footer {
+  margin-top: 44px;
+}
+
+
+/* Small device adjustments */
+@media screen and (max-width: 768px) {
     html {
-	-ms-text-size-adjust: 100%;
-	-moz-text-size-adjust: 100%;
-	-webkit-text-size-adjust: 100%;
+	   -ms-text-size-adjust: 100%;
+	   -moz-text-size-adjust: 100%;
+	   -webkit-text-size-adjust: 100%;
     }
 
     #deed {
@@ -634,6 +647,7 @@ ol.arabic-markers {
     }
 
 }
+
 
 /* Donate Footer Styles
 ------------------------------------ */
