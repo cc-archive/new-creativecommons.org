@@ -15,13 +15,13 @@ body.rtl {
     opacity: 0.50;
     font-size: 70%;
 }
-.left { 
+.left {
     left: 0;
     -webkit-border-bottom-right-radius: 10px;
     -moz-border-radius-bottomright: 10px;
     border-bottom-right-radius: 10px;
 }
-.right { 
+.right {
     right: 0;
     -webkit-border-bottom-left-radius: 10px;
     -moz-border-radius-bottomleft: 10px;
@@ -70,7 +70,6 @@ body.rtl {
     margin-bottom: 12px;
   }
 }
-
 
 #cc-logo img, #cc-attribution img {
   width: 62px;
@@ -192,8 +191,6 @@ body.rtl #deed-main {
 }
 
 #deed-main img {
-    float: right;
-    border: 1px solid #888;
     margin-bottom:  5px;
 }
 
@@ -213,11 +210,8 @@ body.rtl #deed-main {
 }
 
 @media only screen and (max-width : 710px) {
-  #deed-rights {
-    max-width: 80%;
-  }
-}
 
+}
 
 #deed-conditions {
     padding: 0;
@@ -509,11 +503,7 @@ h3 {
 }
 
 #libre {
-    position: absolute;
-    right: 20px;
-    top: 0px;
-    width: 140px;
-    height: 140px;
+  margin-top: 1em;
 }
 #librepd {
     width: 150px;
@@ -521,24 +511,31 @@ h3 {
 }
 
 #libre img, #libre a, #librepd img, #librepd a {
-    width: 140px;
-    height: 140px;
+    margin-top: 24px;
+    max-width: 140px;
+    height: auto;
     border: none !important;
 }
 
-@media only screen and (max-width : 710px) {
+@media only screen and (max-width : 992px) {
+  #libre img {
+    max-width: 100px;
+  }
+}
+
+@media only screen and (max-width : 768px) {
   #libre {
+      display: none;
       width: 100px;
       height: 100px;
   }
 
   #libre img, #libre a, #librepd img, #librepd a {
-      width: 100px;
-      height: 100px;
+      display: none;
+      height: auto;
       border: none !important;
   }
 }
-
 
 div.bd p {
     color: #111;
@@ -995,7 +992,7 @@ margin-top: 30px;
   cursor: pointer;
   display: inline-block;
   font-family: "Source Sans Pro", sans-serif;
-  font-size: 1.2rem;
+  font-size: 1.8rem !important;
   font-weight: 700;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
