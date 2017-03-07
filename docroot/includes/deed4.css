@@ -266,8 +266,13 @@ body.rtl #deed-main {
     font-size: 0.92em;
 }
 #deed-conditions-no-icons li.license {
-    padding-left:0px;
+  padding-left:0px;
 }
+ul.license-properties {
+  margin-right: 1em;
+}
+
+#deed-conditions-no-icons,
 #license-freedoms-no-icons {
   margin-right: 1em;
 }
@@ -502,8 +507,8 @@ blockquote {
 
 h3 {
     font-size: 1.75em;
-    margin-top:  1em;
-    margin-bottom:  1em;
+    margin: 1em .8em;
+
 }
 
 #libre {
