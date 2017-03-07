@@ -268,6 +268,10 @@ body.rtl #deed-main {
 #deed-conditions-no-icons li.license {
     padding-left:0px;
 }
+#license-freedoms-no-icons {
+  margin-right: 1em;
+}
+
 #license-freedoms-no-icons li.license {
     padding-left:0px;
 }
@@ -515,6 +519,11 @@ h3 {
     max-width: 140px;
     height: auto;
     border: none !important;
+}
+
+p.learn-more-cc {
+  text-align: center;
+  margin: 1em;
 }
 
 @media only screen and (max-width : 992px) {
@@ -1169,45 +1178,44 @@ margin-top: 30px;
 }
 
 @media screen and (max-width: 1060px) {
-    #deed-donate-slide.slider {
-	z-index: 100;
-	position: fixed;
-	left: 0;
-	bottom: -100%;
-	width: 100%;
-	margin: 0;
-	text-align: center;
-	-webkit-transition: bottom .5s ease-in-out;
-	-moz-transition:    bottom .5s ease-in-out;
-	-o-transition:      bottom .5s ease-in-out;
-	-ms-transition:    bottom .5s ease-in-out;
-	transition:         bottom .5s ease-in-out;
-    }
-    #deed-donate-slide.reveal { bottom: 0; }
+  #deed-donate-slide.slider {
+  	z-index: 100;
+  	position: fixed;
+  	left: 0;
+  	bottom: -100%;
+  	width: 100%;
+  	margin: 0;
+  	text-align: center;
+  	-webkit-transition: bottom .5s ease-in-out;
+  	-moz-transition:    bottom .5s ease-in-out;
+  	-o-transition:      bottom .5s ease-in-out;
+  	-ms-transition:    bottom .5s ease-in-out;
+  	transition:         bottom .5s ease-in-out;
+  }
+  #deed-donate-slide.reveal { bottom: 0; }
 
-    .slide-close {
-	background: url('../images/deed/slide-close-mobile.png') no-repeat center center;
-	width: 33px;
-	height: 33px;
-	top: initial;
-	bottom: 5px;
-	right: 5px;
-	opacity: .8;
-    }
+  .slide-close {
+  	background: url('../images/deed/slide-close-mobile.png') no-repeat center center;
+  	width: 33px;
+  	height: 33px;
+  	top: 5px;
+  	right: 5px;
+  	opacity: .8;
+  }
 
-    .slide-trigger {
-	padding: 10px;
-    }
+  .slide-trigger {
+  	padding: 10px;
+  }
 
-    img.slide-logo { display: none; }
+  img.slide-logo { display: none; }
 
-    .slide-trigger button {
-	margin: 5px 0 0;
-    }
+  .slide-trigger button {
+	  margin: 5px 0 0;
+  }
 }
 
 .a-nobreak a {
-        white-space:nowrap;
+  white-space:nowrap;
 }
 
 

@@ -316,7 +316,7 @@ Attribute this work:
               </div>
             </div>
               <div class="row" id="footer">
-                <p style="text-align: center">
+                <p class="learn-more-cc">
                   <a href="https://wiki.creativecommons.org/FAQ">Learn more</a> about CC licensing, or <a id="get_this" href="/choose/results-one?license_code=by&amp;amp;jurisdiction=&amp;amp;version=4.0&amp;amp;lang=en">use the license</a> for your own material.
                 </p>
                 <noscript>
