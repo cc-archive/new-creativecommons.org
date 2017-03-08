@@ -905,7 +905,7 @@ margin-top: 30px;
 
 .donate-box .widget-inner  #field_2_1 > label { display: none; }
 
-.donate-box .widget-inner  #field_10_1 > label { 
+.donate-box .widget-inner  #field_10_1 > label {
   color: black;
   font-size: 2.5rem;
   line-height: .9em;
@@ -930,6 +930,7 @@ margin-top: 30px;
 .donate-box .widget-inner .gfield_radio > li {
   box-sizing: border-box;
   flex: 0 0 48%;
+  max-width: 48%;
   margin: 0 0 20px 0;
   overflow: visible;
   margin-top: 10px;
