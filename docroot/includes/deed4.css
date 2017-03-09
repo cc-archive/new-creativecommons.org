@@ -59,7 +59,7 @@ body.rtl {
     display: none;
 }	
 
-#deed-head span.cc-license-icons, #deed-head span#cc-logo, #deed-head span#cc-attribution, #deed-head span#cc-license-title {
+#deed-head span.cc-license-icons, #deed-head span#cc-logo, #deed-head span.icon, #deed-head span#cc-license-title {
   display: inline;
 }
 
@@ -71,7 +71,7 @@ body.rtl {
   }
 }
 
-#cc-logo img, #cc-attribution img {
+#cc-logo img, span.icon img {
   width: 62px;
   height: 62px;
 }
@@ -320,15 +320,6 @@ a:hover {
     color: #4A4902;
 }
 
-.red #deed-foot {
-}
-
-.yellow #deed-foot {
-}
-
-.green #deed-foot {
-}
-
 .pd #deed-foot {
     height: 70px;
 }
@@ -394,7 +385,12 @@ li.no-endorse{
     background: url("/images/deed/no-endorse.png") 0 0 no-repeat;
 }
 
-li.by::before {
+li.by::before,
+li.nc::before,
+li.nc-jp::before,
+li.nc-eu::before,
+li.nd::before,
+li.sa::before {
     margin-left: -100px;
     background-image: url('/images/deed/attribution_icon_blue_x2.png');
     background-size: 61px 61px;
@@ -403,54 +399,116 @@ li.by::before {
     height: 61px;
     content:"";
 }
-li.by {
 
+body.rtl li.by::before,
+body.rtl li.nc::before,
+body.rtl li.nc-jp::before,
+body.rtl li.nc-eu::before,
+body.rtl li.nd::before,
+body.rtl li.sa::before {
+    margin-right: -100px;
 }
 
-li.by p {
+li.nc::before {
+    background-image: url('/images/deed/nc_blue_x2.png');
+}
+li.nc-jp::before {
+    background-image: url('/images/deed/nc-eu_blue_x2.png');
+}
+li.nc-eu::before {
+    background-image: url('/images/deed/nc-eu_blue_x2.png');
+}
+li.nd::before {
+    background-image: url('/images/deed/nd_blue_x2.png');
+}
+li.sa::before {
+    background-image: url('/images/deed/sa_blue_x2.png');
+}
+
+li.by p,
+li.nc p,
+li.nc-jp p,
+li.nc-eu p,
+li.nd p,
+li.sa p {
   margin-top: -61px;
 }
 
 /* Desktop small and smaller */
 @media only screen and (max-width : 992px) {
-  li.by::before {
+  li.by::before,
+  li.nc::before,
+  li.nc-jp::before,
+  li.nc-eu::before,
+  li.nd::before,
+  li.sa::before {
     margin-left: -80px;
   }
-  li.by {
+  body.rtl li.by::before,
+  body.rtl li.nc::before,
+  body.rtl li.nc-jp::before,
+  body.rtl li.nc-eu::before,
+  body.rtl li.nd::before,
+  body.rtl li.sa::before {
+      margin-right: -80px;
+  }
+  li.by,
+  li.nc,
+  li.nc-jp,
+  li.nc-eu,
+  li.nd,
+  li.sa {
     padding-left: 70px;
+  }
+  body.rtl li.by,
+  body.rtl li.nc,
+  body.rtl li.nc-jp,
+  body.rtl li.nc-eu,
+  body.rtl li.nd,
+  body.rtl li.sa {
+    padding-right: 70px;
   }
 }
 
 /* Desktop small and smaller */
 @media only screen and (max-width : 710px) {
-  li.by::before {
+  li.by::before,
+  li.nc::before,
+  li.nc-jp::before,
+  li.nc-eu::before,
+  li.nd::before,
+  li.sa::before {
     margin-left: -60px;
     width: 42px;
     height: 42px;
     background-size: 42px 42px;
   }
-  li.by {
+  body.rtl li.by::before,
+  body.rtl li.nc::before,
+  body.rtl li.nc-jp::before,
+  body.rtl li.nc-eu::before,
+  body.rtl li.nd::before,
+  body.rtl li.sa::before {
+      margin-left: -60px;
+  }
+  li.by,
+  li.nc,
+  li.nc-jp,
+  li.nc-eu,
+  li.nd,
+  li.sa {
     padding-left: 60px;
+  }
+  body.rtl li.by,
+  body.rtl li.nc,
+  body.rtl li.nc-jp,
+  body.rtl li.nc-eu,
+  body.rtl li.nd,
+  body.rtl li.sa {
+    padding-right: 60px;
   }
 }
 
-
-
-li.nc {
-    background: url("/images/deed/nc.png") 0 0 no-repeat;
-}
-li.nc-jp {
-    background: url("/images/deed/nc-jp.png") 0 0 no-repeat;
-}
-li.nc-eu {
-    background: url("/images/deed/nc-eu.png") 0 0 no-repeat;
-}
-li.sa {
-    background: url("/images/deed/sa.png") 0 0 no-repeat;
-}
-li.nd {
-    background: url("/images/deed/nd.png") 0 0 no-repeat;
-}
 li.sampling, li.samplingplus{
     background: url("/images/deed/sampling.png") 0 0 no-repeat;
 }
