@@ -130,16 +130,6 @@ body.rtl #deed-main {
     border-color: #bbc0ab;
 }
 
-#deed-newer {
-    border: 1px solid #e0adad;
-    background-color: #f0f0f0;
-    padding: 15px;
-    margin-top: 25px;
-}
-#deed-newer a, #deed-main a {
-    font-weight: bold;
-}
-
 #deed-main a.inline-help {
     text-decoration: none;
     font-weight: inherit;
@@ -400,6 +390,10 @@ li.sa::before {
     content:"";
 }
 
+li.nc {
+  min-height: 70px;
+}
+
 body.rtl li.by::before,
 body.rtl li.nc::before,
 body.rtl li.nc-jp::before,
@@ -460,6 +454,10 @@ li.sa p {
   li.sa {
     padding-left: 70px;
   }
+  li.nc {
+    min-height: 70px;
+  }
+
   body.rtl li.by,
   body.rtl li.nc,
   body.rtl li.nc-jp,
@@ -499,6 +497,19 @@ li.sa p {
   li.sa {
     padding-left: 60px;
   }
+  li.nc {
+    min-height: 40px;
+  }
+
+  li.by p,
+  li.nc p,
+  li.nc-jp p,
+  li.nc-eu p,
+  li.nd p,
+  li.sa p {
+    margin-top: -50px;
+  }
+
   body.rtl li.by,
   body.rtl li.nc,
   body.rtl li.nc-jp,
