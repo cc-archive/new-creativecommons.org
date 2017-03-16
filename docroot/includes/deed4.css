@@ -201,6 +201,10 @@ body.rtl #deed-main {
     padding: 0;
 }
 
+.popover .popover-content a {
+  word-break: break-word;
+}
+
 @media only screen and (max-width : 710px) {
 
 }
