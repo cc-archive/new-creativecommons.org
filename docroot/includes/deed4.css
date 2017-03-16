@@ -130,10 +130,12 @@ body.rtl #deed-main {
     border-color: #bbc0ab;
 }
 
-#deed-main a.inline-help {
+#deed-main a.inline-help,
+#deed-main a.helpLink {
     text-decoration: none;
     font-weight: inherit;
-    border-bottom: 1px dashed #333;
+    border-bottom: 1px dashed #888;
+    cursor: help;
 }
 
 #deed-main-content {
@@ -419,12 +421,13 @@ li.sa::before {
     background-image: url('/images/deed/sa_blue_x2.png');
 }
 
-li.by p,
-li.nc p,
-li.nc-jp p,
-li.nc-eu p,
-li.nd p,
-li.sa p {
+li.by > p,
+li.nc > p,
+li.nc-jp > p,
+li.nc-eu > p,
+li.nd > p,
+li.sa > p {
+  /* FIXME: This is incredibly brittle */
   margin-top: -61px;
 }
 
