@@ -408,10 +408,10 @@ li.nd::before,
 li.sa::before {
     margin-left: -100px;
     background-image: url('/images/deed/attribution_icon_blue_x2.png');
-    background-size: 61px 61px;
+    background-size: 62px 62px;
     display: inline-block;
-    width: 61px;
-    height: 61px;
+    width: 62px;
+    height: 62px;
     content:"";
 }
 
@@ -451,7 +451,7 @@ li.nc-eu > p,
 li.nd > p,
 li.sa > p {
   /* FIXME: This is incredibly brittle */
-  margin-top: -61px;
+  margin-top: -62px;
 }
 
 /* Desktop small and smaller */
