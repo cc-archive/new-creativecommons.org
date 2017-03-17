@@ -445,6 +445,7 @@ li.sa::before {
     left: 0;
     margin-left: -100px;
     margin-right: auto;
+    background-repeat: no-repeat;
     background-size: 62px 62px;
     display: inline-block;
     width: 62px;
@@ -464,6 +465,10 @@ body.rtl li.sa::before {
     left: auto;
     margin-left: auto;
     margin-right: -100px;
+}
+
+li.by::before {
+    background-image: url('/images/deed/attribution_icon_blue_x2.png');
 }
 
 li.nc::before {
