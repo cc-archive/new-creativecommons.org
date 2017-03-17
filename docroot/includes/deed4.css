@@ -1,4 +1,4 @@
-/* CC Deed CSS! */
+/* CC Deed CSS */
 
 body.rtl {
     direction: rtl;
@@ -10,7 +10,7 @@ body.hide-banner #content #header-below,
 body.hide-banner .site-footer .cc-footer-links,
 body.hide-banner .site-footer .cc-footer-contact,
 body.hide-banner .site-footer .cc-footer-license {
-  display: none !important;
+    display: none !important;
 }
 
 #deed-bg {}
@@ -24,12 +24,14 @@ body.hide-banner .site-footer .cc-footer-license {
     opacity: 0.50;
     font-size: 70%;
 }
+
 .left {
     left: 0;
     -webkit-border-bottom-right-radius: 10px;
     -moz-border-radius-bottomright: 10px;
     border-bottom-right-radius: 10px;
 }
+
 .right {
     right: 0;
     -webkit-border-bottom-left-radius: 10px;
@@ -40,7 +42,6 @@ body.hide-banner .site-footer .cc-footer-license {
 .site-main {
     margin-bottom: 0;
 }
-
 
 #deed {
     color: #333;
@@ -66,27 +67,27 @@ body.hide-banner .site-footer .cc-footer-license {
 
 #deed-head span, #deed-foot span {
     display: none;
-}	
+}        
 
 #deed-head span.cc-license-icons, #deed-head span#cc-logo, #deed-head span.icon, #deed-head span#cc-license-title {
-  display: inline;
+    display: inline;
 }
 
 /* Desktop small and smaller */
 @media only screen and (max-width : 992px) {
-  #deed-head span.cc-license-icons {
-    display: block;
-    margin-bottom: 12px;
-  }
+    #deed-head span.cc-license-icons {
+        display: block;
+        margin-bottom: 12px;
+    }
 }
 
 #cc-logo img, span.icon img {
-  width: 62px;
-  height: 62px;
+    width: 62px;
+    height: 62px;
 }
 
 #deed-head span#cc-license-title {
-  padding-left: 18px;
+    padding-left: 18px;
 }
 
 #cc-link a {
@@ -159,6 +160,7 @@ body.rtl #deed-main {
     font-weight: bold;
     color: #fff;
 }
+
 #deed-license h2 {
     margin: 0;
     font-size: 2em;
@@ -168,11 +170,10 @@ body.rtl #deed-main {
 
 /* Desktop small and smaller */
 @media only screen and (max-width : 992px) {
-  #deed-license h2 {
-    font-size: 1.8em;
-  }
+    #deed-license h2 {
+        font-size: 1.8em;
+    }
 }
-
 
 .pd #deed-license {
     position: relative;
@@ -202,6 +203,7 @@ body.rtl #deed-main {
 
 #deed-disclaimer .summary {
 }
+
 #deed-disclaimer a {
   font-weight: normal;
 }
@@ -248,11 +250,13 @@ body.rtl #deed-main {
 #deed-understanding li.license {
     padding-left:0px;
 }
+
 #deed-understanding-zero {
-    /*			padding: 0 10px;*/
+    /*                        padding: 0 10px;*/
     margin-top: -20px;
     margin-bottom: 0px;
 }
+
 #deed-understanding ul, #deed-understanding-zero ul {
     list-style-image:none;
     list-style-position:outside;
@@ -270,9 +274,11 @@ body.rtl #deed-main {
     color: #111;
     font-size: 0.92em;
 }
+
 #deed-conditions-no-icons li.license {
   padding-left:0px;
 }
+
 ul.license-properties {
   margin-right: 1em;
 }
@@ -309,14 +315,15 @@ body.rtl #deed-foot {
 }
 
 hr {
-  background: #ffffff;
-  margin-bottom: 0px;
-  margin-top: 18px;
+    background: #ffffff;
+    margin-bottom: 0px;
+    margin-top: 18px;
 }
 
 a {
     text-decoration: none;
 }
+
 a:hover {
     text-decoration: underline;
 }
@@ -341,6 +348,7 @@ a:hover {
 li strong {
     color: #222;
 }
+
 li {
     margin-bottom: 8px;
 }
@@ -350,6 +358,7 @@ ul.license-properties {
     list-style-position: outside;
     list-style-type: none;
 }
+
 li.license {
     list-style: none;
     padding-top: 5px;
@@ -368,6 +377,7 @@ li.license p {
     margin: 0;
     padding: 0;
 }
+
 li.license-hidden {
     list-style: none;
 }
@@ -446,99 +456,106 @@ li.sa > p {
 
 /* Desktop small and smaller */
 @media only screen and (max-width : 992px) {
-  li.by::before,
-  li.nc::before,
-  li.nc-jp::before,
-  li.nc-eu::before,
-  li.nd::before,
-  li.sa::before {
-    margin-left: -80px;
-  }
-  body.rtl li.by::before,
-  body.rtl li.nc::before,
-  body.rtl li.nc-jp::before,
-  body.rtl li.nc-eu::before,
-  body.rtl li.nd::before,
-  body.rtl li.sa::before {
-      margin-right: -80px;
-  }
-  li.by,
-  li.nc,
-  li.nc-jp,
-  li.nc-eu,
-  li.nd,
-  li.sa {
-    padding-left: 70px;
-  }
-  li.nc {
-    min-height: 70px;
-  }
+    li.by::before,
+    li.nc::before,
+    li.nc-jp::before,
+    li.nc-eu::before,
+    li.nd::before,
+    li.sa::before {
+        margin-left: -80px;
+    }
 
-  body.rtl li.by,
-  body.rtl li.nc,
-  body.rtl li.nc-jp,
-  body.rtl li.nc-eu,
-  body.rtl li.nd,
-  body.rtl li.sa {
-    padding-right: 70px;
-  }
+    body.rtl li.by::before,
+    body.rtl li.nc::before,
+    body.rtl li.nc-jp::before,
+    body.rtl li.nc-eu::before,
+    body.rtl li.nd::before,
+    body.rtl li.sa::before {
+        margin-right: -80px;
+    }
+
+    li.by,
+    li.nc,
+    li.nc-jp,
+    li.nc-eu,
+    li.nd,
+    li.sa {
+       padding-left: 70px;
+    }
+
+    li.nc {
+        min-height: 70px;
+    }
+
+    body.rtl li.by,
+    body.rtl li.nc,
+    body.rtl li.nc-jp,
+    body.rtl li.nc-eu,
+    body.rtl li.nd,
+    body.rtl li.sa {
+        padding-right: 70px;
+    }
 }
 
 /* Desktop small and smaller */
 @media only screen and (max-width : 710px) {
-  li.by::before,
-  li.nc::before,
-  li.nc-jp::before,
-  li.nc-eu::before,
-  li.nd::before,
-  li.sa::before {
-    margin-left: -60px;
-    width: 42px;
-    height: 42px;
-    background-size: 42px 42px;
-  }
-  body.rtl li.by::before,
-  body.rtl li.nc::before,
-  body.rtl li.nc-jp::before,
-  body.rtl li.nc-eu::before,
-  body.rtl li.nd::before,
-  body.rtl li.sa::before {
-      margin-left: -60px;
-  }
-  li.by,
-  li.nc,
-  li.nc-jp,
-  li.nc-eu,
-  li.nd,
-  li.sa {
-    padding-left: 60px;
-  }
-  li.nc {
-    min-height: 40px;
-  }
+    li.by::before,
+    li.nc::before,
+    li.nc-jp::before,
+    li.nc-eu::before,
+    li.nd::before,
+    li.sa::before {
+        margin-left: -60px;
+        width: 42px;
+        height: 42px;
+        background-size: 42px 42px;
+    }
 
-  li.by p,
-  li.nc p,
-  li.nc-jp p,
-  li.nc-eu p,
-  li.nd p,
-  li.sa p {
-    margin-top: -50px;
-  }
+    body.rtl li.by::before,
+    body.rtl li.nc::before,
+    body.rtl li.nc-jp::before,
+    body.rtl li.nc-eu::before,
+    body.rtl li.nd::before,
+    body.rtl li.sa::before {
+        margin-left: -60px;
+    }
 
-  body.rtl li.by,
-  body.rtl li.nc,
-  body.rtl li.nc-jp,
-  body.rtl li.nc-eu,
-  body.rtl li.nd,
-  body.rtl li.sa {
-    padding-right: 60px;
-  }
+    li.by,
+    li.nc,
+    li.nc-jp,
+    li.nc-eu,
+    li.nd,
+    li.sa {
+        padding-left: 60px;
+    }
+
+    li.nc {
+        min-height: 40px;
+    }
+
+    li.by p,
+    li.nc p,
+    li.nc-jp p,
+    li.nc-eu p,
+    li.nd p,
+    li.sa p {
+        margin-top: -50px;
+    }
+
+    body.rtl li.by,
+    body.rtl li.nc,
+    body.rtl li.nc-jp,
+    body.rtl li.nc-eu,
+    body.rtl li.nd,
+    body.rtl li.sa {
+        padding-right: 60px;
+    }
 }
 
 li.sampling, li.samplingplus{
     background: url("/images/deed/sampling.png") 0 0 no-repeat;
 }
+
 li.more {
     background: url("/images/deed/more.png") 0 0 no-repeat;
 }
@@ -546,20 +563,25 @@ li.more {
 li.notice {
     background: url("/images/deed/notice.png") 0 0 no-repeat;
 }
+
 li.src {
     background: url("/images/deed/src.png") 0 0 no-repeat;
 }
+
 li.nolaw {
     background: url("/images/deed/nolaw.png") 0 8px no-repeat;
 }
+
 li ul li.nolaw {
     background: url("/images/deed/nolaw-small.png") 0 8px no-repeat;
     padding-left: 32px;
 }
+
 li.usage-guidelines {
     background: url("/images/deed/usage-guidelines.png") 0 0 no-repeat;
     margin-bottom: 25px;
 }
+
 li ul li.usage-guidelines {
     background: url("/images/deed/usage-guidelines-small.png") 0 6px no-repeat;
     padding-left: 32px;
@@ -574,10 +596,12 @@ li a {
     color: #049CCF;
     text-decoration: none;
 }
+
 #referrer-metadata {
     padding: 20px;
     border-style: dotted;
 }
+
 #referrer-metadata a {
     color: #0000FF;
     text-decoration: none;
@@ -599,6 +623,7 @@ h3 {
 #libre {
   margin-top: 1em;
 }
+
 #librepd {
     width: 150px;
     float: right;
@@ -617,23 +642,23 @@ p.learn-more-cc {
 }
 
 @media only screen and (max-width : 992px) {
-  #libre img {
-    max-width: 100px;
-  }
+    #libre img {
+        max-width: 100px;
+    }
 }
 
 @media only screen and (max-width : 768px) {
-  #libre {
-      display: none;
-      width: 100px;
-      height: 100px;
-  }
+    #libre {
+        display: none;
+        width: 100px;
+        height: 100px;
+    }
 
-  #libre img, #libre a, #librepd img, #librepd a {
-      display: none;
-      height: auto;
-      border: none !important;
-  }
+    #libre img, #libre a, #librepd img, #librepd a {
+        display: none;
+        height: auto;
+        border: none !important;
+    }
 }
 
 div.bd p {
@@ -681,8 +706,14 @@ div.bd p {
 }
 
 /* This is for the GNU/GPL license: list must start at 0 and the attribute start='0' is not allowed in xhtml*/
-ol.gpl { counter-reset: item -1}
-li.gpl { list-style: none;}
+ol.gpl {
+    counter-reset: item -1;
+}
+
+li.gpl {
+    list-style: none;
+}
+
 li.gpl:before {
     content: counter(item) ". ";
     counter-increment: item;
@@ -742,21 +773,21 @@ ol.arabic-markers {
 
 
 #footer {
-  margin-top: 44px;
+    margin-top: 44px;
 }
 
 
 /* Small device adjustments */
 @media screen and (max-width: 768px) {
     html {
-	   -ms-text-size-adjust: 100%;
-	   -moz-text-size-adjust: 100%;
-	   -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        -moz-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
     }
 
     #deed {
-	margin: 0;
-	padding: 0;
+        margin: 0;
+        padding: 0;
     }
 
     #deed,
@@ -764,53 +795,53 @@ ol.arabic-markers {
     #cc-link a,
     #deed-disclaimer,
     ul.license-properties {
-	width: auto;
+        width: auto;
     }
 
     #deed-main,
     .green #deed-rights ul.license-properties {
-	/* need style trumps */
-	width: auto !important;
+        /* need style trumps */
+        width: auto !important;
     }
 
     #deed-head,
     #deed-rights,
     #deed-conditions,
     #deed-understanding {
-	/* trump rtl positioning */
-	background-position: center top !important;
+        /* trump rtl positioning */
+        background-position: center top !important;
     }
 
     #deed-main-content {
-	margin: 0;
+        margin: 0;
     }
 
     #deed-disclaimer {
-	margin: 0 10px;
+        margin: 0 10px;
     }
 
     .green #deed-disclaimer {
-	margin-right: 100px;
+        margin-right: 100px;
     }
 
     #libre {
-	right: 10px;
+        right: 10px;
     }
 
     ul {
-	padding: 0 10px;
+        padding: 0 10px;
     }
 
     li.license {
-	padding-bottom: 0;
+        padding-bottom: 0;
     }
 
     #deed-understanding {
-	margin-bottom: 0;
+        margin-bottom: 0;
     }
 
     #thank-you-footer {
-	max-width: 90%;
+        max-width: 90%;
     }
 
 }
@@ -828,20 +859,24 @@ ol.arabic-markers {
     color: #333;
     margin: 20px auto;
 }
+
 .footer-trigger {
     background-color: #fff;
     width: 710px;
     margin: 0 auto;
     padding: 20px;
 }
+
 .footer-logo {
     float: left;
     margin-right: 20px;
 }
+
 .footer-trigger p {
     text-align: left;
     margin: 0;
 }
+
 .footer-trigger button {
     background: rgba(152,182,0,.8);
     display:inline-block;
@@ -864,21 +899,24 @@ ol.arabic-markers {
     -o-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
 }
+
 .footer-trigger button:hover {
     background: rgba(152,182,0,1);
 }
+
 @media screen and (max-width: 788px) {
     #deed-donate-footer {
-	width: 90%;
-	padding: 0;
-	background-color: #fff;
+        width: 90%;
+        padding: 0;
+        background-color: #fff;
     }
     .footer-trigger {
-	width: 90%;
-	padding: 20px 5%;
-	background: none;
+        width: 90%;
+        padding: 20px 5%;
+        background: none;
     }
 }
+
 @media screen and (max-width: 600px) {
     .footer-logo { display: none; }
 }
@@ -887,21 +925,23 @@ ol.arabic-markers {
 ------------------------------------ */
 
 #deed-donate-slide {
-  font-family: "Source Sans Pro", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-family: "Source Sans Pro", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 #deed-donate-slide button,
 #deed-donate-slide input[type="reset"],
 #deed-donate-slide input[type="button"],
 #deed-donate-slide input[type="submit"] {
-  font-family: "Source Sans Pro", sans-serif;
-  letter-spacing: 0.046875em;
+    font-family: "Source Sans Pro", sans-serif;
+    letter-spacing: 0.046875em;
 }
 
 .js #deed-donate-slide { display: none; }
+
 .js #deed-donate-slide.reveal { display: block; }
+
 #deed-donate-slide {
     width: 90%;
     margin: 0 auto;
@@ -909,6 +949,7 @@ ol.arabic-markers {
     text-align: center;
     color: #fff;
 }
+
 #deed-donate-slide.slider {
     width: 320px;
     margin: 0 auto 0 -330px;
@@ -926,6 +967,7 @@ ol.arabic-markers {
     -ms-transition:    margin .3s ease-in-out;
     transition:         margin .3s ease-in-out;
 }
+
 #deed-donate-slide.slider.reveal { margin-left: 0; }
 
 .slide-close {
@@ -939,7 +981,9 @@ ol.arabic-markers {
     top: 5px;
     opacity: .6;
     text-indent: -99999px;
-    z-index: 999; }
+    z-index: 999;
+}
+
 .slide-close:hover { opacity: 1; }
 
 .slide-tab { display: none; }
@@ -948,124 +992,122 @@ ol.arabic-markers {
 /* Donate box */
 
 .donate-box {
-  position: relative;
-margin-top: 30px;
+    position: relative;
+    margin-top: 30px;
 }
 
 .donate-box .widget-inner {
-  margin-left: 10px;
-  margin-right: 10px;
-  padding: 10px;
-  position: relative;
-  background: #F3F3F3;
-  border-top: 10px solid #01A635;
-  -webkit-box-shadow: 0px 0px 20px -4px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 0px 20px -4px rgba(0,0,0,0.75);
-  box-shadow: 0px 0px 20px -4px rgba(0,0,0,0.75);
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    position: relative;
+    background: #F3F3F3;
+    border-top: 10px solid #01A635;
+    -webkit-box-shadow: 0px 0px 20px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 20px -4px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 20px -4px rgba(0,0,0,0.75);
 }
 
 .donate-box .gform_wrapper { margin: 0; }
 
 @media screen and (min-width: 1220px) {
+    .donate-box { margin-bottom: 30px; }
 
-  .donate-box { margin-bottom: 30px; }
-
-  .donate-box .widget-inner {
-
-    padding: 20px;
-  }
+    .donate-box .widget-inner {
+        padding: 20px;
+    }
 }
 
 .donate-box .widget-inner .gform_fields > li { margin: 0; }
 
 /*.donate-box .widget-inner h2 {
-  align-items: center;
-  background-size: 66px;
-  display: flex;
-  line-height: 1em;
-  margin-bottom: 20px;
-  min-height: 60px;
-  padding-left: 80px;
+    align-items: center;
+    background-size: 66px;
+    display: flex;
+    line-height: 1em;
+    margin-bottom: 20px;
+    min-height: 60px;
+    padding-left: 80px;
 }*/
 
 .donate-box .widget-inner  #field_2_1 > label { display: none; }
 
 .donate-box .widget-inner  #field_10_1 > label {
-  color: black;
-  font-size: 2.5rem;
-  line-height: .9em;
+    color: black;
+    font-size: 2.5rem;
+    line-height: .9em;
  }
 
 
 .donate-box .widget-inner .gfield_radio {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
 }
 
 .donate-box .widget-inner ul {
-  padding: 0px;
-  list-style-type: none;
-  margin: 12px 0;
+    padding: 0px;
+    list-style-type: none;
+    margin: 12px 0;
 }
 
 /* Radio buttons */
 .gchoice_10_1_3 { display: none; }
 
 .donate-box .widget-inner .gfield_radio > li {
-  box-sizing: border-box;
-  flex: 0 0 48%;
-  max-width: 48%;
-  margin: 0 0 20px 0;
-  overflow: visible;
-  margin-top: 10px;
-  margin-bottom: 0;
-  position: relative;
-  list-style-image: none;
+    box-sizing: border-box;
+    flex: 0 0 48%;
+    max-width: 48%;
+    margin: 0 0 20px 0;
+    overflow: visible;
+    margin-top: 10px;
+    margin-bottom: 0;
+    position: relative;
+    list-style-image: none;
 }
 
 .donate-box .widget-inner .gfield_radio > li:last-child {
-  border-color: #d4d4d4;
-  border-radius: 3px;
-  border-style: solid;
-  border-width: 4px 4px 4px 40px;
-  height: 35px;
-  margin-bottom: 0;
-  position: relative;
+    border-color: #d4d4d4;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 4px 4px 4px 40px;
+    height: 35px;
+    margin-bottom: 0;
+    position: relative;
 }
 
 .donate-box .widget-inner .gfield_radio > li:last-child::before {
-  content: "$";
-  /*font-family: "cc-fontello";*/
-  font-style: normal;
-  font-weight: bold;
-  speak: none;
-  display: inline-block;
-  text-decoration: inherit;
-  width: 1em;
-  margin-right: .2em;
-  text-align: center;
-  opacity: .8;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1em;
-  margin-left: .2em;
-  font-size: 1.2rem;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3);
-  color: #464646;
-  left: -33px;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+    content: "$";
+    /*font-family: "cc-fontello";*/
+    font-style: normal;
+    font-weight: bold;
+    speak: none;
+    display: inline-block;
+    text-decoration: inherit;
+    width: 1em;
+    margin-right: .2em;
+    text-align: center;
+    opacity: .8;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1em;
+    margin-left: .2em;
+    font-size: 1.2rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3);
+    color: #464646;
+    left: -33px;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
 }
 
 .donate-box .widget-inner .gfield_radio > li:last-child input {
-  line-height: 1.6em;
-  padding: 1px 3px;
+    line-height: 1.6em;
+    padding: 1px 3px;
 }
 
 .donate-box .widget-inner .gfield_radio > li.selected { border-color: #01A635; }
@@ -1073,127 +1115,126 @@ margin-top: 30px;
 .donate-box .widget-inner .gfield_radio > li.selected:last-child::before { color: #FFF; }
 
 .donate-box .widget-inner .gfield_radio > li input {
-  background: #F3F3F3;
-  border: 0 none;
-  margin-bottom: 0;
-  width: 80%;
-  padding-left: 10px;
-  padding-top: 10px;
-  font-size: 1.2em;
+    background: #F3F3F3;
+    border: 0 none;
+    margin-bottom: 0;
+    width: 80%;
+    padding-left: 10px;
+    padding-top: 10px;
+    font-size: 1.2em;
  }
 
 .donate-box .widget-inner .gfield_radio > li input[type="radio"] { display: none; }
 
 .donate-box .widget-inner .gfield_radio > li label {
-  background-color: transparent;
-  background-image: none;
-  border: 1px solid transparent;
-  border-radius: 2px;
-  cursor: pointer;
-  display: inline-block;
-  font-family: "Source Sans Pro", sans-serif;
-  font-size: 1.8rem !important;
-  font-weight: 700;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  line-height: 1em;
-  margin-bottom: 0;
-  margin-left: 0;
-  padding: .5em 0em;
-  text-align: center;
-  text-decoration: none;
-  white-space: nowrap;
-  vertical-align: middle;
-  -ms-touch-action: manipulation;
-  touch-action: manipulation;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  background-image: -webkit-linear-gradient(top, #FFFFFF, #D3D3D3);
-  background-image: linear-gradient(180deg, #FFFFFF, #D3D3D3);
-  border-color: #d4d4d4;
-  box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.6);
-  color: #333333;
-  display: block;
-  width: 100%;
+    background-color: transparent;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 1.8rem !important;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1em;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding: .5em 0em;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: -webkit-linear-gradient(top, #FFFFFF, #D3D3D3);
+    background-image: linear-gradient(180deg, #FFFFFF, #D3D3D3);
+    border-color: #d4d4d4;
+    box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.6);
+    color: #333333;
+    display: block;
+    width: 100%;
 }
 
 .donate-box .widget-inner .gfield_radio > li label:hover {
-  background: linear-gradient(0deg, #D2D2D2, #A1A1A1);
-  border-color: #b2b2b2;
+    background: linear-gradient(0deg, #D2D2D2, #A1A1A1);
+    border-color: #b2b2b2;
 }
 
 .donate-box .widget-inner .gfield_radio > li input[type="radio"]:checked + label {
-  background: #01A635;
-  border-color: #018d2d;
-  border-right-color: #01bf3d;
-  border-top-color: #0ffe5a;
-  box-shadow: 1px 1px 0px 1px rgba(0, 65, 21, 0.6);
-  color: #fff;
+    background: #01A635;
+    border-color: #018d2d;
+    border-right-color: #01bf3d;
+    border-top-color: #0ffe5a;
+    box-shadow: 1px 1px 0px 1px rgba(0, 65, 21, 0.6);
+    color: #fff;
 }
 
 @media screen and (min-width: 44.375em) and (max-width: 1219px) { /* $tablet-sm-layout */
+    .donate-box .widget-inner .gfield_radio {
+        margin: 20px 0;
+    }
 
-  .donate-box .widget-inner .gfield_radio {
-      margin: 20px 0;
-  }
-
-  .donate-box .widget-inner .gfield_radio > li {
+    .donate-box .widget-inner .gfield_radio > li {
         flex-basis: 48%;
         margin-bottom: 0!important;
-  }
+    }
 
-  .donate-box .widget-inner .gfield_radio > li.gchoice_10_1_3 { display: block; }
+    .donate-box .widget-inner .gfield_radio > li.gchoice_10_1_3 { display: block; }
 
-  .donate-box .widget-inner .gfield_radio > li:last-child {
-    flex-basis: 100%;
-  }
+    .donate-box .widget-inner .gfield_radio > li:last-child {
+        flex-basis: 100%;
+    }
 }
 
 @media screen and (min-width: 61.5625em) and (max-width: 1219px) { /* $desktop-sm-layout */
-  .donate-box .widget-inner .gfield_radio {
-    padding-right: 0px;
-    margin: 0;
-    margin-bottom: 10px;
-  }
+    .donate-box .widget-inner .gfield_radio {
+        padding-right: 0px;
+        margin: 0;
+        margin-bottom: 10px;
+    }
 
-  .slide-trigger p {
-    font-size: .8em;
-  }
+    .slide-trigger p {
+        font-size: .8em;
+    }
 
-  .donate-box .widget-inner #field_10_1 > label {
-    font-size: 1.9rem;
-    line-height: 1em;
-  }
+    .donate-box .widget-inner #field_10_1 > label {
+        font-size: 1.9rem;
+        line-height: 1em;
+    }
 }
 
 /* End of: Radio buttons */
 .gform_footer {
-  margin: 0;
-  padding: 0;
-  width: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
 }
 
 .gform_button[value="Donate Now"] {
-  background: url('donate-button-bevel-sprite.png') no-repeat right top;
-  background-size: auto 94px;
-  box-shadow: none;
-  border: 0 none;
-  color: white;
-  font-size: 20px;
-  line-height: 1em;
-  height: 47px;
-  margin: 0 10px 0 0px !important;
-  max-width: 232px;
-  padding: 10px 0.846153846em;
-  text-transform: none !important;
-  width: 100%;
+    background: url('donate-button-bevel-sprite.png') no-repeat right top;
+    background-size: auto 94px;
+    box-shadow: none;
+    border: 0 none;
+    color: white;
+    font-size: 20px;
+    line-height: 1em;
+    height: 47px;
+    margin: 0 10px 0 0px !important;
+    max-width: 232px;
+    padding: 10px 0.846153846em;
+    text-transform: none !important;
+    width: 100%;
 }
 
 .gform_button[value="Donate Now"]:hover,
 .gform_button[value="Donate Now"]:focus {
-  background-position: right bottom;
+    background-position: right bottom;
 }
 
 /* end donate box */
@@ -1228,7 +1269,6 @@ margin-top: 30px;
 
 .slide-trigger button {
     background: rgba(70,34,18,.3);
-
     display:inline-block;
     padding: .5em 1em;
     border: 0;
@@ -1248,6 +1288,7 @@ margin-top: 30px;
     -o-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
 }
+
 .slide-trigger button:hover {
     background: rgba(70,34,18,.6);
 }
@@ -1255,60 +1296,57 @@ margin-top: 30px;
 /* --- narrow screens --- */
 @media screen and (max-width: 1220px) {
     #deed-donate-slide.slider {
-	width: 240px;
-	margin: 0 auto 0 -230px;
+        width: 240px;
+        margin: 0 auto 0 -230px;
     }
 }
 
 @media screen and (max-width: 1120px) {
     #deed-donate-slide.slider {
-	width: 200px;
-	margin: 0 auto 0 -200px;
+        width: 200px;
+        margin: 0 auto 0 -200px;
     }
     .slide-trigger button { font-size: 18px; }
 }
 
 @media screen and (max-width: 1060px) {
-  #deed-donate-slide.slider {
-  	z-index: 100;
-  	position: fixed;
-  	left: 0;
-  	bottom: -100%;
-  	width: 100%;
-  	margin: 0;
-  	text-align: center;
-  	-webkit-transition: bottom .5s ease-in-out;
-  	-moz-transition:    bottom .5s ease-in-out;
-  	-o-transition:      bottom .5s ease-in-out;
-  	-ms-transition:    bottom .5s ease-in-out;
-  	transition:         bottom .5s ease-in-out;
-  }
-  #deed-donate-slide.reveal { bottom: 0; }
+    #deed-donate-slide.slider {
+        z-index: 100;
+        position: fixed;
+        left: 0;
+        bottom: -100%;
+        width: 100%;
+        margin: 0;
+        text-align: center;
+        -webkit-transition: bottom .5s ease-in-out;
+        -moz-transition:    bottom .5s ease-in-out;
+        -o-transition:      bottom .5s ease-in-out;
+        -ms-transition:    bottom .5s ease-in-out;
+        transition:         bottom .5s ease-in-out;
+    }
 
-  .slide-close {
-  	background: url('../images/deed/slide-close-mobile.png') no-repeat center center;
-  	width: 33px;
-  	height: 33px;
-  	top: 5px;
-  	right: 5px;
-  	opacity: .8;
-  }
+    #deed-donate-slide.reveal { bottom: 0; }
 
-  .slide-trigger {
-  	padding: 10px;
-  }
+    .slide-close {
+        background: url('../images/deed/slide-close-mobile.png') no-repeat center center;
+        width: 33px;
+        height: 33px;
+        top: 5px;
+        right: 5px;
+        opacity: .8;
+    }
 
-  img.slide-logo { display: none; }
+    .slide-trigger {
+        padding: 10px;
+    }
 
-  .slide-trigger button {
-	  margin: 5px 0 0;
-  }
+    img.slide-logo { display: none; }
+
+    .slide-trigger button {
+        margin: 5px 0 0;
+    }
 }
 
 .a-nobreak a {
-  white-space:nowrap;
+    white-space:nowrap;
 }
-
-
-
-
