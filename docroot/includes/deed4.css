@@ -366,6 +366,8 @@ ul.license-properties {
 li.license {
     list-style: none;
     padding-top: 5px;
+    position: relative;
+    min-height: 74px; /* 62px (icon) + 12px (icon margin) */
 }
 
 ul.understanding li.license {
@@ -410,7 +412,13 @@ li.nc-jp::before,
 li.nc-eu::before,
 li.nd::before,
 li.sa::before {
+    position: absolute;
+    top: 0;
+    right: auto;
+    left: 0;
     margin-left: -100px;
+    margin-right: auto;
+    margin-top: 10px;
     background-image: url('/images/deed/attribution_icon_blue_x2.png');
     background-size: 62px 62px;
     display: inline-block;
@@ -429,33 +437,32 @@ body.rtl li.nc-jp::before,
 body.rtl li.nc-eu::before,
 body.rtl li.nd::before,
 body.rtl li.sa::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: auto;
+    margin-left: auto;
     margin-right: -100px;
 }
 
 li.nc::before {
     background-image: url('/images/deed/nc_blue_x2.png');
 }
+
 li.nc-jp::before {
     background-image: url('/images/deed/nc-eu_blue_x2.png');
 }
+
 li.nc-eu::before {
     background-image: url('/images/deed/nc-eu_blue_x2.png');
 }
+
 li.nd::before {
     background-image: url('/images/deed/nd_blue_x2.png');
 }
+
 li.sa::before {
     background-image: url('/images/deed/sa_blue_x2.png');
-}
-
-li.by > p,
-li.nc > p,
-li.nc-jp > p,
-li.nc-eu > p,
-li.nd > p,
-li.sa > p {
-  /* FIXME: This is incredibly brittle */
-  margin-top: -62px;
 }
 
 /* Desktop small and smaller */
