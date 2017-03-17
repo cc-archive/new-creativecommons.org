@@ -144,6 +144,13 @@ body.rtl #deed-main {
     border-color: #bbc0ab;
 }
 
+#deed-main .alert {
+    background-color: #fff;
+    border-color: #fff;
+    color: #333;
+    border-radius: 0;
+}
+
 #deed-main a.inline-help,
 #deed-main a.helpLink {
     text-decoration: none;
