@@ -379,8 +379,8 @@ ul.license-properties {
 
 li.license {
     list-style: none;
-    padding-top: 5px;
     position: relative;
+    margin-bottom: 15px;
 }
 
 ul.understanding li.license {
@@ -411,9 +411,8 @@ li.share, li.remix, li.commercial {
     min-height: 1em;
 }
 
-li.commercial {
-    margin-top: -8px;
-    padding-top: 0;
+li.license + li.commercial {
+    margin-top: -15px;
 }
 
 li.devnations {
@@ -440,7 +439,7 @@ li.nc-eu::before,
 li.nd::before,
 li.sa::before {
     position: absolute;
-    top: 0;
+    top: 4px;
     right: auto;
     left: 0;
     margin-left: -100px;
@@ -459,8 +458,6 @@ body.rtl li.nc-jp::before,
 body.rtl li.nc-eu::before,
 body.rtl li.nd::before,
 body.rtl li.sa::before {
-    position: absolute;
-    top: 0;
     right: 0;
     left: auto;
     margin-left: auto;
