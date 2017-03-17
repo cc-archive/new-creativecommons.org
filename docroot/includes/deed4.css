@@ -4,6 +4,15 @@ body.rtl {
     direction: rtl;
 }
 
+body.hide-banner .site-header .menu-toggle,
+body.hide-banner .site-header .site-header-menu,
+body.hide-banner #content #header-below,
+body.hide-banner .site-footer .cc-footer-links,
+body.hide-banner .site-footer .cc-footer-contact,
+body.hide-banner .site-footer .cc-footer-license {
+  display: none !important;
+}
+
 #deed-bg {}
 
 .mockup-badge {
