@@ -134,6 +134,7 @@ body.hide-banner .site-footer .cc-footer-license {
 #deed-main {
     background-color: #E9E9E9;
     text-align: left;
+    padding-top: 15px;
 }
 
 body.rtl #deed-main {
@@ -208,8 +209,8 @@ body.rtl #deed-main {
 }
 
 #deed-disclaimer {
-    margin: 5px auto 0;
     text-align: center;
+    font-size: 0.9em;
 }
 
 #deed-disclaimer .summary {
@@ -221,6 +222,11 @@ body.rtl #deed-main {
 
 #deed-rights {
     padding: 0;
+}
+
+#deed-rights .license-properties {
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .popover .popover-content a {
@@ -300,7 +306,8 @@ ul.license-properties {
 }
 
 #license-freedoms-no-icons li.license {
-    padding-left:0px;
+    padding-left: 0px;
+    font-size: 0.9em;
 }
 
 #deed-foot {
@@ -374,7 +381,6 @@ li.license {
     list-style: none;
     padding-top: 5px;
     position: relative;
-    min-height: 74px; /* 62px (icon) + 12px (icon margin) */
 }
 
 ul.understanding li.license {
@@ -405,12 +411,26 @@ li.share, li.remix, li.commercial {
     min-height: 1em;
 }
 
+li.commercial {
+    margin-top: -8px;
+    padding-top: 0;
+}
+
 li.devnations {
     background: url("/images/deed/devnations.png") 0 0 no-repeat;
 }
 
 li.no-endorse{
     background: url("/images/deed/no-endorse.png") 0 0 no-repeat;
+}
+
+li.by,
+li.nc,
+li.nc-jp,
+li.nc-eu,
+li.nd,
+li.sa {
+    min-height: 70px; /* 62px (icon) + 8px (margin) */
 }
 
 li.by::before,
@@ -425,17 +445,11 @@ li.sa::before {
     left: 0;
     margin-left: -100px;
     margin-right: auto;
-    margin-top: 10px;
-    background-image: url('/images/deed/attribution_icon_blue_x2.png');
     background-size: 62px 62px;
     display: inline-block;
     width: 62px;
     height: 62px;
     content:"";
-}
-
-li.nc {
-  min-height: 70px;
 }
 
 body.rtl li.by::before,
