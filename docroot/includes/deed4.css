@@ -6,7 +6,7 @@ body.rtl {
 
 .site .skip-link {
     top: 0;
-    right: 0;
+    left: 0;
 }
 
 body.hide-banner .site-header .menu-toggle,
@@ -435,6 +435,20 @@ li.nc-eu,
 li.nd,
 li.sa {
     min-height: 70px; /* 62px (icon) + 8px (margin) */
+    padding-left: 90px;
+    margin-left: -90px;
+}
+
+body.rtl li.by,
+body.rtl li.nc,
+body.rtl li.nc-jp,
+body.rtl li.nc-eu,
+body.rtl li.nd,
+body.rtl li.sa {
+    margin-left: 0;
+    padding-left: 0;
+    padding-right: 90px;
+    margin-right: -90px;
 }
 
 li.by::before,
@@ -447,8 +461,6 @@ li.sa::before {
     top: 4px;
     right: auto;
     left: 0;
-    margin-left: -100px;
-    margin-right: auto;
     background-repeat: no-repeat;
     background-size: 62px 62px;
     display: inline-block;
@@ -465,8 +477,6 @@ body.rtl li.nd::before,
 body.rtl li.sa::before {
     right: 0;
     left: auto;
-    margin-left: auto;
-    margin-right: -100px;
 }
 
 li.by::before {
@@ -495,35 +505,14 @@ li.sa::before {
 
 /* Desktop small and smaller */
 @media only screen and (max-width : 992px) {
-    li.by::before,
-    li.nc::before,
-    li.nc-jp::before,
-    li.nc-eu::before,
-    li.nd::before,
-    li.sa::before {
-        margin-left: -80px;
-    }
-
-    body.rtl li.by::before,
-    body.rtl li.nc::before,
-    body.rtl li.nc-jp::before,
-    body.rtl li.nc-eu::before,
-    body.rtl li.nd::before,
-    body.rtl li.sa::before {
-        margin-right: -80px;
-    }
-
     li.by,
     li.nc,
     li.nc-jp,
     li.nc-eu,
     li.nd,
     li.sa {
-       padding-left: 70px;
-    }
-
-    li.nc {
-        min-height: 70px;
+        padding-left: 90px;
+        margin-left: 0;
     }
 
     body.rtl li.by,
@@ -532,53 +521,33 @@ li.sa::before {
     body.rtl li.nc-eu,
     body.rtl li.nd,
     body.rtl li.sa {
-        padding-right: 70px;
+        padding-right: 90px;
+        margin-right: 0;
     }
 }
 
 /* Desktop small and smaller */
 @media only screen and (max-width : 710px) {
-    li.by::before,
-    li.nc::before,
-    li.nc-jp::before,
-    li.nc-eu::before,
-    li.nd::before,
-    li.sa::before {
-        margin-left: -60px;
-        width: 42px;
-        height: 42px;
-        background-size: 42px 42px;
-    }
-
-    body.rtl li.by::before,
-    body.rtl li.nc::before,
-    body.rtl li.nc-jp::before,
-    body.rtl li.nc-eu::before,
-    body.rtl li.nd::before,
-    body.rtl li.sa::before {
-        margin-left: -60px;
-    }
-
     li.by,
     li.nc,
     li.nc-jp,
     li.nc-eu,
     li.nd,
     li.sa {
+        min-height: 50px; /* 42px (icon) + 8px (margin) */
         padding-left: 60px;
+        margin-left: 0;
     }
 
-    li.nc {
-        min-height: 40px;
-    }
-
-    li.by p,
-    li.nc p,
-    li.nc-jp p,
-    li.nc-eu p,
-    li.nd p,
-    li.sa p {
-        margin-top: -50px;
+    li.by::before,
+    li.nc::before,
+    li.nc-jp::before,
+    li.nc-eu::before,
+    li.nd::before,
+    li.sa::before {
+        width: 42px;
+        height: 42px;
+        background-size: 42px 42px;
     }
 
     body.rtl li.by,
@@ -588,6 +557,7 @@ li.sa::before {
     body.rtl li.nd,
     body.rtl li.sa {
         padding-right: 60px;
+        margin-right: 0;
     }
 }
 
