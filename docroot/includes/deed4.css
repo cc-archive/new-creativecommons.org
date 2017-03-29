@@ -630,7 +630,21 @@ h3 {
 }
 
 #libre {
-  margin-top: 1em;
+    margin-top: 1em;
+    left: 0;
+    right: 0;
+}
+
+body.rtl #libre {
+    left: 0;
+    right: 0;
+}
+
+body.rtl #deed-rights > .col-sm-offset-2.col-sm-8 {
+    /* Evil hack to swap the #libre element to the left */
+    float: right;
+    margin-left: 0;
+    margin-right: 16.66666667%;
 }
 
 #librepd {
