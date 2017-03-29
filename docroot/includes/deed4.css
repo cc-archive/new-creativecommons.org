@@ -4,6 +4,11 @@ body.rtl {
     direction: rtl;
 }
 
+.site .skip-link {
+    top: 0;
+    right: 0;
+}
+
 body.hide-banner .site-header .menu-toggle,
 body.hide-banner .site-header .site-header-menu,
 body.hide-banner #content #header-below,
