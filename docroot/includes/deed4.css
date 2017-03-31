@@ -1277,6 +1277,7 @@ ol.arabic-markers {
 
     .donate-box .widget-inner .gfield_radio > li.gchoice_10_1_4 {
         height: 47px;
+        border-left-width: 25px;
     }
 
     .donate-box .widget-inner .gfield_radio > li.gchoice_10_1_4::before {
@@ -1289,6 +1290,8 @@ ol.arabic-markers {
         margin: 0 !important;
         width: auto;
         padding: 10px 1em 10px 0.846153846em;
+        font-size: 1.1em;
+        line-height: 1em;
     }
 }
 
@@ -1299,6 +1302,10 @@ ol.arabic-markers {
 }
 
 @media only screen and (max-width : 710px) {
+    .donate-box .widget-inner .gfield_radio {
+        flex-grow: 0;
+    }
+
     .donate-box .widget-inner .gfield_radio > li.gchoice_10_1_3 {
         display: none;
     }
@@ -1405,19 +1412,19 @@ ol.arabic-markers {
 
     .slide-close {
         background: url('../images/deed/slide-close.png') no-repeat center center;
-        width: 32px;
-        height: 34px;
+        width: 26px;
+        height: 28px;
         top: 0;
         right: 0;
         opacity: .6;
     }
 
     .slide-trigger {
-        padding: 10px;
+        padding: 5px 10px 10px 10px;
     }
 
     .slide-trigger p {
-        margin: 10px 24px 0 24px;
+        margin: 10px 0;
     }
 
     .slide-trigger p.desktop-only { display: none; }
@@ -1425,7 +1432,12 @@ ol.arabic-markers {
     .slide-trigger p.mobile-only { display: block; }
 
     .slide-trigger .donate-box {
-        margin-top: 20px;
+        margin: 15px 0 0 0;
+    }
+
+    .slide-trigger .donate-box .widget-inner {
+        margin-left: 0;
+        margin-right: 0;
     }
 
     img.slide-logo { display: none; }
