@@ -1207,7 +1207,7 @@ ol.arabic-markers {
     width: 100%;
 }
 
-.gform_button[value="Donate Now"] {
+.gform_button#gform_submit_button_10 {
     background: url('donate-button-bevel-sprite.png') no-repeat right top;
     background-size: auto 94px;
     box-shadow: none;
@@ -1223,8 +1223,8 @@ ol.arabic-markers {
     width: 100%;
 }
 
-.gform_button[value="Donate Now"]:hover,
-.gform_button[value="Donate Now"]:focus {
+.gform_button#gform_submit_button_10:hover,
+.gform_button#gform_submit_button_10:focus {
     background-position: right bottom;
 }
 
@@ -1258,7 +1258,7 @@ ol.arabic-markers {
         display: none;
         margin: 0 12px 0 0;
         max-width: none;
-        height: 47px; /* matches .gform_button[value="Donate Now"] */
+        height: 47px; /* matches .gform_button#gform_submit_button_10 */
     }
 
     .donate-box .widget-inner .gfield_radio > li label {
@@ -1279,7 +1279,13 @@ ol.arabic-markers {
         height: 47px;
     }
 
-    .gform_button[value="Donate Now"] {
+    .donate-box .widget-inner .gfield_radio > li.gchoice_10_1_4::before {
+        left: -25px;
+        margin-right: 0;
+        margin-left: .15em;
+    }
+
+    .gform_button#gform_submit_button_10 {
         margin: 0 !important;
         width: auto;
         padding: 10px 1em 10px 0.846153846em;
