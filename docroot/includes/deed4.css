@@ -1026,12 +1026,10 @@ ol.arabic-markers {
 
 .donate-box {
     position: relative;
-    margin-top: 30px;
+    margin-top: 15px;
 }
 
 .donate-box .widget-inner {
-    margin-left: 10px;
-    margin-right: 10px;
     padding: 10px;
     position: relative;
     background: #F3F3F3;
@@ -1042,14 +1040,6 @@ ol.arabic-markers {
 }
 
 .donate-box .gform_wrapper { margin: 0; }
-
-@media screen and (min-width: 1220px) {
-    .donate-box { margin-bottom: 30px; }
-
-    .donate-box .widget-inner {
-        padding: 20px;
-    }
-}
 
 .donate-box .widget-inner .gform_fields > li { margin: 0; }
 
@@ -1067,8 +1057,9 @@ ol.arabic-markers {
 
 .donate-box .widget-inner  #field_10_1 > label {
     color: black;
-    font-size: 2.5rem;
-    line-height: .9em;
+    font-size: 2rem;
+    line-height: 0.95em;
+    margin-bottom: 0;
  }
 
 .donate-box .widget-inner .ginput_container_radio {
@@ -1083,7 +1074,7 @@ ol.arabic-markers {
     justify-content: space-between;
     list-style-type: none;
     padding: 0;
-    margin: 12px 0;
+    margin: 0 0 12px 0;
 }
 
 /* Radio buttons */
@@ -1222,6 +1213,7 @@ ol.arabic-markers {
 }
 
 .gform_button#gform_submit_button_10 {
+    align-self: center;
     background: url('donate-button-bevel-sprite.png') no-repeat right top;
     background-size: auto 94px;
     box-shadow: none;
@@ -1230,7 +1222,6 @@ ol.arabic-markers {
     font-size: 20px;
     line-height: 1em;
     height: 47px;
-    margin: 0 10px 0 0px !important;
     max-width: 232px;
     padding: 10px 0.846153846em;
     text-transform: none !important;
@@ -1350,10 +1341,11 @@ ol.arabic-markers {
 
 .slide-trigger p {
     margin: 0;
-    margin-top: 24px;
+    margin-top: 15px;
     font-weight: 600;
     cursor: pointer;
-    line-height: 24px;
+    font-size: 0.9em;
+    line-height: 1.3em;
 }
 
 .slide-trigger p.mobile-only {
