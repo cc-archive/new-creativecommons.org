@@ -7,12 +7,62 @@
     display: none;
 }
 
+#primary.content-area {
+    max-width: none;
+}
+
+#deed-donate-slide {
+    display: none !important;
+}
+
+#deed-head {
+    margin-bottom: 2rem;
+}
+
+#deed-head #cc-link {
+    display: none;
+}
+
+#deed-head h1 {
+    font-size: 3.8rem;
+    border-bottom: solid 4px #000;
+    padding-bottom: 0.15em;
+    margin-bottom: 0.15em;
+}
+
+#deed-head h2 {
+    font-size: 2rem;
+}
+
+#deed-head .cc-license-icons {
+    display: none;
+}
+
+#deed-main #legalcode-block {
+    margin-bottom: 2rem;
+}
+
 #deed-main-content #libre {
     display: none;
 }
 
-li.license {
+ul.license-properties {
+    list-style: hidden;
+    margin-bottom: 0;
+}
+
+#deed-main-content ul {
     list-style: none;
+    text-align: left !important;
+}
+
+#deed-main-content li {
+    list-style: none;
+    text-align: left !important;
+}
+
+#deed-rights ul {
+    margin-left: 0;
 }
 
 #header-below,
