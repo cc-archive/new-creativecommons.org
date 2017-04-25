@@ -467,6 +467,7 @@ li.sa::before {
     width: 62px;
     height: 62px;
     content:"";
+    -webkit-print-color-adjust: exact;
 }
 
 body.rtl li.by::before,

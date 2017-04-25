@@ -1,0 +1,23 @@
+/* CC Deed CSS - Print */
+
+@media print {
+
+.site-header-wrapper,
+.site-footer-wrapper {
+    display: none;
+}
+
+#deed-main-content #libre {
+    display: none;
+}
+
+li.license {
+    list-style: none;
+}
+
+#header-below,
+#languages {
+    display: none;
+}
+
+}
