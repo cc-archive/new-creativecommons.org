@@ -337,17 +337,17 @@ body.rtl #deed-foot {
     padding: 0;
 }
 
-hr {
+#deed hr {
     background: #ffffff;
     margin-bottom: 0px;
     margin-top: 18px;
 }
 
-a {
+#deed a {
     text-decoration: none;
 }
 
-a:hover {
+#deed a:hover {
     text-decoration: underline;
 }
 
@@ -1323,7 +1323,7 @@ ol.arabic-markers {
     display: block;
     margin: 10px;
     padding: 15px;
-    max-height: 66vh;
+    max-height: 70vh;
     overflow: auto;
     background: rgba(238,91,50,1);
     background: -moz-radial-gradient(center, ellipse cover, rgba(238,91,50,1) 0%, rgba(250,118,41,1) 100%);

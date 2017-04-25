@@ -2,6 +2,15 @@
 
 @media print {
 
+a::after {
+    display: none;
+}
+
+.site .skip-link,
+.screen-reader-text {
+    display: none;
+}
+
 .site-main {
     margin-bottom: 0;
 }
@@ -36,9 +45,20 @@
 
 #deed-head h2 {
     font-size: 2rem;
+    margin-right: 10rem;
+    margin-left: 0;
+}
+
+body.rtl #deed-head h2 {
+    margin-right: 0;
+    margin-left: 10rem;
 }
 
 #deed-head .cc-license-icons {
+    display: none;
+}
+
+#deed-disclaimer .disclaimer {
     display: none;
 }
 
@@ -50,15 +70,26 @@
 
 #deed-main #legalcode-block {
     margin-bottom: 2rem;
+    margin-right: 10rem;
+    margin-left: 0;
+}
+
+body.rtl #deed-main #legalcode-block {
+    margin-right: 0;
+    margin-left: 10rem;
 }
 
 #deed-main-content #libre {
-    display: none;
+    position: absolute;
+    top: 10rem;
+    right: 0;
+    left: auto;
+    width: 15rem;
 }
 
-ul.license-properties {
-    list-style: hidden;
-    margin-bottom: 0;
+body.rtl #deed-main-content #libre {
+    right: auto;
+    left: 0;
 }
 
 #deed-main-content ul {
@@ -82,6 +113,63 @@ ul.license-properties {
 #header-below,
 #languages {
     display: none;
+}
+
+ul.license-properties {
+    list-style: hidden;
+    margin-bottom: 0;
+}
+
+li.license {
+    margin-left: 50px;
+}
+
+#deed-main-content li.by,
+#deed-main-content li.nc,
+#deed-main-content li.nc-jp,
+#deed-main-content li.nc-eu,
+#deed-main-content li.nd,
+#deed-main-content li.sa {
+    padding-left: 0;
+}
+
+#deed-main-content li.by::before,
+#deed-main-content li.nc::before,
+#deed-main-content li.nc-jp::before,
+#deed-main-content li.nc-eu::before,
+#deed-main-content li.nd::before,
+#deed-main-content li.sa::before {
+    display: none;
+}
+
+#deed-main-content li.by {
+    list-style-image: url('/images/deed/by.png');
+    list-style-position: outside;
+}
+
+#deed-main-content li.nc {
+    list-style-image: url('/images/deed/nc.png');
+    list-style-position: outside;
+}
+
+#deed-main-content li.nc-jp {
+    list-style-image: url('/images/deed/nc-nc-jp.png');
+    list-style-position: outside;
+}
+
+#deed-main-content li.nc-eu {
+    list-style-image: url('/images/deed/nc-eu.png');
+    list-style-position: outside;
+}
+
+#deed-main-content li.nd {
+    list-style-image: url('/images/deed/nd.png');
+    list-style-position: outside;
+}
+
+#deed-main-content li.sa {
+    list-style-image: url('/images/deed/sa.png');
+    list-style-position: outside;
 }
 
 }
