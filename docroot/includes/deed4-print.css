@@ -42,6 +42,12 @@
     display: none;
 }
 
+#deed-main a.helpLink {
+    color: inherit !important;
+    text-decoration: none !important;
+    border: none;
+}
+
 #deed-main #legalcode-block {
     margin-bottom: 2rem;
 }
