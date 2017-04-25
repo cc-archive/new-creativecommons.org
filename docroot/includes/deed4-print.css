@@ -2,6 +2,10 @@
 
 @media print {
 
+.site-main {
+    margin-bottom: 0;
+}
+
 .site-header-wrapper,
 .site-footer-wrapper {
     display: none;
@@ -61,8 +65,12 @@ ul.license-properties {
     text-align: left !important;
 }
 
-#deed-rights ul {
-    margin-left: 0;
+#deed-main-content hr {
+    display: none;
+}
+
+#footer {
+    margin-top: 2rem;
 }
 
 #header-below,
