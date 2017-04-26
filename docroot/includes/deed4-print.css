@@ -14,6 +14,10 @@ a::after {
     display: none;
 }
 
+.row {
+    margin: 0;
+}
+
 .site .skip-link,
 .screen-reader-text {
     display: none;
@@ -80,6 +84,7 @@ body.rtl #deed-head h2 {
 
 #deed-disclaimer {
     padding: 0 0.1in;
+    font-size: 0.85em;
 }
 
 #deed-disclaimer .disclaimer {
@@ -120,6 +125,9 @@ body.rtl #deed-main-content #libre {
 #deed-main-content ul {
     list-style: none;
     text-align: left !important;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 #deed-main-content li {
@@ -129,6 +137,16 @@ body.rtl #deed-main-content #libre {
 
 #deed-main-content hr {
     display: none;
+}
+
+#deed-rights .col-sm-offset-2.col-sm-8 {
+    width: 100%;
+    margin-left: 0;
+    padding: 0;
+}
+
+#license-freedoms-no-icons li.license {
+    font-size: 0.85em;
 }
 
 #footer {
@@ -147,7 +165,7 @@ ul.license-properties {
 }
 
 li.license {
-    margin-left: 50px;
+    margin-left: 60px;
 }
 
 #deed-main-content li.by,
