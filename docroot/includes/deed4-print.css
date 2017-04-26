@@ -2,6 +2,14 @@
 
 @media print {
 
+.screen-only {
+    display: none;
+}
+
+.print-only {
+    display: block;
+}
+
 a::after {
     display: none;
 }
@@ -29,7 +37,19 @@ a::after {
 }
 
 #deed-head {
+    position: relative;
+    min-height: 1in;
     margin-bottom: 2rem;
+    padding-left: 1.2in;
+}
+
+#deed-head .cc-logo-print {
+    margin-top: -0.1in;
+    width: 1in;
+    height: 1in;
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 
 #deed-head #cc-link {
@@ -58,6 +78,10 @@ body.rtl #deed-head h2 {
     display: none;
 }
 
+#deed-disclaimer {
+    padding: 0 0.1in;
+}
+
 #deed-disclaimer .disclaimer {
     display: none;
 }
@@ -70,13 +94,13 @@ body.rtl #deed-head h2 {
 
 #deed-main #legalcode-block {
     margin-bottom: 2rem;
-    margin-right: 10rem;
+    margin-right: 1.2in;
     margin-left: 0;
 }
 
 body.rtl #deed-main #legalcode-block {
     margin-right: 0;
-    margin-left: 10rem;
+    margin-left: 1.2in;
 }
 
 #deed-main-content #libre {
@@ -84,7 +108,8 @@ body.rtl #deed-main #legalcode-block {
     top: 10rem;
     right: 0;
     left: auto;
-    width: 15rem;
+    width: 1.2in;
+    text-align: right;
 }
 
 body.rtl #deed-main-content #libre {
@@ -107,6 +132,7 @@ body.rtl #deed-main-content #libre {
 }
 
 #footer {
+    display: none;
     margin-top: 2rem;
 }
 

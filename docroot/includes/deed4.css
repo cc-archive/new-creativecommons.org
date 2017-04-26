@@ -1,5 +1,13 @@
 /* CC Deed CSS */
 
+.screen-only {
+    display: block;
+}
+
+.print-only {
+    display: none;
+}
+
 .site-header-wrapper a:focus,
 .site-header-wrapper a:hover {
     text-decoration: none;
