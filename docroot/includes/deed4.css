@@ -899,6 +899,10 @@ ol.arabic-markers {
         padding: 0 10px;
     }
 
+    #deed-rights ul.license-properties {
+        padding: 0 20px;
+    }
+
     li.license {
         padding-bottom: 0;
     }
