@@ -17,6 +17,24 @@ body.rtl {
     direction: rtl;
 }
 
+@media screen and (min-width: 768px) {
+    .container {
+        width: 750px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .container {
+        width: 920px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .container {
+        width: 945px;
+    }
+}
+
 .site .skip-link {
     top: 0;
     left: 0;
@@ -77,12 +95,18 @@ body.hide-banner .site-footer .cc-footer-license {
     background: linear-gradient(to bottom, rgba(0,181,218,1) 0%, rgba(0,165,200,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00b5da', endColorstr='#00a5c8', GradientType=0 );
     position: relative;
-    padding: 0 10px;
+    padding: 0 150px;
+}
+
+@media only screen and (max-width : 1275px) {
+    #deed-head {
+        padding: 0 50px;
+    }
 }
 
 @media only screen and (max-width : 992px) {
     #deed-head {
-        padding: 0 50px;
+        padding: 0 10px;
     }
 }
 
@@ -152,7 +176,13 @@ body.hide-banner .site-footer .cc-footer-license {
 #deed-main {
     background-color: #E9E9E9;
     text-align: left;
-    padding-top: 15px;
+    padding: 15px 100px 0 100px;
+}
+
+@media only screen and (max-width : 1275px) {
+    #deed-main {
+        padding: 15px 0 0 0;
+    }
 }
 
 body.rtl #deed-main {
@@ -185,18 +215,10 @@ body.rtl #deed-main {
 
 #deed-license {
     text-align:center;
-    width: 66.66666667%;
-    margin: 40px auto;
+    width: auto;
+    margin: 40px 0;
     font-weight: bold;
     color: #fff;
-}
-
-/* Desktop small and smaller */
-@media only screen and (max-width : 1540px) {
-    #deed-license {
-        width: auto;
-        margin: 40px 0;
-    }
 }
 
 #deed-license h2 {
@@ -877,6 +899,10 @@ ol.arabic-markers {
         padding: 0 10px;
     }
 
+    #deed-rights ul.license-properties {
+        padding: 0 20px;
+    }
+
     li.license {
         padding-bottom: 0;
     }
@@ -994,7 +1020,7 @@ ol.arabic-markers {
 }
 
 #deed-donate-slide.slider {
-    width: 300px;
+    width: 290px;
     max-height: 100%;
     margin: 0;
     position: fixed;
@@ -1045,11 +1071,10 @@ ol.arabic-markers {
 
 .donate-box {
     position: relative;
-    margin-top: 15px;
 }
 
 .donate-box .widget-inner {
-    padding: 10px;
+    padding: 15px;
     position: relative;
     background: #F3F3F3;
     border-top: 10px solid #01A635;
@@ -1076,9 +1101,9 @@ ol.arabic-markers {
 
 .donate-box .widget-inner  #field_10_1 > label {
     color: black;
-    font-size: 2rem;
-    line-height: 0.95em;
-    margin-bottom: 0;
+    font-size: 1.85rem;
+    line-height: 1em;
+    margin: 4px 0;
  }
 
 .donate-box .widget-inner .ginput_container_radio {
@@ -1093,7 +1118,7 @@ ol.arabic-markers {
     justify-content: space-between;
     list-style-type: none;
     padding: 0;
-    margin: 0 0 12px 0;
+    margin: 0 0 8px 0;
 }
 
 /* Radio buttons */
@@ -1103,10 +1128,8 @@ ol.arabic-markers {
     box-sizing: border-box;
     flex: 0 0 48%;
     max-width: 48%;
-    margin: 0 0 20px 0;
+    margin: 5px 0 0 0;
     overflow: visible;
-    margin-top: 10px;
-    margin-bottom: 0;
     position: relative;
     list-style-image: none;
 }
@@ -1166,11 +1189,12 @@ ol.arabic-markers {
     background: #F3F3F3;
     border: 0 none;
     margin-bottom: 0;
-    width: 80%;
+    width: 100% !important;
     height: 100%;
     padding-left: 10px;
     padding-top: 10px;
     font-size: 1.2em;
+    text-align: center;
  }
 
 .donate-box .widget-inner .gfield_radio > li input[type="radio"] { display: none; }
@@ -1232,7 +1256,7 @@ ol.arabic-markers {
 }
 
 .gform_button#gform_submit_button_10 {
-    align-self: center;
+    align-self: flex-start;
     background: url('donate-button-bevel-sprite.png') no-repeat right top;
     background-size: auto 94px;
     box-shadow: none;
@@ -1253,8 +1277,9 @@ ol.arabic-markers {
 }
 
 
-@media only screen and (max-width : 1540px) {
+@media only screen and (max-width : 1275px) {
     .donate-box .widget-inner {
+        padding: 10px;
         border-top: none;
         border-left: 10px solid #01A635;
     }
@@ -1348,7 +1373,7 @@ ol.arabic-markers {
     position: relative;
     display: block;
     margin: 0;
-    padding: 15px;
+    padding: 12px 15px 15px 15px;
     max-height: 70vh;
     overflow: auto;
     background: rgba(238,91,50,1);
@@ -1364,23 +1389,25 @@ ol.arabic-markers {
     box-shadow: 1px 2px 6px rgba(0,0,0,.3);
 }
 
-.slide-trigger p {
-    margin: 0;
-    margin-top: 13px;
+.slide-trigger img.slide-logo {
+    display: block;
+    margin: 0 auto;
+    width: 45px;
+    height: auto;
+}
+
+.slide-trigger p.desktop-only {
+    display: block;
+    margin: 8px 0 10px 0;
     font-weight: 600;
     cursor: pointer;
-    font-size: 0.9em;
-    line-height: 1.3em;
+    font-size: 0.82em;
+    line-height: 1.2em;
 }
 
 .slide-trigger p.mobile-only {
-    font-weight: bold;
-    font-size: 1.1em;
+    display: none;
 }
-
-.slide-trigger p.desktop-only { display: block; }
-
-.slide-trigger p.mobile-only { display: none; }
 
 .slide-trigger button {
     background: rgba(70,34,18,.3);
@@ -1408,7 +1435,7 @@ ol.arabic-markers {
     background: rgba(70,34,18,.6);
 }
 
-@media screen and (max-width: 1540px) {
+@media screen and (max-width: 1275px) {
     #deed-donate-slide.slider {
         z-index: 100;
         position: fixed;
@@ -1447,16 +1474,15 @@ ol.arabic-markers {
         max-height: none;
     }
 
-    .slide-trigger p {
-        margin: 10px 0;
+    .slide-trigger p.desktop-only {
+        display: none;
     }
 
-    .slide-trigger p.desktop-only { display: none; }
-
-    .slide-trigger p.mobile-only { display: block; }
-
-    .slide-trigger .donate-box {
-        margin: 15px 0 0 0;
+    .slide-trigger p.mobile-only {
+        display: block;
+        margin: 10px 0  15px 0;
+        font-weight: bold;
+        font-size: 1.1em;
     }
 
     .slide-trigger .donate-box .widget-inner {
@@ -1464,7 +1490,7 @@ ol.arabic-markers {
         margin-right: 0;
     }
 
-    img.slide-logo { display: none; }
+    .slide-trigger img.slide-logo { display: none; }
 
     .slide-trigger button {
         margin: 5px 0 0;
