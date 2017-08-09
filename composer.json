@@ -31,7 +31,7 @@
 	"wpackagist-plugin/breadcrumb-navxt": "~5.7.1",
 	"wpackagist-plugin/co-authors-plus":"*",
 	"wpackagist-plugin/easy-add-thumbnail": "1.1.1",
-	"wpackagist-plugin/google-analytics-for-wordpress":"~5.5.4",
+	"wpackagist-plugin/google-analytics-for-wordpress":"~6.2.1",
 	"wpackagist-plugin/gravity-forms-google-analytics-event-tracking": "2.0.3",
 	"wpackagist-plugin/jetpack":"~5.2.1",
     "wpackagist-plugin/popup-maker": "~1.6.5",
