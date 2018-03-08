@@ -393,7 +393,6 @@ if ( ! class_exists( 'GFForms' ) ) {
 
 	function GetCurrentCurrency() {
 		<?php
-		require_once('currency.php');
 		$current_currency = RGCurrency::get_currency( GFCommon::get_currency() );
 		?>
 		var currency = new Currency(<?php echo GFCommon::json_encode( $current_currency )?>);
@@ -459,6 +458,18 @@ if ( ! class_exists( 'GFForms' ) ) {
 			if (has_option && !has_product) {
 				error = <?php echo json_encode( esc_html__( "Your form currently has an option field without a product field.\nYou must add a product field to your form.", 'gravityforms' ) ); ?>;
 			}
+
+			/**
+			 * Allow the form editor validation error to be overridden.
+			 *
+			 * @since 2.2.5.11
+			 *
+			 * @param string error       The error message.
+			 * @param object form        The current form.
+			 * @param bool   has_product Indicates if the current form has a product field.
+			 * @param bool   has_option  Indicates if the current form has a option field.
+			 */
+			error = gform.applyFilters('gform_validation_error_form_editor', error, form, has_product, has_option);
 		}
 		if (error) {
 			jQuery("#please_wait_container").hide();
@@ -487,47 +498,10 @@ if ( ! class_exists( 'GFForms' ) ) {
 		var form_json = jQuery.toJSON(form);
 		gforms_original_json = form_json;
 
-		if (!isNew) {
-			jQuery("#gform_meta").val(form_json);
-			jQuery("#gform_update").submit();
-		}
-		else {
-			jQuery("#please_wait_container").show();
-			var mysack = new sack("<?php echo admin_url( 'admin-ajax.php' )?>");
-			mysack.execute = 1;
-			mysack.method = 'POST';
-			mysack.setVar("action", "rg_save_form");
-			mysack.setVar("rg_save_form", "<?php echo wp_create_nonce( 'rg_save_form' ) ?>");
-			mysack.setVar("id", form.id);
-			mysack.setVar("form", form_json);
-			mysack.onError = function () {
-				alert(<?php echo json_encode( __( 'Ajax error while saving form', 'gravityforms' ) ); ?>)
-			};
-			mysack.runAJAX();
-		}
+		jQuery("#gform_meta").val(form_json);
+		jQuery("#gform_update").submit();
 
 		return true;
-	}
-
-	function DeleteField(fieldId) {
-
-		if (form.id == 0 || confirm(<?php echo json_encode( __( "Warning! Deleting this field will also delete all entry data associated with it. 'Cancel' to stop. 'OK' to delete", 'gravityforms' ) ); ?>)) {
-
-			jQuery('#gform_fields li#field_' + fieldId).addClass('gform_pending_delete');
-			var mysack = new sack("<?php echo admin_url( 'admin-ajax.php' )?>");
-			mysack.execute = 1;
-			mysack.method = 'POST';
-			mysack.setVar("action", "rg_delete_field");
-			mysack.setVar("rg_delete_field", "<?php echo wp_create_nonce( 'rg_delete_field' ) ?>");
-			mysack.setVar("form_id", form.id);
-			mysack.setVar("field_id", fieldId);
-			mysack.onError = function () {
-				alert(<?php echo json_encode( esc_html__( 'Ajax error while deleting field.', 'gravityforms' ) ); ?>)
-			};
-			mysack.runAJAX();
-
-			return true;
-		}
 	}
 
 	function SetDefaultValues( field, index ) {
@@ -609,6 +583,7 @@ if ( ! class_exists( 'GFForms' ) ) {
 				break;
 
 			case "multiselect" :
+				field.storageType = 'json';
 			case "select" :
 				if (!field.label)
 					field.label = <?php echo json_encode( esc_html__( 'Untitled', 'gravityforms' ) ); ?>;
@@ -1144,7 +1119,17 @@ if ( ! class_exists( 'GFForms' ) ) {
 
 			var checked = field.choices[i].isSelected ? "checked" : "";
 			var inputType = GetInputType(field);
-			var type = inputType == 'checkbox' ? 'checkbox' : 'radio';
+			var type = inputType === 'checkbox' ? 'checkbox' : 'radio';
+
+			/**
+			 * Allow the choice selected input type to be overridden.
+			 *
+			 * @since 2.2.5.11
+			 *
+			 * @param string type  The choice selected input type. Defaults to checkbox for checkbox type fields or radio for other field types.
+			 * @param object field The current field.
+			 */
+			type = gform.applyFilters('gform_field_choice_selected_type_form_editor', type, field);
 
 			var value = field.enableChoiceValue ? String(field.choices[i].value) : field.choices[i].text;
 			var price = field.choices[i].price ? currency.toMoney(field.choices[i].price) : "";

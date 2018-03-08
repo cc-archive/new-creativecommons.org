@@ -2,9 +2,11 @@
 var __gf_timeout_handle;
 
 gform.addAction( 'gform_input_change', function( elem, formId, fieldId ) {
-	var dependentFieldIds = rgars( gf_form_conditional_logic, [ formId, 'fields', gformExtractFieldId( fieldId ) ].join( '/' ) );
-	if( dependentFieldIds ) {
-		gf_apply_rules( formId, dependentFieldIds );
+	if( window.gf_form_conditional_logic ) {
+		var dependentFieldIds = rgars( gf_form_conditional_logic, [ formId, 'fields', gformExtractFieldId( fieldId ) ].join( '/' ) );
+		if( dependentFieldIds ) {
+			gf_apply_rules( formId, dependentFieldIds );
+		}
 	}
 }, 10 );
 
@@ -117,7 +119,7 @@ function gf_is_match_checkable( $inputs, rule, formId, fieldId ) {
 		}
 		// if the 'other' choice is selected, get the value from the 'other' text input
 		else if ( fieldValue == 'gf_other_choice' ) {
-			fieldValue = jQuery( '#input_{0}_{1}_other'.format( formId, fieldId ) ).val();
+			fieldValue = $( '#input_{0}_{1}_other'.format( formId, fieldId ) ).val();
 		}
 
 		if( gf_matches_operation( fieldValue, rule.value, rule.operator ) ) {
@@ -148,9 +150,9 @@ function gf_is_match_default( $input, rule, formId, fieldId ) {
 		}
 
 		var ruleValue = rule.value;
-		if ( fieldNumberFormat ) {
-			ruleValue = gf_format_number( ruleValue, fieldNumberFormat );
-		}
+		//if ( fieldNumberFormat ) {
+		//	ruleValue = gf_format_number( ruleValue, fieldNumberFormat );
+		//}
 
 		if( gf_matches_operation( fieldValue, ruleValue, rule.operator ) ) {
 			matchCount++;

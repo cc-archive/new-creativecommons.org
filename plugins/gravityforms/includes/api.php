@@ -122,6 +122,24 @@ class GFAPI {
 	}
 
 	/**
+	 * Duplicates the form with the given Form ID.
+	 *
+	 * @since  2.2
+	 * @access public
+	 *
+	 * @uses GFFormsModel::duplicate_form()
+	 *
+	 * @param int $form_id The ID of the Form to delete.
+	 *
+	 * @return mixed True for success, or a WP_Error instance
+	 */
+	public static function duplicate_form( $form_id ) {
+
+		return GFFormsModel::duplicate_form( $form_id );
+
+	}
+
+	/**
 	 * Updates the forms with an array of form objects.
 	 *
 	 * @since  1.8
@@ -363,6 +381,26 @@ class GFAPI {
 		// Updating object's id property.
 		$form_meta['id'] = $form_id;
 
+		// Add default confirmation if form has no confirmations.
+		if ( ! isset( $form_meta['confirmations'] ) || empty( $form_meta['confirmations'] ) ) {
+
+			// Generate confirmation ID.
+			$confirmation_id = uniqid();
+
+			// Add default confirmation to form.
+			$form_meta['confirmations'][ $confirmation_id ] = array(
+				'id'          => $confirmation_id,
+				'name'        => __( 'Default Confirmation', 'gravityforms' ),
+				'isDefault'   => true,
+				'type'        => 'message',
+				'message'     => __( 'Thanks for contacting us! We will get in touch with you shortly.', 'gravityforms' ),
+				'url'         => '',
+				'pageId'      => '',
+				'queryString' => '',
+			);
+
+		}
+
 		if ( isset( $form_meta['confirmations'] ) ) {
 			$form_meta['confirmations'] = self::set_property_as_key( $form_meta['confirmations'], 'id' );
 			GFFormsModel::update_form_meta( $form_id, $form_meta['confirmations'], 'confirmations' );
@@ -426,13 +464,17 @@ class GFAPI {
 	 *     Supported operators for array values: in/=, not in/<>/!=
 	 *     $search_criteria['field_filters'][] = array('key' => '1', 'operator' => 'not in', value' => array( 'Alex', 'David', 'Dana' );
 	 *
-	 *  Filter by a checkbox value (not recommended)
+	 *  Filter by a checkbox value - input ID search keys
 	 *     $search_criteria['field_filters'][] = array('key' => '2.2', 'value' => 'gquiz246fec995');
-	 *     note: this will work for checkboxes but it won't work if the checkboxes have been re-ordered - best to use the following examples below
+	 *     NOTES:
+	 *          - Using input IDs as search keys will work for checkboxes but it won't work if the checkboxes have been re-ordered since the first submission.
+	 *          - the 'not in' operator is not currently supported for checkbox values.
 	 *
-	 *  Filter by a checkbox value (recommended)
+	 *  Filter by a checkbox value - field ID keys
+	 *     Using the field ID as the search key is recommended for checkboxes.
 	 *     $search_criteria['field_filters'][] = array('key' => '2', 'value' => 'gquiz246fec995');
-	 *     $search_criteria['field_filters'][] = array('key' => '2', 'operator' => 'not in', value' => array( 'First Choice', 'Third Choice' );
+	 *     $search_criteria['field_filters'][] = array('key' => '2', 'operator' => 'in', 'value' => array( 'First Choice', 'Third Choice' );
+	 *     NOTE: Neither 'not in' nor '<>' operators are not currently supported for checkboxes using field IDs as search keys.
 	 *
 	 *  Filter by a global search of values of any form field
 	 *     $search_criteria['field_filters'][] = array('value' => $search_value);
@@ -1425,7 +1467,7 @@ class GFAPI {
 	 *
 	 * @uses GFFormsModel::get_fields_by_type()
 	 *
-	 * @return object GF_Field
+	 * @return GF_Field[]
 	 */
 	public static function get_fields_by_type( $form, $types, $use_input_type = false ) {
 		return GFFormsModel::get_fields_by_type( $form, $types, $use_input_type );

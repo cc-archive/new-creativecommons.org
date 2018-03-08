@@ -136,7 +136,11 @@ class GF_Field_MultiSelect extends GF_Field {
 	 * @return string Returns the choices available within the multi-select field.
 	 */
 	public function get_choices( $value ) {
+
+		$value = $this->to_array( $value );
+
 		return GFCommon::get_select_choices( $this, $value, false );
+
 	}
 
 	/**
@@ -155,7 +159,7 @@ class GF_Field_MultiSelect extends GF_Field {
 	 */
 	public function get_value_entry_list( $value, $entry, $field_id, $columns, $form ) {
 		// Add space after comma-delimited values.
-		$value = implode( ', ', explode( ',', $value ) );
+		$value = implode( ', ', $this->to_array( $value ) );
 		return esc_html( $value );
 	}
 
@@ -181,7 +185,7 @@ class GF_Field_MultiSelect extends GF_Field {
 			return $value;
 		}
 
-		$value = explode( ',', $value );
+		$value = $this->to_array( $value );
 
 		$items = '';
 		foreach ( $value as $item ) {
@@ -218,7 +222,7 @@ class GF_Field_MultiSelect extends GF_Field {
 			$value = $this->sanitize_entry_value( $value, $form['id'] );
 		}
 
-		return empty( $value ) ? '' : is_array( $value ) ? implode( ',', $value ) : $value;
+		return empty( $value ) ? '' : $this->to_string( $value );
 	}
 
 	/**
@@ -246,7 +250,7 @@ class GF_Field_MultiSelect extends GF_Field {
 	 * @return string $return The merge tag value.
 	 */
 	public function get_value_merge_tag( $value, $input_id, $entry, $form, $modifier, $raw_value, $url_encode, $esc_html, $format, $nl2br ) {
-		$items = explode( ',', $raw_value );
+		$items = $this->to_array( $raw_value );
 
 		if ( $this->type == 'post_category' ) {
 			$use_id = $modifier == 'id';
@@ -258,6 +262,7 @@ class GF_Field_MultiSelect extends GF_Field {
 				}
 			}
 		} elseif ( $modifier != 'value' ) {
+
 			foreach ( $items as &$item ) {
 				$item = GFCommon::selection_display( $item, $this, rgar( $entry, 'currency' ), true );
 				$item = GFCommon::format_variable_value( $item, $url_encode, $esc_html, $format );
@@ -297,16 +302,68 @@ class GF_Field_MultiSelect extends GF_Field {
 		$value = rgar( $entry, $input_id );
 
 		if ( ! empty( $value ) && ! $is_csv ) {
-			$items = explode( ',', $value );
+			$items = $this->to_array( $value );
 
 			foreach ( $items as &$item ) {
 				$item = GFCommon::selection_display( $item, $this, rgar( $entry, 'currency' ), $use_text );
 			}
+			$value = GFCommon::implode_non_blank( ', ', $items );
 
+		} elseif ( $this->storageType === 'json' ) {
+
+			$items = json_decode( $value );
 			$value = GFCommon::implode_non_blank( ', ', $items );
 		}
 
 		return $value;
+	}
+
+	/**
+	 * Converts an array to a string.
+	 *
+	 * @since 2.2.3.7 Changed access to public.
+	 * @since 2.2
+	 * @access public
+	 *
+	 * @uses \GF_Field_MultiSelect::$storageType
+	 *
+	 * @param array $value The array to convert to a string.
+	 *
+	 * @return string The converted string.
+	 */
+	public function to_string( $value ) {
+		if ( $this->storageType === 'json' ) {
+			return json_encode( $value );
+		} else {
+			return is_array( $value ) ? implode( ',', $value ) : $value;
+		}
+	}
+
+	/**
+	 * Converts a string to an array.
+	 *
+	 * @since 2.2.3.7 Changed access to public.
+	 * @since 2.2
+	 * @access public
+	 *
+	 * @uses \GF_Field_MultiSelect::$storageType
+	 *
+	 * @param string $value A comma-separated or JSON string to convert.
+	 *
+	 * @return array The converted array.
+	 */
+	public function to_array( $value ) {
+		if ( empty( $value ) ) {
+			return array();
+		} elseif ( is_array( $value ) ) {
+			return $value;
+		} elseif ( $this->storageType !== 'json' || $value[0] !== '[' ) {
+			return array_map( 'trim', explode( ',', $value ) );
+		} else {
+			$json = json_decode( $value, true );
+
+			return $json == null ? array() : $json;
+		}
 	}
 
 	/**
@@ -325,6 +382,8 @@ class GF_Field_MultiSelect extends GF_Field {
 	public function sanitize_settings() {
 		parent::sanitize_settings();
 		$this->enableEnhancedUI = (bool) $this->enableEnhancedUI;
+
+		$this->storageType = empty( $this->storageType ) || $this->storageType === 'json' ? $this->storageType : 'json';
 
 		if ( $this->type === 'post_category' ) {
 			$this->displayAllCategories = (bool) $this->displayAllCategories;

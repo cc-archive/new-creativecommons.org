@@ -465,7 +465,12 @@ class GF_Field_List extends GF_Field {
 		if ( empty( $value ) ) {
 			return '';
 		}
-		$value = unserialize( $value );
+
+		$value = maybe_unserialize( $value );
+		
+		if( ! is_array( $value ) || ! isset( $value[0] ) ) {
+			return '';
+		}
 
 		$has_columns = is_array( $value[0] );
 
@@ -674,6 +679,7 @@ class GF_Field_List extends GF_Field {
 		if ( ! $this->enableColumns ) {
 			return $value;
 		} else {
+			$value     = empty( $value ) ? array() : $value;
 			$col_count = count( $this->choices );
 			$rows      = array();
 

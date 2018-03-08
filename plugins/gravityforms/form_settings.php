@@ -79,7 +79,6 @@ class GFFormSettings {
 	public static function form_settings_ui() {
 
 		require_once( GFCommon::get_base_path() . '/form_detail.php' );
-		require_once( GFCommon::get_base_path() . '/currency.php' );
 
 		$form_id       = rgget( 'id' );
 		$form          = RGFormsModel::get_form_meta( $form_id );
@@ -1200,7 +1199,7 @@ class GFFormSettings {
 			$confirmation_id = $duplicated_cid;
 		}
 
-		$confirmation = self::handle_confirmation_edit_submission( rgar( $form['confirmations'], $confirmation_id ), $form );
+		$confirmation = self::handle_confirmation_edit_submission( rgar( $form['confirmations'], $confirmation_id, array() ), $form );
 
 
 		if ( $is_duplicate ) {
@@ -1263,9 +1262,9 @@ class GFFormSettings {
 
 				<?php if ( $is_duplicate ) :?>
 				$('#confirmation_conditional_logic_container').pointer({
-					content     : '<h3><?php _e( 'Important', 'gravityforms' ) ?></h3><p><?php _e( 'Ensure that the conditional logic for this confirmation is different from all the other confirmations for this form and then press save to create the new confirmation.', 'gravityforms' ) ?></p>',
-					position    : {
-						edge : 'bottom', // arrow direction
+					content: <?php echo json_encode( sprintf( '<h3>%s</h3><p>%s</p>', __( 'Important', 'gravityforms' ), __( 'Ensure that the conditional logic for this confirmation is different from all the other confirmations for this form and then press save to create the new confirmation.', 'gravityforms' ) ) ); ?>,
+					position: {
+						edge: 'bottom', // arrow direction
 						align: 'center' // vertical alignment
 					},
 					pointerWidth: 300
@@ -1274,16 +1273,16 @@ class GFFormSettings {
 			});
 
 
-			gform.addFilter("gform_merge_tags", "MaybeAddSaveMergeTags");
-			function MaybeAddSaveMergeTags(mergeTags, elementId, hideAllFields, excludeFieldTypes, isPrepop, option){
+			gform.addFilter('gform_merge_tags', 'MaybeAddSaveMergeTags');
+			function MaybeAddSaveMergeTags(mergeTags, elementId, hideAllFields, excludeFieldTypes, isPrepop, option) {
 				var event = confirmation.event;
-				if ( event == 'form_saved' || event == 'form_save_email_sent' ) {
-					mergeTags["other"].tags.push({ tag: '{save_link}', label: '<?php _e( 'Save &amp; Continue Link', 'gravityforms' ) ?>' });
-					mergeTags["other"].tags.push({ tag: '{save_token}', label: '<?php _e( 'Save &amp; Continue Token', 'gravityforms' ) ?>' });
+				if ( event === 'form_saved' || event === 'form_save_email_sent' ) {
+					mergeTags['other'].tags.push({ tag: '{save_link}', label: <?php echo json_encode( __( 'Save &amp; Continue Link', 'gravityforms' ) ) ?> });
+					mergeTags['other'].tags.push({ tag: '{save_token}', label: <?php echo json_encode( __( 'Save &amp; Continue Token', 'gravityforms' ) ) ?> });
 				}
 
-				if( event == 'form_saved' ) {
-					mergeTags["other"].tags.push({ tag: '{save_email_input}', label: '<?php _e( 'Save &amp; Continue Email Input', 'gravityforms' ) ?>' });
+				if ( event === 'form_saved' ) {
+					mergeTags['other'].tags.push({ tag: '{save_email_input}', label: <?php echo json_encode( __( 'Save &amp; Continue Email Input', 'gravityforms' ) ) ?> });
 				}
 
 				return mergeTags;
@@ -1379,7 +1378,7 @@ class GFFormSettings {
 		<tr <?php echo $is_default ? 'style="display:none;"' : ''; ?> class="<?php echo $class; ?>">
 			<th><?php _e( 'Confirmation Name', 'gravityforms' ); ?></th>
 			<td>
-				<input type="text" id="form_confirmation_name" name="form_confirmation_name" value="<?php echo rgar( $confirmation, 'name' ); ?>" />
+				<input type="text" id="form_confirmation_name" name="form_confirmation_name" value="<?php echo esc_attr( rgar( $confirmation, 'name' ) ); ?>" />
 			</td>
 		</tr> <!-- / confirmation name -->
 		<?php $ui_settings['confirmation_name'] = ob_get_contents();
@@ -1577,9 +1576,7 @@ class GFFormSettings {
 	 */
 	public static function page_header( $title = '' ) {
 
-		// Register admin styles.
-		$min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG || isset( $_GET['gform_debug'] ) ? '' : '.min';
-		wp_register_style( 'gform_admin', GFCommon::get_base_url() . "/css/admin{$min}.css" );
+		// Print admin styles.
 		wp_print_styles( array( 'jquery-ui-styles', 'gform_admin', 'wp-pointer' ) );
 
 		$form         = GFFormsModel::get_form_meta( rgget( 'id' ) );
@@ -2167,17 +2164,35 @@ class GFFormSettings {
 	 *
 	 * @return void
 	 */
-	public static function save_form_title(){
+	public static function save_form_title() {
 
 		check_admin_referer( 'gf_save_title', 'gf_save_title' );
 
 		$form_title = json_decode( rgpost( 'title' ) );
 		$form_id = rgpost( 'formId' );
 
-		$form = GFAPI::get_form( $form_id );
-		$form['title'] = $form_title;
+		$result = array( 'isValid' => true, 'message' => '' );
 
-		GFAPI::update_form( $form, $form_id );
+		if ( empty( $form_title ) ) {
+
+			$result['isValid'] = false;
+			$result['message'] = __( 'Please enter a form title.', 'gravityforms' );
+
+		} elseif ( ! GFFormsModel::is_unique_title( $form_title, $form_id ) ) {
+			$result['isValid'] = false;
+			$result['message'] = __( 'Please enter a unique form title.', 'gravityforms' );
+
+		} else {
+
+			$form = GFAPI::get_form( $form_id );
+			$form['title'] = $form_title;
+
+			GFAPI::update_form( $form, $form_id );
+
+		}
+
+		die( json_encode( $result ) );
+
 	}
 }
 

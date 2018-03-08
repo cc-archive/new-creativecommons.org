@@ -113,7 +113,7 @@ class GFExport {
 			$form_ids = array();
 		} else {
 			foreach ( $form_ids as $key => $form_id ) {
-				$forms[ $key ]['id'] = $form_id;
+				$forms[ $key ] = GFAPI::get_form( $form_id );
 			}
 			/**
 			 * Fires after forms have been imported.
@@ -672,7 +672,6 @@ class GFExport {
 		$total_entry_count     = GFAPI::count_entries( $form_id, $search_criteria );
 		$remaining_entry_count = $offset == 0 ? $total_entry_count : $total_entry_count - $offset;
 
-		// Adding BOM marker for UTF-8
 		$lines = '';
 
 		// Set the separator
@@ -683,8 +682,19 @@ class GFExport {
 		if ( $offset == 0 ) {
 			GFCommon::log_debug( __METHOD__ . '(): Processing request for form #' . $form_id );
 
+
+			/**
+			 * Allows the BOM character to be excluded from the beginning of entry export files.
+			 * 
+			 * @since 2.1.1.21
+			 *
+			 * @param bool  $include_bom Whether or not to include the BOM characters. Defaults to true.
+			 * @param array $form        The Form Object.
+			 */
+			$include_bom = apply_filters( 'gform_include_bom_export_entries', true, $form );
+
 			//Adding BOM marker for UTF-8
-			$lines = chr( 239 ) . chr( 187 ) . chr( 191 );
+			$lines = $include_bom ? chr( 239 ) . chr( 187 ) . chr( 191 ) : '';
 
 			//writing header
 			$headers = array();
@@ -743,9 +753,13 @@ class GFExport {
 				foreach ( $fields as $field_id ) {
 					switch ( $field_id ) {
 						case 'date_created' :
-							$lead_gmt_time   = mysql2date( 'G', $lead['date_created'] );
-							$lead_local_time = GFCommon::get_local_timestamp( $lead_gmt_time );
-							$value           = date_i18n( 'Y-m-d H:i:s', $lead_local_time, true );
+						case 'payment_date' :
+							$value = $lead[ $field_id ];
+							if ( $value ) {
+								$lead_gmt_time   = mysql2date( 'G', $value );
+								$lead_local_time = GFCommon::get_local_timestamp( $lead_gmt_time );
+								$value           = date_i18n( 'Y-m-d H:i:s', $lead_local_time, true );
+							}
 							break;
 						default :
 							$field = RGFormsModel::get_field( $form, $field_id );
@@ -882,10 +896,7 @@ class GFExport {
 
 	public static function page_header( $title = '' ) {
 
-		$min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG || isset( $_GET['gform_debug'] ) ? '' : '.min';
-
-		// register admin styles
-		wp_register_style( 'gform_admin', GFCommon::get_base_url() . "/css/admin{$min}.css" );
+		// Print admin styles.
 		wp_print_styles( array( 'jquery-ui-styles', 'gform_admin' ) );
 
 		$current_tab  = rgempty( 'view', $_GET ) ? 'export_entry' : rgget( 'view' );
