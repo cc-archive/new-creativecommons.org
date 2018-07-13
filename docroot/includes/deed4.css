@@ -75,6 +75,10 @@ body.hide-banner .site-footer .cc-footer-license {
     border-bottom-left-radius: 10px;
 }
 
+#primary {
+    margin-top: 10px;
+}
+
 .site-main {
     margin-bottom: 0;
 }
@@ -171,6 +175,25 @@ body.hide-banner .site-footer .cc-footer-license {
 }
 
 .pd-grey #deed-head {
+}
+
+#language-selector-block {
+    text-align: right;
+    margin-top: 15px;
+}
+
+.language-selector-inner {
+    margin-right: -30px;
+}
+
+#language-selector-block select {
+    padding: 0;
+}
+
+.language-icon {
+    height: 32.5px;
+    width: 24px;
+    margin: 0 0.25em;
 }
 
 #deed-main {
@@ -476,7 +499,9 @@ li.nc,
 li.nc-jp,
 li.nc-eu,
 li.nd,
-li.sa {
+li.sa,
+li.nolaw,
+li.publicdomain {
     min-height: 70px; /* 62px (icon) + 8px (margin) */
     padding-left: 90px;
     margin-left: -90px;
@@ -487,7 +512,9 @@ body.rtl li.nc,
 body.rtl li.nc-jp,
 body.rtl li.nc-eu,
 body.rtl li.nd,
-body.rtl li.sa {
+body.rtl li.sa,
+body.rtl li.nolaw,
+body.rtl li.publicdomain {
     margin-left: 0;
     padding-left: 0;
     padding-right: 90px;
@@ -499,7 +526,9 @@ li.nc::before,
 li.nc-jp::before,
 li.nc-eu::before,
 li.nd::before,
-li.sa::before {
+li.sa::before,
+li.nolaw::before,
+li.publicdomain::before {
     position: absolute;
     top: 4px;
     right: auto;
@@ -518,7 +547,9 @@ body.rtl li.nc::before,
 body.rtl li.nc-jp::before,
 body.rtl li.nc-eu::before,
 body.rtl li.nd::before,
-body.rtl li.sa::before {
+body.rtl li.sa::before,
+body.rtl li.nolaw::before,
+body.rtl li.publicdomain::before {
     right: 0;
     left: auto;
 }
@@ -547,6 +578,14 @@ li.sa::before {
     background-image: url('/images/deed/sa_blue_x2.png');
 }
 
+li.nolaw::before {
+    background-image: url("/images/deed/zero_blue_x2.png");
+}
+
+li.publicdomain::before {
+    background-image: url("/images/deed/no_copyright_blue_x2.png");
+}
+
 /* Desktop small and smaller */
 @media only screen and (max-width : 992px) {
     li.by,
@@ -554,7 +593,9 @@ li.sa::before {
     li.nc-jp,
     li.nc-eu,
     li.nd,
-    li.sa {
+    li.sa,
+    li.nolaw,
+    li.publicdomain {
         padding-left: 90px;
         margin-left: 0;
     }
@@ -564,7 +605,9 @@ li.sa::before {
     body.rtl li.nc-jp,
     body.rtl li.nc-eu,
     body.rtl li.nd,
-    body.rtl li.sa {
+    body.rtl li.sa,
+    body.rtl li.nolaw,
+    body.rtl li.publicdomain {
         padding-right: 90px;
         margin-right: 0;
     }
@@ -577,7 +620,9 @@ li.sa::before {
     li.nc-jp,
     li.nc-eu,
     li.nd,
-    li.sa {
+    li.sa,
+    li.nolaw,
+    li.publicdomain {
         min-height: 50px; /* 42px (icon) + 8px (margin) */
         padding-left: 60px;
         margin-left: 0;
@@ -588,7 +633,9 @@ li.sa::before {
     li.nc-jp::before,
     li.nc-eu::before,
     li.nd::before,
-    li.sa::before {
+    li.sa::before,
+    li.nolaw::before,
+    li.publicdomain::before {
         width: 42px;
         height: 42px;
         background-size: 42px 42px;
@@ -599,7 +646,9 @@ li.sa::before {
     body.rtl li.nc-jp,
     body.rtl li.nc-eu,
     body.rtl li.nd,
-    body.rtl li.sa {
+    body.rtl li.sa,
+    body.rtl li.nolaw,
+    body.rtl li.publicdomain {
         padding-right: 60px;
         margin-right: 0;
     }
@@ -621,14 +670,10 @@ li.src {
     background: url("/images/deed/src.png") 0 0 no-repeat;
 }
 
-li.nolaw {
-    background: url("/images/deed/nolaw.png") 0 8px no-repeat;
-}
-
-li ul li.nolaw {
-    background: url("/images/deed/nolaw-small.png") 0 8px no-repeat;
-    padding-left: 32px;
-}
+/*li ul li.nolaw {*/
+    /*background: url("/images/deed/nolaw-small.png") 0 8px no-repeat;*/
+    /*padding-left: 32px;*/
+/*}*/
 
 li.usage-guidelines {
     background: url("/images/deed/usage-guidelines.png") 0 0 no-repeat;
@@ -641,9 +686,9 @@ li ul li.usage-guidelines {
     margin-bottom: 0;
 }
 
-li.publicdomain {
-    background: url("/images/deed/noc.png") 0 3px no-repeat;
-}
+/*li.publicdomain {*/
+    /*background: url("/images/deed/noc.png") 0 3px no-repeat;*/
+/*}*/
 
 li a {
     color: #049CCF;
