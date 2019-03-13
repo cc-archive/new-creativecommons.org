@@ -1,6 +1,8 @@
 # new-creativecommons.org
 
-Primary Creative Commons website: [Creative Commons](Creative Commons)
+Primary Creative Commons website: [Creative Commons][creativecommons]
+
+[creativecommons]:https://creativecommons.org/
 
 
 ## Overview
