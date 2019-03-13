@@ -1,11 +1,20 @@
-# CC 2016 base site
+# new-creativecommons.org
 
-These are the static files and WordPress plugins required for the Creative Commons website, https://creativecommons.org as of June 2016.
-
-You'll also need:
-
-- new-www-theme (the theme, to make it look lovely)
-- new-www-plugins (the various custom plugins for content types, mostly)
-- creativecommons.org (if you want the license chooser and license display code)
+Primary Creative Commons website: [Creative Commons](Creative Commons)
 
 
+## Overview
+
+These are the static files and WordPress plugins required for the Creative
+Commons website, as of June 2016.
+
+In addition to this repository, you will also need:
+- [creativecommons/new-www-theme][theme]: the theme, to make it look lovely
+- [creativecommons/new-www-plugins][plugins]: the various custom plugins for
+  content types, mostly
+- [creativecommons/creativecommons.org][licenses]: if you want the license
+  chooser and license display code
+
+[theme]:https://github.com/creativecommons/new-www-theme
+[plugins]:https://github.com/creativecommons/new-www-plugins
+[licenses]:https://github.com/creativecommons/creativecommons.org
