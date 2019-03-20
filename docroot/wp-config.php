@@ -20,8 +20,8 @@ define('WP_CONTENT_DIR', dirname(__FILE__) . '/wp-content');
 define('WP_CONTENT_URL', 'https://' . $_SERVER['SERVER_NAME'] . '/wp-content');
 $_SERVER['HTTPS'] = 'on';
 // Load DB config / secrets
-if (file_exists(dirname(__FILE__) . '/wp-config-local.php'))
-    include(dirname(__FILE__) . '/wp-config-local.php');
+if ( file_exists( dirname(__FILE__) . '/wp-config-local.php' ) )
+    include( dirname(__FILE__) . '/wp-config-local.php' );
 /**
  * WordPress Database Table prefix.
  *
@@ -39,14 +39,12 @@ $table_prefix  = 'mattl_';
  */
 define('WPLANG', '');
 define('WP_CACHE', true);
-define(
-    'WPCACHEHOME',
-    dirname(__FILE__) . '/wp-content/plugins/wp-super-cache/'
-);
+define('WPCACHEHOME',
+       dirname(__FILE__) . '/wp-content/plugins/wp-super-cache/');
 /* That's all, stop editing! Happy blogging. */
 define('WP_DEFAULT_THEME', 'creativecommons.org');
 /** Absolute path to the WordPress directory. */
-if (!defined('ABSPATH'))
-    define('ABSPATH', dirname(__FILE__) . '/wordpress/');
+if ( !defined('ABSPATH') )
+	define('ABSPATH', dirname(__FILE__) . '/wordpress/');
 /** Sets up WordPress vars and included files. */
 require_once(ABSPATH . 'wp-settings.php');
