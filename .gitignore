@@ -2,6 +2,7 @@
 
 # WordPress
 cc-wp-theme
+docroot/.htaccess
 docroot/wordpress/
 docroot/wp-config-local.php
 docroot/wp-content/
