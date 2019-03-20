@@ -1,4 +1,7 @@
 <?php
+/** Enable W3 Total Cache */
+define('WP_CACHE', true); // Added by W3 Total Cache
+
 /**
  * The base configurations of the WordPress.
  *
@@ -38,9 +41,9 @@ $table_prefix  = 'mattl_';
  * language support.
  */
 define('WPLANG', '');
-define('WP_CACHE', true);
-define('WPCACHEHOME',
-       dirname(__FILE__) . '/wp-content/plugins/wp-super-cache/');
+ //Added by WP-Cache Manager
+define( 'WPCACHEHOME', '/var/www/new-creativecommons.org/docroot/wp-content/plugins/wp-super-cache/' ); //Added by WP-Cache Manager
+
 /* That's all, stop editing! Happy blogging. */
 define('WP_DEFAULT_THEME', 'creativecommons.org');
 /** Absolute path to the WordPress directory. */
