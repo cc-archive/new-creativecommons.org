@@ -1479,6 +1479,42 @@ ol.arabic-markers {
 .slide-trigger button:hover {
     background: rgba(70,34,18,.6);
 }
+/* Going dark styles*/
+.slide-trigger.going-dark {
+    padding-top: 1rem;
+    background: rgba(238,91,50,1);
+    background: -moz-radial-gradient(center, ellipse cover, rgb(5, 4, 3) 0%, rgb(65, 64, 64) 100%);
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgb(5, 4, 3)), color-stop(100%, rgb(65, 64, 64)));
+    background: -webkit-radial-gradient(center, ellipse cover, rgb(5, 4, 3) 0%, rgb(65, 64, 64) 100%);
+    background: -o-radial-gradient(center, ellipse cover, rgb(5, 4, 3) 0%, rgb(65, 64, 64) 100%);
+    background: -ms-radial-gradient(center, ellipse cover, rgb(5, 4, 3) 0%, rgb(65, 64, 64) 100%);
+    background: radial-gradient(ellipse at center, rgb(5, 4, 3) 0%, rgb(65, 64, 64) 100%);
+}
+.slide-trigger.going-dark .dark-title {
+    font-weight: initial;
+    font-size: 26px;
+    text-transform: uppercase;
+    margin-left: 0;
+    margin-right: 0;
+}
+.slide-trigger.going-dark .mobile-only .dark-title {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.slide-trigger.going-dark .dark-title strong {
+    color: #ee5b32;
+}
+.slide-trigger.going-dark .button.act-now {
+    background-color: #981000;
+    color: white;
+    margin-top: 1.2rem;
+}
+.slide-trigger.going-dark .slide-logo {
+    display: none;
+}
+.slide-trigger.going-dark .donate-box {
+    display: none;
+}
 
 @media screen and (max-width: 1275px) {
     #deed-donate-slide.slider {
