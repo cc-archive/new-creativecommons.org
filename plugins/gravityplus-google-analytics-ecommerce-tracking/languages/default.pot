@@ -1,0 +1,117 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Gravity Forms + Google Analytics Ecommerce Tracking\n"
+"POT-Creation-Date: 2015-02-20 22:56-0500\n"
+"PO-Revision-Date: 2015-02-20 22:56-0500\n"
+"Last-Translator: Naomi C. Bush <hello@naomicbush.com>\n"
+"Language-Team: gravity+ <support@gravityplus.pro>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: __;_e;esc_attr_e;esc_html__;esc_html_e;_x;_ex;"
+"esc_attr_x;esc_html_x;_n;_nx;_n_noop;_nx_noop\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ../includes\n"
+
+#: ../includes/class-addon.php:136
+msgid "1. Enable Google Analytics Ecommerce Tracking"
+msgstr ""
+
+#: ../includes/class-addon.php:142
+msgid "2. Tracking ID"
+msgstr ""
+
+#: ../includes/class-addon.php:147
+msgid "Enter your Google Analytics Tracking ID."
+msgstr ""
+
+#: ../includes/class-addon.php:148
+msgid "Tracking ID"
+msgstr ""
+
+#: ../includes/class-addon.php:163 ../includes/class-addon.php:251
+msgid "Name"
+msgstr ""
+
+#: ../includes/class-addon.php:166
+msgid "Name for this feed"
+msgstr ""
+
+#: ../includes/class-addon.php:171
+msgid "Affiliation"
+msgstr ""
+
+#: ../includes/class-addon.php:174
+msgid "Select the field that holds the affiliation/store name"
+msgstr ""
+
+#: ../includes/class-addon.php:179
+msgid "Tax"
+msgstr ""
+
+#: ../includes/class-addon.php:183
+msgid "Select the field that holds the tax amount"
+msgstr ""
+
+#: ../includes/class-addon.php:188
+msgid "Currency Code"
+msgstr ""
+
+#: ../includes/class-addon.php:191
+msgid "Select the field that holds the 3-letter currency code"
+msgstr ""
+
+#: ../includes/class-addon.php:196 ../includes/class-addon.php:236
+msgid "Item"
+msgstr ""
+
+#: ../includes/class-addon.php:200
+msgid "Select the field that holds the item for this transaction"
+msgstr ""
+
+#: ../includes/class-addon.php:205
+msgid "Item Code/SKU"
+msgstr ""
+
+#: ../includes/class-addon.php:208
+msgid "Select the field that holds the item code/SKU"
+msgstr ""
+
+#: ../includes/class-addon.php:213
+msgid "Item Variation/Category"
+msgstr ""
+
+#: ../includes/class-addon.php:216
+msgid "Select the field that holds the item variation/category"
+msgstr ""
+
+#: ../includes/class-addon.php:222
+msgid "Feed Name"
+msgstr ""
+
+#: ../includes/class-addon.php:228
+msgid "Transaction"
+msgstr ""
+
+#: ../includes/class-addon.php:262
+msgid "Select a product field"
+msgstr ""
+
+#: ../includes/class-addon.php:292
+msgid "Unable to send tracking data: missing UA Tracking ID."
+msgstr ""
+
+#: ../includes/class-addon.php:375
+msgid "options: "
+msgstr ""
+
+#: ../includes/views/plugin-settings-enable-ecommerce-tracking.php:8
+#: ../includes/views/plugin-settings-tracking-id.php:9
+msgid "Show Instructions"
+msgstr ""
+
+#: ../includes/views/plugin-settings-enable-ecommerce-tracking.php:14
+msgid ""
+"Note: It can take 24-48 hours for your ecommerce tracking to start working."
+msgstr ""

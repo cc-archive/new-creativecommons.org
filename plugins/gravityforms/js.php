@@ -133,12 +133,12 @@ if ( ! class_exists( 'GFForms' ) ) {
 	}
 
 	function ShowSettings(element_id) {
-		jQuery(".field_selected .field_edit_icon, .field_selected .form_edit_icon").removeClass("edit_icon_collapsed").addClass("edit_icon_expanded").html('<i class="fa fa-caret-up fa-lg"></i>').closest('li').attr('aria-expanded', 'true');
+		jQuery(".field_selected .field_edit_icon, .field_selected .form_edit_icon").removeClass("edit_icon_collapsed").addClass("edit_icon_expanded").html('<i class="fa fa-caret-up fa-lg"></i>');
 		jQuery("#" + element_id).slideDown();
 	}
 
 	function HideSettings(element_id) {
-		jQuery(".field_edit_icon, .form_edit_icon").removeClass("edit_icon_expanded").addClass("edit_icon_collapsed").html('<i class="fa fa-caret-down fa-lg"></i>').focus().closest('li').attr('aria-expanded', 'false');
+		jQuery(".field_edit_icon, .form_edit_icon").removeClass("edit_icon_expanded").addClass("edit_icon_collapsed").html('<i class="fa fa-caret-down fa-lg"></i>');
 		jQuery("#" + element_id).hide();
 	}
 
@@ -590,12 +590,8 @@ if ( ! class_exists( 'GFForms' ) ) {
 
 				field.inputs = null;
 				if (!field.choices) {
-					if (field.type === 'quantity') {
-						field.choices = [new Choice('1'), new Choice('2'), new Choice('3')];
-					} else {
-						field.choices = field["enablePrice"] ? new Array(new Choice(<?php echo json_encode( esc_html__( 'First Choice', 'gravityforms' ) ); ?>, "", "0.00"), new Choice(<?php echo json_encode( esc_html__( 'Second Choice', 'gravityforms' ) ); ?>, "", "0.00"), new Choice(<?php echo json_encode( esc_html__( 'Third Choice', 'gravityforms' ) ); ?>, "", "0.00"))
-							: new Array(new Choice(<?php echo json_encode( esc_html__( 'First Choice', 'gravityforms' ) ); ?>), new Choice(<?php echo json_encode( esc_html__( 'Second Choice', 'gravityforms' ) ); ?>), new Choice(<?php echo json_encode( esc_html__( 'Third Choice', 'gravityforms' ) ); ?>));
-					}
+					field.choices = field["enablePrice"] ? new Array(new Choice(<?php echo json_encode( esc_html__( 'First Choice', 'gravityforms' ) ); ?>, "", "0.00"), new Choice(<?php echo json_encode( esc_html__( 'Second Choice', 'gravityforms' ) ); ?>, "", "0.00"), new Choice(<?php echo json_encode( esc_html__( 'Third Choice', 'gravityforms' ) ); ?>, "", "0.00"))
+						: new Array(new Choice(<?php echo json_encode( esc_html__( 'First Choice', 'gravityforms' ) ); ?>), new Choice(<?php echo json_encode( esc_html__( 'Second Choice', 'gravityforms' ) ); ?>), new Choice(<?php echo json_encode( esc_html__( 'Third Choice', 'gravityforms' ) ); ?>));
 				}
 				break;
 			case "address" :
@@ -661,7 +657,7 @@ if ( ! class_exists( 'GFForms' ) ) {
 				if (!field.label)
 					field.label = <?php echo json_encode( esc_html__( 'Website', 'gravityforms' ) ); ?>;
 				if (!field.placeholder)
-					field.placeholder = 'https://';
+					field.placeholder = 'http://';
 				break;
 			case "password" :
 				field.inputs = GetPasswordFieldInputs(field);
@@ -812,21 +808,6 @@ if ( ! class_exists( 'GFForms' ) ) {
 				if (!field.numberFormat)
 					field.numberFormat = "decimal_dot";
 
-				break;
-
-			case 'consent':
-				field.label = <?php echo json_encode( esc_html__( 'Consent', 'gravityforms' ) ); ?>;
-				field.inputs = [new Input(field.id + ".1", <?php echo json_encode( esc_html__( 'Consent', 'gravityforms' ) ); ?>), new Input(field.id + ".2", <?php echo json_encode( esc_html__( 'Text', 'gravityforms' ) ); ?>), new Input(field.id + ".3", <?php echo json_encode( esc_html__( 'Description', 'gravityforms' ) ); ?>)];
-				// Hide the description from select columns.
-				field.inputs[1].isHidden = true;
-				field.inputs[2].isHidden = true;
-				field.checkboxLabel = <?php echo json_encode( esc_html__( 'I agree to the privacy policy.', 'gravityforms' ) ); ?>;
-				field.descriptionPlaceholder = <?php echo json_encode( esc_html__( 'Enter consent agreement text here.  The Consent Field will store this agreement text with the form entry in order to track what the user has consented to.', 'gravityforms' ) ); ?>;
-				if (!field.inputType)
-					field.inputType = "consent";
-				// Add choices so we have a dropdown in the conditional logic.
-				if (!field.choices)
-					field.choices = new Array(new Choice(<?php echo json_encode( esc_html__( 'Checked', 'gravityforms' ) ); ?>, '1'));
 				break;
 
 			<?php do_action( 'gform_editor_js_set_default_values' ); ?>
@@ -1082,19 +1063,13 @@ if ( ! class_exists( 'GFForms' ) ) {
 
 		jQuery.post(ajaxurl, data,
 			function (data) {
-				field   = GetSelectedField();
-				fieldId = field.id;
-				if ( data.fieldId == fieldId ) {
-					jQuery('.field_selected').children().not('#field_settings').remove();
-					jQuery("#field_" + fieldId).prepend(data.fieldString);
-				} else {
-					jQuery("#field_" + data.fieldId).html(data.fieldString);
-				}
+				jQuery('.field_selected').children().not('#field_settings').remove();
+				jQuery("#field_" + fieldId).prepend(data.fieldString);
+
 				SetFieldLabel(field.label);
 				SetFieldSize(field.size);
 				SetFieldDefaultValue(field.defaultValue);
 				SetFieldDescription(field.description);
-				SetFieldCheckboxLabel(field.checkboxLabel);
 				SetFieldRequired(field.isRequired);
 				InitializeFields();
 				if (field["type"] == "address") {
@@ -1175,11 +1150,11 @@ if ( ! class_exists( 'GFForms' ) ) {
 
 			str += gform.applyFilters('gform_append_field_choice_option', '', field, i);
 
-			str += "<button class='gf_insert_field_choice' onclick=\"InsertFieldChoice(" + (i + 1) + ");\" aria-label='<?php esc_attr_e( 'Add choice', 'gravityforms' ); ?>'><i class='gficon-add' aria-hidden='true'></i></button>";
+			str += "<a class='gf_insert_field_choice' onclick=\"InsertFieldChoice(" + (i + 1) + ");\" onkeypress=\"InsertFieldChoice(" + (i + 1) + ");\"><i class='gficon-add'></i></a>";
 
-			if (field.choices.length > 1) {
-				str += "<button class='gf_delete_field_choice' onclick=\"DeleteFieldChoice(" + i + ");\" aria-label='<?php esc_attr_e( 'Delete choice', 'gravityforms' ); ?>'><i class='gficon-subtract' aria-hidden='true'></i></button>";
-			}
+
+			if (field.choices.length > 1)
+				str += "<a class='gf_delete_field_choice' onclick=\"DeleteFieldChoice(" + i + ");\" onkeypress=\"DeleteFieldChoice(" + i + ");\"><i class='gficon-subtract'></i></a>";
 
 			str += "</li>";
 
@@ -1207,11 +1182,10 @@ if ( ! class_exists( 'GFForms' ) ) {
 			str += "<input type='text' id='" + inputType + "_choice_text_" + i + "' value=\"" + input.choices[i].text.replace(/"/g, "&quot;") + "\" class='field-choice-input field-choice-text' />";
 			str += "<input type='text' id='" + inputType + "_choice_value_" + i + "' value=\"" + value.replace(/"/g, "&quot;") + "\" class='field-choice-input field-choice-value' />";
 
-			str += "<button class='gf_insert_field_choice field-input-insert-choice' onclick=\"InsertFieldChoice(" + (i + 1) + ");\" aria-label='<?php esc_attr_e( 'Add choice', 'gravityforms' ); ?>'><i class='gficon-add' aria-hidden='true'></i></button>";
+			str += "<a class='gf_insert_field_choice field-input-insert-choice'><i class='gficon-add'></i></a>";
 
-			if (input.choices.length > 1) {
-				str += "<button class='gf_delete_field_choice field-input-delete-choice' onclick=\"DeleteFieldChoice(" + i + ");\" aria-label='<?php esc_attr_e( 'Delete choice', 'gravityforms' ); ?>'><i class='gficon-subtract' aria-hidden='true'></i></button>";
-			}
+			if (input.choices.length > 1)
+				str += "<a class='gf_delete_field_choice field-input-delete-choice'><i class='gficon-subtract'></i></a>";
 
 			str += "</li>";
 

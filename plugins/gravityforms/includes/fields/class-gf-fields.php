@@ -89,8 +89,7 @@ class GF_Fields {
 		 *
 		 * @param  GF_Field $field      A GF_Field object.
 		 * @param  array    $properties An array of field properties used to generate the GF_Field object.
-		 *
-		 * @see    https://docs.gravityforms.com/gform_gf_field_create/
+		 * @see    https://www.gravityhelp.com/documentation/article/gform_gf_field_create/
 		 */
 		return apply_filters( 'gform_gf_field_create', $field, $properties );
 
