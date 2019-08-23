@@ -34,6 +34,17 @@ class GF_Field_Date extends GF_Field {
 		);
 	}
 
+	/**
+	 * Whether this field expects an array during submission.
+	 *
+	 * @since 2.4
+	 *
+	 * @return bool
+	 */
+	public function is_value_submission_array() {
+		return in_array( $this->dateType, array( 'datefield', 'datedropdown' ) );
+	}
+
 	public function validate( $value, $form ) {
 		if ( is_array( $value ) && rgempty( 0, $value ) && rgempty( 1, $value ) && rgempty( 2, $value ) ) {
 			$value = null;
@@ -174,7 +185,7 @@ class GF_Field_Date extends GF_Field {
                                     <input id='{$field_id}_2' name='ginput_day' type='text' {$day_placeholder_attribute} {$disabled_text} value='{$day_value}'/>
                                </div>";
 				$year_field  = "<div class='gfield_date_year ginput_date' id='gfield_input_date_year' style='display:$datefield_display'>
-                                    <label for='{$field_id}_2' {$sub_label_class_attribute}>{$year_sub_label}</label>
+                                    <label for='{$field_id}_3' {$sub_label_class_attribute}>{$year_sub_label}</label>
                                     <input id='{$field_id}_3' type='text' name='text' {$year_placeholder_attribute} {$disabled_text} value='{$year_value}'/>
                                </div>";
 			} else {
@@ -400,12 +411,39 @@ class GF_Field_Date extends GF_Field {
 				$picker_value = esc_attr( GFCommon::date_display( $picker_value, $format ) );
 				$icon_class   = $this->calendarIconType == 'none' ? 'datepicker_no_icon' : 'datepicker_with_icon';
 				$icon_url     = empty( $this->calendarIconUrl ) ? GFCommon::get_base_url() . '/images/calendar.png' : $this->calendarIconUrl;
-				$icon_url = esc_url( $icon_url );
+				$icon_url     = esc_url( $icon_url );
 				$tabindex     = $this->get_tabindex();
 				$class        = esc_attr( $class );
 
+				$aria_describedby  = "aria-describedby='{$field_id}_date_format'";
+				$date_format_label = esc_attr__( 'Date Format: ', 'gravityforms' );
+				switch ( $format ) {
+					case 'mdy':
+						$date_format_label .= esc_attr__( 'MM slash DD slash YYYY', 'gravityforms' );
+						break;
+					case 'dmy':
+						$date_format_label .= esc_attr__( 'DD slash MM slash YYYY', 'gravityforms' );
+						break;
+					case 'dmy_dash':
+						$date_format_label .= esc_attr__( 'DD dash MM dash YYYY', 'gravityforms' );
+						break;
+					case 'dmy_dot':
+						$date_format_label .= esc_attr__( 'DD dot MM dot YYYY', 'gravityforms' );
+						break;
+					case 'ymd_slash':
+						$date_format_label .= esc_attr__( 'YYYY slash MM slash DD', 'gravityforms' );
+						break;
+					case 'ymd_dash':
+						$date_format_label .= esc_attr__( 'YYYY dash MM dash DD', 'gravityforms' );
+						break;
+					case 'ymd_dot':
+						$date_format_label .= esc_attr__( 'YYYY dot MM dot DD', 'gravityforms' );
+						break;
+				}
+
 				return "<div class='ginput_container ginput_container_date'>
-                            <input name='input_{$id}' id='{$field_id}' type='text' value='{$picker_value}' class='datepicker {$class} {$format} {$icon_class}' {$tabindex} {$disabled_text} {$date_picker_placeholder}/>
+                            <input name='input_{$id}' id='{$field_id}' type='text' value='{$picker_value}' class='datepicker {$class} {$format} {$icon_class}' {$tabindex} {$disabled_text} {$date_picker_placeholder} {$aria_describedby} />
+                            <span id='{$field_id}_date_format' class='screen-reader-text'>{$date_format_label}</span>
                         </div>
                         <input type='hidden' id='gforms_calendar_icon_$field_id' class='gform_hidden' value='$icon_url'/>";
 			}
@@ -455,7 +493,7 @@ class GF_Field_Date extends GF_Field {
 
 	public function get_value_entry_detail( $value, $currency = '', $use_text = false, $format = 'html', $media = 'screen' ) {
 
-		return GFCommon::date_display( $value, $this->dateFormat );
+		return GFCommon::date_display( $value, $this->dateFormat, $this->get_output_date_format() );
 	}
 
 	/**
@@ -481,9 +519,65 @@ class GF_Field_Date extends GF_Field {
 	 * @return string The processed merge tag.
 	 */
 	public function get_value_merge_tag( $value, $input_id, $entry, $form, $modifier, $raw_value, $url_encode, $esc_html, $format, $nl2br ) {
-		$format_modifier = empty( $modifier ) ? $this->dateFormat : $modifier;
 
-		return GFCommon::date_display( $value, $format_modifier );
+		return GFCommon::date_display( $value, $this->dateFormat, $this->get_output_date_format() );
+	}
+
+	/**
+	 * Returns the date format to use when outputting the entry value on the detail page and when merge tags are processed.
+	 *
+	 * @since 2.4
+	 *
+	 * @return string
+	 */
+	public function get_output_date_format() {
+		$modifiers = $this->get_modifiers();
+		if ( ! empty( $modifiers ) ) {
+			$valid_modifiers = array(
+				'year',
+				'month',
+				'day',
+				'ymd',
+				'ymd_dash',
+				'ymd_dot',
+				'ymd_slash',
+				'mdy',
+				'mdy_dash',
+				'mdy_dot',
+				'mdy_slash',
+				'dmy',
+				'dmy_dash',
+				'dmy_dot',
+				'dmy_slash',
+			);
+
+			foreach ( $modifiers as $modifier ) {
+				if ( in_array( $modifier, $valid_modifiers ) ) {
+					return $modifier;
+				}
+			}
+		}
+
+		return $this->dateFormat;
+	}
+
+
+	/**
+	 * Returns a JS script to be rendered in the front end of the form.
+	 *
+	 * @param array $form The Form Object
+	 *
+	 * @return string Returns a JS script to be processed in the front end.
+	 */
+	public function get_form_inline_script_on_page_render( $form ) {
+
+		//Only return merge tag script if form supports JS merge tags
+		if ( ! GFFormDisplay::has_js_merge_tag( $form ) ) {
+			return '';
+		}
+
+		return "gform.addFilter( 'gform_value_merge_tag_{$form['id']}_{$this->id}', function( value, input, modifier ) { if( modifier === 'label' ) { return false; } return input.length == 1 ? input.val() : jQuery(input[0]).val() + '/' + jQuery(input[1]).val() + '/' + jQuery(input[2]).val(); } );";
+
 	}
 
 	private function get_month_dropdown( $name = '', $id = '', $selected_value = '', $tabindex = '', $disabled_text = '', $placeholder = '' ) {
@@ -513,7 +607,7 @@ class GF_Field_Date extends GF_Field {
 	}
 
 	private function get_number_dropdown( $name, $id, $selected_value, $tabindex, $disabled_text, $placeholder, $start_number, $end_number ) {
-		$str = "<select name='{$name}' id='{$id}' {$tabindex} {$disabled_text} >";
+		$str = "<select name='{$name}' id='{$id}' {$tabindex} {$disabled_text} aria-label='{$placeholder}'>";
 		if ( $placeholder !== false ) {
 			$str .= "<option value=''>{$placeholder}</option>";
 		}
@@ -563,6 +657,37 @@ class GF_Field_Date extends GF_Field {
 		if ( $this->dateFormat && ! in_array( $this->dateFormat, array(	'mdy', 'dmy', 'dmy_dash', 'dmy_dot', 'ymd_slash', 'ymd_dash', 'ymd_dot' ) ) ) {
 			$this->dateFormat = 'mdy';
 		}
+	}
+
+	/**
+	 * Removes the "for" attribute in the field label. Inputs are only allowed one label (a11y) and the inputs already have labels.
+	 *
+	 * @since  2.4
+	 * @access public
+	 *
+	 * @param array $form The Form Object currently being processed.
+	 *
+	 * @return string
+	 */
+	public function get_first_input_id( $form ) {
+		return in_array( $this->dateType, array( 'datefield', 'datedropdown' ) ) ? '' : parent::get_first_input_id( $form ) ;
+	}
+
+	// # FIELD FILTER UI HELPERS ---------------------------------------------------------------------------------------
+
+	/**
+	 * Returns the filter settings for the current field.
+	 *
+	 * @since 2.4
+	 *
+	 * @return array
+	 */
+	public function get_filter_settings() {
+		$filter_settings                = parent::get_filter_settings();
+		$filter_settings['placeholder'] = esc_html__( 'yyyy-mm-dd', 'gravityforms' );
+		$filter_settings['cssClass']    = 'datepicker ymd_dash';
+
+		return $filter_settings;
 	}
 }
 

@@ -39,6 +39,28 @@ class GF_Field_Text extends GF_Field {
 		return true;
 	}
 
+	/**
+	 * Return the result (bool) by setting $this->failed_validation.
+	 * Return the validation message (string) by setting $this->validation_message.
+	 *
+	 * @since 2.4.11
+	 *
+	 * @param string|array $value The field value from get_value_submission().
+	 * @param array        $form  The Form Object currently being processed.
+	 */
+	public function validate( $value, $form ) {
+
+		if ( ! $this->maxLength || ! is_numeric( $this->maxLength ) ) {
+			return;
+		}
+
+		if ( GFCommon::safe_strlen( $value ) > $this->maxLength ) {
+			$this->failed_validation  = true;
+			$this->validation_message = empty( $this->errorMessage ) ? esc_html__( 'The text entered exceeds the maximum number of characters.', 'gravityforms' ) : $this->errorMessage;
+		}
+
+	}
+
 	public function get_field_input( $form, $value = '', $entry = null ) {
 		$form_id         = absint( $form['id'] );
 		$is_entry_detail = $this->is_entry_detail();
@@ -50,7 +72,6 @@ class GF_Field_Text extends GF_Field {
 			$html_input_type = 'password';
 		}
 
-		$logic_event = ! $is_form_editor && ! $is_entry_detail ? $this->get_conditional_logic_event( 'keyup' ) : '';
 		$id          = (int) $this->id;
 		$field_id    = $is_entry_detail || $is_form_editor || $form_id == 0 ? "input_$id" : 'input_' . $form_id . "_$id";
 
@@ -66,8 +87,10 @@ class GF_Field_Text extends GF_Field {
 		$placeholder_attribute = $this->get_field_placeholder_attribute();
 		$required_attribute    = $this->isRequired ? 'aria-required="true"' : '';
 		$invalid_attribute     = $this->failed_validation ? 'aria-invalid="true"' : 'aria-invalid="false"';
+		$aria_describedby      = $this->get_aria_describedby();
 
-		$input = "<input name='input_{$id}' id='{$field_id}' type='{$html_input_type}' value='{$value}' class='{$class}' {$max_length} {$tabindex} {$logic_event} {$placeholder_attribute} {$required_attribute} {$invalid_attribute} {$disabled_text}/>";
+
+		$input = "<input name='input_{$id}' id='{$field_id}' type='{$html_input_type}' value='{$value}' class='{$class}' {$max_length} {$aria_describedby} {$tabindex} {$placeholder_attribute} {$required_attribute} {$invalid_attribute} {$disabled_text}/>";
 
 		return sprintf( "<div class='ginput_container ginput_container_text'>%s</div>", $input );
 	}
@@ -193,6 +216,23 @@ class GF_Field_Text extends GF_Field {
 
 		return $return;
 	}
+
+	// # FIELD FILTER UI HELPERS ---------------------------------------------------------------------------------------
+
+	/**
+	 * Returns the filter operators for the current field.
+	 *
+	 * @since 2.4
+	 *
+	 * @return array
+	 */
+	public function get_filter_operators() {
+		$operators   = parent::get_filter_operators();
+		$operators[] = 'contains';
+
+		return $operators;
+	}
+
 }
 
 GF_Fields::register( new GF_Field_Text() );
