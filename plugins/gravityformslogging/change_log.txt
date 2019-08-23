@@ -1,0 +1,41 @@
+----------------------------------------------------------------------------------
+Version 1.1.3
+    - Fixed PHP notice when attempting to delete log file that doesn't exist.
+    - Updated select settings field to show log links for version of Gravity Forms older than 1.9.15.1.
+
+----------------------------------------------------------------------------------
+Version 1.1.2
+    - Fixed an issue which could prevent the supported plugins being displayed on the settings page.
+
+----------------------------------------------------------------------------------
+Version 1.1.1
+    - Added delete log link to plugin settings page.
+
+----------------------------------------------------------------------------------
+Version 1.1
+    - Added system information report.
+    - Added warning message about information that is logged using the Logging Add-On.
+    - Updated log directory creation to add empty index.php file.
+    - Updated log file names to include randomized string.
+    - Updated KLogger to support displaying microseconds.
+    - Updated plugin to use Add-On Framework.
+
+----------------------------------------------------------------------------------
+Version 1.0.3
+    - Fixed blank page when updating Gravity Forms manually in a multi-site network due to undefined RG_CURRENT_PAGE constant
+
+----------------------------------------------------------------------------------
+Version 1.0.2
+    - Fixed fatal error when log_message is called and GF is not active
+
+----------------------------------------------------------------------------------
+Version 1.0.1
+    - Fixed fatal error when add-on was active and GF inactive
+
+----------------------------------------------------------------------------------
+Version 1.0
+    - Fixed issue with uninstall not deleting log files
+
+----------------------------------------------------------------------------------
+Version 1.0.alpha2
+    - Fixed issue when reading log level that caused log file not be created
