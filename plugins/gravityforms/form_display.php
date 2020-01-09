@@ -567,6 +567,31 @@ class GFFormDisplay {
 		return false;
 	}
 
+	/**
+	 * Determines if form has a Password field with the Password Visibility Toggle enabled.
+	 *
+	 * @since 2.4.15
+	 *
+	 * @param array $form Form object.
+	 *
+	 * @return bool
+	 */
+	private static function has_password_visibility( $form ) {
+
+		if ( ! is_array( $form['fields'] ) ) {
+			return false;
+		}
+
+		foreach ( $form['fields'] as $field ) {
+			if ( $field->type == 'password' && $field->passwordVisibilityEnabled ) {
+				return true;
+			}
+		}
+
+		return false;
+
+	}
+
 	private static function has_other_choice( $form ) {
 
 		if ( ! is_array( $form['fields'] ) ) {
@@ -658,39 +683,48 @@ class GFFormDisplay {
 		return $is_last_page;
 	}
 
+	/**
+	 * Returns the entry limit date range for the given period.
+	 *
+	 * @since unknown
+	 * @since 2.4.15 Updated the day period to use the local time.
+	 *
+	 * @param string $period The eriod for the entry limit.
+	 *
+	 * @return array
+	 */
 	private static function get_limit_period_dates( $period ) {
 		if ( empty( $period ) ) {
 			return array( 'start_date' => null, 'end_date' => null );
 		}
 
 		switch ( $period ) {
-			case 'day' :
+			case 'day':
 				return array(
-					'start_date' => gmdate( 'Y-m-d' ),
-					'end_date'   => gmdate( 'Y-m-d 23:59:59' )
+					'start_date' => current_time( 'Y-m-d' ),
+					'end_date'   => current_time( 'Y-m-d 23:59:59' ),
 				);
 				break;
 
-			case 'week' :
+			case 'week':
 				return array(
 					'start_date' => gmdate( 'Y-m-d', strtotime( 'Monday this week' ) ),
-					'end_date'   => gmdate( 'Y-m-d 23:59:59', strtotime( 'next Sunday' ) )
+					'end_date'   => gmdate( 'Y-m-d 23:59:59', strtotime( 'next Sunday' ) ),
 				);
 				break;
 
-			case 'month' :
-				$month_start = gmdate( 'Y-m-1' );
-
+			case 'month':
+				$month_start = gmdate( 'Y-m-1');
 				return array(
 					'start_date' => $month_start,
-					'end_date'   => gmdate( 'Y-m-d H:i:s', strtotime( "{$month_start} +1 month -1 second" ) )
+					'end_date'   => gmdate( 'Y-m-d H:i:s', strtotime( "{$month_start} +1 month -1 second" ) ),
 				);
 				break;
 
-			case 'year' :
+			case 'year':
 				return array(
 					'start_date' => gmdate( 'Y-1-1' ),
-					'end_date'   => gmdate( 'Y-12-31 23:59:59' )
+					'end_date'   => gmdate( 'Y-12-31 23:59:59' ),
 				);
 				break;
 		}
@@ -778,7 +812,7 @@ class GFFormDisplay {
 			}
 		}
 
-		if ( ! $review_page_done ) {
+		if ( ! $review_page_done && $form !== false ) {
 			$form = self::maybe_add_review_page( $form );
 		}
 
@@ -1370,16 +1404,19 @@ class GFFormDisplay {
 	/**
 	 * Get the maximum field ID for the current form.
 	 *
+	 * @since unknown
+	 * @since 1.9.14 Updated to public access.
+	 * @since 2.4.15 Updated to use GFFormsModel::get_next_field_id().
+	 *
 	 * @param array $form The current form object.
 	 *
 	 * @return int
 	 */
 	public static function get_max_field_id( $form ) {
-		$max = 0;
-		foreach ( $form['fields'] as $field ) {
-			if ( intval( $field->id ) > $max ) {
-				$max = intval( $field->id );
-			}
+		if ( ! empty( $form['fields'] ) ) {
+			$max = GFFormsModel::get_next_field_id( $form['fields'] ) - 1;
+		} else {
+			$max = 0;
 		}
 
 		return $max;
@@ -1432,37 +1469,26 @@ class GFFormDisplay {
 			$lead['id'] = $lead_id;
 		}
 
+		// Passwords are not saved to the database but should be available during the submission process.
+		GF_Field_Password::stash_passwords( $form );
+
 		//creating entry in DB
 		RGFormsModel::save_lead( $form, $lead );
 
 		$lead = GFFormsModel::set_entry_meta( $lead, $form );
 
-		//if Akismet plugin is installed, run lead through Akismet and mark it as Spam when appropriate
-		$is_spam = GFCommon::akismet_enabled( $form['id'] ) && GFCommon::is_akismet_spam( $form, $lead );
-
-		/**
-		 * A filter to set if an entry is spam
-		 *
-		 * @param int $form['id'] The Form ID to filter through (take directly from the form object)
-		 * @param bool $is_spam True or false to filter if the entry is spam
-		 * @param array $form The Form object to filer through
-		 * @param array $lead The Lead object to filter through
-		 */
-		$is_spam = gf_apply_filters( array( 'gform_entry_is_spam', $form['id'] ), $is_spam, $form, $lead );
-
-		if ( GFCommon::spam_enabled( $form['id'] ) ) {
-			GFCommon::log_debug( 'GFFormDisplay::handle_submission(): Akismet integration enabled OR gform_entry_is_spam hook in use.' );
-			$log_is_spam = $is_spam ? 'Yes' : 'No';
-			GFCommon::log_debug( "GFFormDisplay::handle_submission(): Is entry considered spam? {$log_is_spam}." );
-		}
+		$is_spam = GFCommon::is_spam_entry( $lead, $form );
 
 		if ( $is_spam ) {
 
-			//marking entry as spam
+			// Marking entry as spam.
 			GFFormsModel::update_entry_property( $lead['id'], 'status', 'spam', false, true );
 			$lead['status'] = 'spam';
 
 		}
+
+		// Passwords are not saved to the database but should be available during the submission process.
+		$lead = GF_Field_Password::hydrate_passwords( $lead );
 
         /**
          * Fired after an entry is created
@@ -1521,14 +1547,14 @@ class GFFormDisplay {
 			return false;
 		}
 		$target_path = RGFormsModel::get_upload_path( $form['id'] ) . '/tmp/';
-		$filename    = $target_path . $unique_form_id . '_input_*';
-		$files       = glob( $filename );
+		$filename    = $unique_form_id . '_input_*';
+		$files       = GFCommon::glob( $filename, $target_path );
 		if ( is_array( $files ) ) {
 			array_map( 'unlink', $files );
 		}
 
 		// clean up files from abandoned submissions older than 48 hours (30 days if Save and Continue is enabled)
-		$files = glob( $target_path . '*' );
+		$files = GFCommon::glob( '*', $target_path );
 		if ( is_array( $files ) ) {
 			$seconds_in_day  = 24 * 60 * 60;
 			$save_enabled    = rgars( $form, 'save/enabled' );
@@ -1957,6 +1983,10 @@ class GFFormDisplay {
 				wp_enqueue_style( 'gforms_datepicker_css' );
 			}
 
+			if ( self::has_password_visibility( $form ) ) {
+				wp_enqueue_style( 'dashicons' );
+			}
+
 			wp_enqueue_style( 'gforms_formsmain_css' );
 			wp_enqueue_style( 'gforms_ready_class_css' );
 			wp_enqueue_style( 'gforms_browsers_css' );
@@ -1974,7 +2004,12 @@ class GFFormDisplay {
 			wp_enqueue_script( 'gform_datepicker_init' );
 		}
 
-		if ( $ajax || self::has_price_field( $form ) || self::has_password_strength( $form ) || GFCommon::has_list_field( $form ) || GFCommon::has_credit_card_field( $form ) || self::has_conditional_logic( $form ) || self::has_currency_format_number_field( $form ) || self::has_calculation_field( $form ) || self::has_recaptcha_field( $form ) || self::has_checkbox_field( $form, true ) || self::has_js_merge_tag( $form ) || GFCommon::has_repeater_field( $form ) ) {
+		if ( self::has_password_strength( $form ) ) {
+			wp_enqueue_script( 'gforms_zxcvbn', includes_url( '/js/zxcvbn.min.js' ) );
+			wp_enqueue_script( 'password-strength-meter' );
+		}
+
+		if ( $ajax || self::has_price_field( $form ) || self::has_password_strength( $form ) || self::has_password_visibility( $form ) || GFCommon::has_list_field( $form ) || GFCommon::has_credit_card_field( $form ) || self::has_conditional_logic( $form ) || self::has_currency_format_number_field( $form ) || self::has_calculation_field( $form ) || self::has_recaptcha_field( $form ) || self::has_checkbox_field( $form, true ) || self::has_js_merge_tag( $form ) || GFCommon::has_repeater_field( $form ) ) {
 			wp_enqueue_script( 'gform_gravityforms' );
 		}
 
@@ -2061,6 +2096,11 @@ class GFFormDisplay {
 					wp_print_styles( array( 'gforms_datepicker_css' ) );
 				}
 
+				if ( self::has_password_visibility( $form ) ) {
+					wp_enqueue_style( 'dashicons' );
+					wp_print_styles( array( 'dashicons' ) );
+				}
+
 				if ( is_rtl() ) {
 					wp_enqueue_style( 'gforms_rtl_css' );
 					wp_print_styles( array( 'gforms_rtl_css' ) );
@@ -2070,7 +2110,12 @@ class GFFormDisplay {
 
 		$scripts = array();
 
-		if ( ( $ajax || self::has_enhanced_dropdown( $form ) || self::has_price_field( $form ) || self::has_password_strength( $form ) || self::has_pages( $form ) || self::has_password_strength( $form ) || GFCommon::has_list_field( $form ) || GFCommon::has_credit_card_field( $form ) || self::has_calculation_field( $form ) ) && ! wp_script_is( 'gform_gravityforms' ) || self::has_js_merge_tag( $form ) ) {
+		if ( self::has_password_strength( $form ) ) {
+			wp_enqueue_script( 'gforms_zxcvbn', includes_url( '/js/zxcvbn.min.js' ) );
+			$scripts[] = 'password-strength-meter';
+		}
+
+		if ( ( $ajax || self::has_enhanced_dropdown( $form ) || self::has_price_field( $form ) || self::has_password_strength( $form ) || self::has_password_visibility( $form ) || self::has_pages( $form ) || self::has_password_strength( $form ) || GFCommon::has_list_field( $form ) || GFCommon::has_credit_card_field( $form ) || self::has_calculation_field( $form ) ) && ! wp_script_is( 'gform_gravityforms' ) || self::has_js_merge_tag( $form ) ) {
 			$scripts[] = 'gform_gravityforms';
 		}
 
@@ -2142,8 +2187,8 @@ class GFFormDisplay {
 
 		if ( is_array( rgar( $form, 'fields' ) ) ) {
 			foreach ( rgar( $form, 'fields' ) as $field ) {
-				if ( isset( $field->fields ) && is_array( $field->fields ) ) {
-					return self::has_conditional_logic_legwork( array( 'fields' => $field->fields ) );
+				if ( isset( $field->fields ) && is_array( $field->fields ) && self::has_conditional_logic_legwork( array( 'fields' => $field->fields ) ) ) {
+					return true;
 				}
 				if ( ! empty( $field->conditionalLogic ) ) {
 					return true;
@@ -2579,7 +2624,7 @@ class GFFormDisplay {
 
 	public static function get_password_strength_init_script( $form ) {
 
-		$field_script = "if(!window['gf_text']){window['gf_text'] = new Array();} window['gf_text']['password_blank'] = '" . esc_js( __( 'Strength indicator', 'gravityforms' ) ) . "'; window['gf_text']['password_mismatch'] = '" . esc_js( __( 'Mismatch', 'gravityforms' ) ) . "';window['gf_text']['password_bad'] = '" . esc_js( __( 'Bad', 'gravityforms' ) ) . "'; window['gf_text']['password_short'] = '" . esc_js( __( 'Short', 'gravityforms' ) ) . "'; window['gf_text']['password_good'] = '" . esc_js( __( 'Good', 'gravityforms' ) ) . "'; window['gf_text']['password_strong'] = '" . esc_js( __( 'Strong', 'gravityforms' ) ) . "';";
+		$field_script = "if(!window['gf_text']){window['gf_text'] = new Array();} window['gf_text']['password_blank'] = '" . esc_js( __( 'Strength indicator', 'gravityforms' ) ) . "'; window['gf_text']['password_mismatch'] = '" . esc_js( __( 'Mismatch', 'gravityforms' ) ) . "';window['gf_text']['password_unknown'] = '" . esc_js( __( 'Password strength unknown', 'gravityforms' ) ) . "';window['gf_text']['password_bad'] = '" . esc_js( __( 'Weak', 'gravityforms' ) ) . "'; window['gf_text']['password_short'] = '" . esc_js( __( 'Very weak', 'gravityforms' ) ) . "'; window['gf_text']['password_good'] = '" . esc_js( __( 'Medium', 'gravityforms' ) ) . "'; window['gf_text']['password_strong'] = '" . esc_js( __( 'Strong', 'gravityforms' ) ) . "';";
 
 		foreach ( $form['fields'] as $field ) {
 			if ( $field->type == 'password' && $field->passwordStrengthEnabled ) {
@@ -2718,7 +2763,7 @@ class GFFormDisplay {
 
 		if ( is_array( $form['fields'] ) ) {
 			foreach ( $form['fields'] as $field ) {
-				if ( $field->type == 'checkbox' && ( ! $select_all_enabled || ( $select_all_enabled && $field->enableSelectAll ) ) ) {
+				if ( $field->get_input_type() == 'checkbox' && ( ! $select_all_enabled || ( $select_all_enabled && $field->enableSelectAll ) ) ) {
 					return true;
 				}
 			}
