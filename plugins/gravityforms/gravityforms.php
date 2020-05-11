@@ -1,17 +1,17 @@
 <?php
 /*
 Plugin Name: Gravity Forms
-Plugin URI: https://www.gravityforms.com
+Plugin URI: https://gravityforms.com
 Description: Easily create web forms and manage form entries within the WordPress admin.
-Version: 2.4.16.5
-Author: rocketgenius
-Author URI: https://www.rocketgenius.com
+Version: 2.4.18
+Author: Gravity Forms
+Author URI: https://gravityforms.com
 License: GPL-2.0+
 Text Domain: gravityforms
 Domain Path: /languages
 
 ------------------------------------------------------------------------
-Copyright 2009-2019 Rocketgenius, Inc.
+Copyright 2009-2020 Rocketgenius, Inc.
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -142,16 +142,7 @@ if ( ! defined( 'GRAVITY_MANAGER_URL' ) ) {
 	 *
 	 * @var string GRAVITY_MANAGER_URL The full URL to the Gravity Manager.
 	 */
-	define( 'GRAVITY_MANAGER_URL', 'https://www.gravityhelp.com/wp-content/plugins/gravitymanager' );
-}
-
-if ( ! defined( 'GRAVITY_MANAGER_PROXY_URL' ) ) {
-	/**
-	 * Defines the Gravity Manager proxy URL.
-	 *
-	 * @var string GRAVITY_MANAGER_PROXY_URL The full URL to the Gravity Manager proxy.
-	 */
-	define( 'GRAVITY_MANAGER_PROXY_URL', 'http://proxy.gravityplugins.com' );
+	define( 'GRAVITY_MANAGER_URL', 'https://gravityapi.com/wp-content/plugins/gravitymanager' );
 }
 
 require_once( plugin_dir_path( __FILE__ ) . 'currency.php' );
@@ -176,6 +167,7 @@ add_action( 'init', array( 'GFForms', 'init' ) );
 add_action( 'wp', array( 'GFForms', 'maybe_process_form' ), 9 );
 add_action( 'admin_init', array( 'GFForms', 'maybe_process_form' ), 9 );
 add_action( 'wp', array( 'GFForms', 'process_exterior_pages' ) );
+add_action( 'admin_init', array( 'GFForms', 'process_exterior_pages' ) );
 add_filter( 'upgrader_pre_install', array( 'GFForms', 'validate_upgrade' ), 10, 2 );
 add_filter( 'tiny_mce_before_init', array( 'GFForms', 'modify_tiny_mce_4' ), 20 );
 add_filter( 'user_has_cap', array( 'RGForms', 'user_has_cap' ), 10, 3 );
@@ -215,7 +207,7 @@ class GFForms {
 	 *
 	 * @var string $version The version number.
 	 */
-	public static $version = '2.4.16.5';
+	public static $version = '2.4.18';
 
 	/**
 	 * Handles background upgrade tasks.
@@ -620,14 +612,11 @@ class GFForms {
 	 * @return void
 	 */
 	public static function maybe_process_form() {
+		if ( isset( $_POST['gform_submit'] ) ) {
+			require_once( GFCommon::get_base_path() . '/form_display.php' );
+			$form_id = GFFormDisplay::is_submit_form_id_valid();
 
-		$form_id = isset( $_POST['gform_submit'] ) ? absint( $_POST['gform_submit'] ) : 0;
-		if ( $form_id ) {
-			$form_info     = RGFormsModel::get_form( $form_id );
-			$is_valid_form = $form_info && $form_info->is_active;
-
-			if ( $is_valid_form ) {
-				require_once( GFCommon::get_base_path() . '/form_display.php' );
+			if ( $form_id ) {
 				GFFormDisplay::process_form( $form_id );
 			}
 		} elseif ( isset( $_POST['gform_send_resume_link'] ) ) {
@@ -1249,6 +1238,8 @@ class GFForms {
 			'gravityforms_view_addons'      => esc_html__( 'Manage Add-Ons', 'gravityforms' ),
 			'gravityforms_system_status'    => esc_html__( 'View System Status', 'gravityforms' ),
 			'gravityforms_uninstall'        => esc_html__( 'Uninstall Gravity Forms', 'gravityforms' ),
+			'gravityforms_logging'          => esc_html__( 'Logging Settings', 'gravityforms' ),
+			'gravityforms_api_settings'     => esc_html__( 'REST API Settings', 'gravityforms' ),
 		);
 
 		foreach ( $caps as $cap => $label ) {
@@ -1613,6 +1604,16 @@ class GFForms {
 	 */
 	public static function parse_shortcode( $attributes, $content = null ) {
 
+		/**
+		 * @var string $title
+		 * @var string $description
+		 * @var int    $id
+		 * @var string $name
+		 * @var string $field_values
+		 * @var string $ajax
+		 * @var int    $tabindex
+		 * @var string $action
+		 */
 		extract(
 			shortcode_atts(
 				array(
@@ -1720,7 +1721,7 @@ class GFForms {
 	//----------- AJAX --------------------------------
 
 	/**
-	 * Parses AJAX requests.
+	 * Triggers parsing of AJAX requests and outputs the response.
 	 *
 	 * @since  Unknown
 	 * @access public
@@ -1729,19 +1730,39 @@ class GFForms {
 	 */
 	public static function ajax_parse_request( $wp ) {
 		if ( isset( $_POST['gform_ajax'] ) ) {
-			parse_str( $_POST['gform_ajax'], $args );
+			die( self::get_ajax_form_response() );
+		}
+	}
 
-			$form_id             = absint( $args['form_id'] );
-			$display_title       = (bool) $args['title'];
-			$display_description = (bool) $args['description'];
+	/**
+	 * Parses the ajax submission and returns the response.
+	 *
+	 * @since 2.4.18
+	 *
+	 * @return mixed|string|void|WP_Error
+	 */
+	public static function get_ajax_form_response() {
+		parse_str( rgpost( 'gform_ajax' ), $args );
+
+		$form_id = isset( $args['form_id'] ) ? absint( $args['form_id'] ) : 0;
+
+		require_once( GFCommon::get_base_path() . '/form_display.php' );
+
+		if ( GFFormDisplay::is_submit_form_id_valid( $form_id ) ) {
+			$display_title       = ! isset( $args['title'] ) || ! empty( $args['title'] ) ? true : false;
+			$display_description = ! isset( $args['description'] ) || ! empty( $args['description'] ) ? true : false;
 			$tabindex            = isset( $args['tabindex'] ) ? absint( $args['tabindex'] ) : 0;
 
-			parse_str( $_POST['gform_field_values'], $field_values );
+			parse_str( rgpost( 'gform_field_values' ), $field_values );
 
-			require_once( GFCommon::get_base_path() . '/form_display.php' );
 			$result = GFFormDisplay::get_form( $form_id, $display_title, $display_description, false, $field_values, true, $tabindex );
-			die( $result );
+		} else {
+			// The form ID in the footer inputs has been tampered with; handling it like a honeypot failure and returning the default confirmation instead.
+			$default_confirmation = GFFormsModel::get_default_confirmation();
+			$result               = GFFormDisplay::get_ajax_postback_html( $default_confirmation['message'] );
 		}
+
+		return $result;
 	}
 
 	//------------------------------------------------------
@@ -5267,8 +5288,6 @@ class GFForms {
 
 		self::do_self_healing();
 
-		self::delete_orphaned_entries();
-
 		if ( ! get_option( 'gform_enable_logging' ) ) {
 			gf_logging()->delete_log_files();
 		}
@@ -5346,22 +5365,25 @@ class GFForms {
 	/**
 	 * Deletes all rows in the lead table that don't have corresponding rows in the details table.
 	 *
+	 * @deprecated
 	 * @since  2.0.0
 	 * @access public
 	 * @global $wpdb
 	 */
 	public static function delete_orphaned_entries() {
+		_deprecated_function( __METHOD__, '2.4.17' );
+
 		global $wpdb;
 
-		if ( version_compare( GFFormsModel::get_database_version(), '2.3-beta-1', '<' ) ) {
+		if ( version_compare( GFFormsModel::get_database_version(), '2.3-beta-1', '<' ) || GFFormsModel::has_batch_field_operations() ) {
 			return;
 		}
 
 		GFCommon::log_debug( __METHOD__ . '(): Starting to delete orphaned entries' );
-		$entry_table         = GFFormsModel::get_entry_table_name();
+		$entry_table      = GFFormsModel::get_entry_table_name();
 		$entry_meta_table = GFFormsModel::get_entry_meta_table_name();
-		$sql                = "DELETE FROM {$entry_table} WHERE id NOT IN( SELECT entry_id FROM {$entry_meta_table} )";
-		$result             = $wpdb->query( $sql );
+		$sql              = "DELETE FROM {$entry_table} WHERE id NOT IN( SELECT entry_id FROM {$entry_meta_table} )";
+		$result           = $wpdb->query( $sql );
 		GFCommon::log_debug( __METHOD__ . '(): Delete result: ' . print_r( $result, true ) );
 	}
 
@@ -5928,5 +5950,67 @@ if ( ! function_exists( 'gf_do_action' ) ) {
 			$action .= $modifier;
 			do_action( $action, $args[0], $args[1], $args[2], $args[3], $args[4], $args[5], $args[6], $args[7], $args[8], $args[9] );
 		}
+	}
+}
+
+if ( ! function_exists( 'gf_has_filters' ) ) {
+	/**
+	 * Determines if a callback has been registered for the specified filter.
+	 *
+	 * @since 2.4.18
+	 *
+	 * @param array         $filter            An array containing the filter tag and modifiers.
+	 * @param bool|callable $function_to_check The optional callback to check for.
+	 *
+	 * @return bool
+	 */
+	function gf_has_filters( $filter, $function_to_check = false ) {
+		$modifiers = array_splice( $filter, 1, count( $filter ) );
+		$filter    = $filter[0];
+
+		// Adding empty modifier for the base filter.
+		array_unshift( $modifiers, '' );
+
+		foreach ( $modifiers as $modifier ) {
+			$modifier = rgblank( $modifier ) ? '' : sprintf( '_%s', $modifier );
+			$filter   .= $modifier;
+			if ( has_filter( $filter, $function_to_check ) ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+}
+
+if ( ! function_exists( 'gf_has_filter' ) ) {
+	/**
+	 * Determines if a callback has been registered for the specified filter.
+	 *
+	 * @since 2.4.18
+	 *
+	 * @param array         $filter            An array containing the filter tag and modifiers.
+	 * @param bool|callable $function_to_check The optional callback to check for.
+	 *
+	 * @return bool
+	 */
+	function gf_has_filter( $filter, $function_to_check = false ) {
+		return gf_has_filters( $filter, $function_to_check );
+	}
+}
+
+if ( ! function_exists( 'gf_has_action' ) ) {
+	/**
+	 * Determines if a callback has been registered for the specified action.
+	 *
+	 * @since 2.4.18
+	 *
+	 * @param array         $action            An array containing the action tag and modifiers.
+	 * @param bool|callable $function_to_check The optional callback to check for.
+	 *
+	 * @return bool
+	 */
+	function gf_has_action( $action, $function_to_check = false ) {
+		return gf_has_filters( $action, $function_to_check );
 	}
 }

@@ -605,9 +605,8 @@ abstract class GFPaymentAddOn extends GFFeedAddOn {
 
 		$submission_data = $this->get_submission_data( $feed, $form, $entry );
 
-		// Do not process payment if payment amount is 0.
-		if ( floatval( $submission_data['payment_amount'] ) <= 0 ) {
-			$this->log_debug( __METHOD__ . '(): Payment amount is zero or less. Not sending to payment gateway.' );
+		if ( ! $this->is_valid_payment_amount( $submission_data, $feed, $form, $entry ) ) {
+			$this->log_debug( __METHOD__ . '(): Aborting. Payment amount not valid for processing.' );
 
 			return $validation_result;
 		}
@@ -657,6 +656,45 @@ abstract class GFPaymentAddOn extends GFFeedAddOn {
 		}
 
 		return $validation_result;
+	}
+
+	/**
+	 * Determines if the payment_amount for the current submission is valid for processing.
+	 *
+	 * @since 2.4.18
+	 *
+	 * @param array $submission_data The customer and transaction data.
+	 * @param array $feed            The feed to be processed.
+	 * @param array $form            The form being processed.
+	 * @param array $entry           The temporary entry created from the submitted values.
+	 *
+	 * @return bool
+	 */
+	public function is_valid_payment_amount( $submission_data, $feed, $form, $entry ) {
+		$is_valid = floatval( $submission_data['payment_amount'] ) > 0;
+
+		$tag      = sprintf( 'gform_%s_is_valid_payment_amount', $this->get_short_slug() );
+		$form_id  = absint( $form['id'] );
+		$tag_args = array( $tag, $form_id );
+
+		if ( gf_has_filters( $tag_args ) ) {
+			$this->log_debug( sprintf( '%s(): Executing functions hooked to %s.', __METHOD__, $tag ) );
+
+			/**
+			 * Allows custom logic to be used to determine if the add-on should process the submission for the given amount.
+			 *
+			 * @since 2.4.18
+			 *
+			 * @param bool  $is_valid        Indicates if the amount is valid for processing. Default is `true` when the amount is greater than zero.
+			 * @param array $submission_data The customer and transaction data.
+			 * @param array $feed            The feed to be processed.
+			 * @param array $form            The form being processed.
+			 * @param array $entry           The temporary entry containing the submitted values.
+			 */
+			$is_valid = (bool) gf_apply_filters( $tag_args, $is_valid, $submission_data, $feed, $form, $entry );
+		}
+
+		return $is_valid;
 	}
 
 	/**
@@ -1308,7 +1346,7 @@ abstract class GFPaymentAddOn extends GFFeedAddOn {
 
 		$products = GFCommon::get_product_fields( $form, $entry );
 
-		$payment_field   = $feed['meta']['transactionType'] == 'product' ? rgars( $feed, 'meta/paymentAmount' ) : rgars( $feed, 'meta/recurringAmount' );
+		$payment_field   = $this->get_payment_field( $feed );
 		$setup_fee_field = rgar( $feed['meta'], 'setupFee_enabled' ) ? $feed['meta']['setupFee_product'] : false;
 		$trial_field     = rgar( $feed['meta'], 'trial_enabled' ) ? rgars( $feed, 'meta/trial_product' ) : false;
 
@@ -1404,6 +1442,23 @@ abstract class GFPaymentAddOn extends GFFeedAddOn {
 			'line_items'     => $line_items,
 			'discounts'      => $discounts
 		);
+	}
+
+	/**
+	 * Returns what should be used to prepare the payment amount; the form_total or the ID of a specific product field.
+	 *
+	 * Override if your add-on uses custom choices for the transactionType setting or does not use the standard recurringAmount and paymentAmount settings.
+	 *
+	 * @since 2.4.17
+	 *
+	 * @param array $feed The current feed.
+	 *
+	 * @return string
+	 */
+	public function get_payment_field( $feed ) {
+		$key = rgars( $feed, 'meta/transactionType' ) === 'subscription' ? 'recurringAmount' : 'paymentAmount';
+
+		return rgars( $feed, 'meta/' . $key, 'form_total' );
 	}
 
 	/**
@@ -2285,7 +2340,7 @@ abstract class GFPaymentAddOn extends GFFeedAddOn {
 
 	public function get_column_value_amount( $feed ) {
 		$form     = $this->get_current_form();
-		$field_id = $feed['meta']['transactionType'] == 'subscription' ? rgars( $feed, 'meta/recurringAmount' ) : rgars( $feed, 'meta/paymentAmount' );
+		$field_id = $this->get_payment_field( $feed );
 		if ( $field_id == 'form_total' ) {
 			$label = esc_html__( 'Form Total', 'gravityforms' );
 		} else {

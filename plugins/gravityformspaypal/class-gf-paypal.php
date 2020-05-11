@@ -51,6 +51,30 @@ class GFPayPal extends GFPaymentAddOn {
 		add_filter( 'gform_disable_notification', array( $this, 'delay_notification' ), 10, 4 );
 	}
 
+	/**
+	 * Returns what should be used to prepare the payment amount; form_total or the ID of a specific product field.
+	 *
+	 * @since 3.3
+	 *
+	 * @param array $feed The current feed.
+	 *
+	 * @return string
+	 */
+	public function get_payment_field( $feed ) {
+		switch ( rgars( $feed, 'meta/transactionType' ) ) {
+			case 'subscription':
+				$key = 'recurringAmount';
+				break;
+
+			case 'product':
+			case 'donation':
+				$key = 'paymentAmount';
+				break;
+		}
+
+		return rgars( $feed, 'meta/' . $key, 'form_total' );
+	}
+
 	//----- SETTINGS PAGES ----------//
 
 	public function plugin_settings_fields() {
@@ -1027,29 +1051,21 @@ class GFPayPal extends GFPaymentAddOn {
 	}
 
 	public function delay_post( $is_disabled, $form, $entry ) {
-
-		$feed            = $this->get_payment_feed( $entry );
-		$submission_data = $this->get_submission_data( $feed, $form, $entry );
-
-		if ( ! $feed || empty( $submission_data['payment_amount'] ) ) {
+		if ( ! $this->is_payment_gateway ) {
 			return $is_disabled;
 		}
+
+		$feed = $this->current_feed;
 
 		return ! rgempty( 'delayPost', $feed['meta'] );
 	}
 
 	public function delay_notification( $is_disabled, $notification, $form, $entry ) {
-		if ( rgar( $notification, 'event' ) != 'form_submission' ) {
+		if ( ! $this->is_payment_gateway || rgar( $notification, 'event' ) != 'form_submission' ) {
 			return $is_disabled;
 		}
 
-		$feed            = $this->get_payment_feed( $entry );
-		$submission_data = $this->get_submission_data( $feed, $form, $entry );
-
-		if ( ! $feed || empty( $submission_data['payment_amount'] ) ) {
-			return $is_disabled;
-		}
-
+		$feed                   = $this->current_feed;
 		$selected_notifications = is_array( rgar( $feed['meta'], 'selectedNotifications' ) ) ? rgar( $feed['meta'], 'selectedNotifications' ) : array();
 
 		return isset( $feed['meta']['delayNotification'] ) && in_array( $notification['id'], $selected_notifications ) ? true : $is_disabled;
