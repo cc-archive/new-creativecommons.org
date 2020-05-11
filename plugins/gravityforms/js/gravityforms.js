@@ -769,8 +769,10 @@ function gformToggleShowPassword( fieldId ) {
 function gformToggleCheckboxes( toggleCheckbox ) {
 
 	var $toggle      = jQuery( toggleCheckbox ).parent(),
-	    $toggleLabel = $toggle.find( 'label' );
-	    $checkboxes  = $toggle.parent().find( 'li:not( .gchoice_select_all )' );
+	    $toggleLabel = $toggle.find( 'label' ),
+	    $checkboxes  = $toggle.parent().find( 'li:not( .gchoice_select_all )' ),
+	    formId       = gf_get_form_id_by_html_id( $toggle.parents( '.gfield' ).attr( 'id' ) ),
+	    calcObj      = rgars( window, 'gf_global/gfcalc/' + formId );
 
 	// Set checkboxes state.
 	$checkboxes.each( function() {
@@ -790,6 +792,10 @@ function gformToggleCheckboxes( toggleCheckbox ) {
 		$toggleLabel.html( $toggleLabel.data( 'label-deselect' ) );
 	} else {
 		$toggleLabel.html( $toggleLabel.data( 'label-select' ) );
+	}
+
+	if ( calcObj ) {
+		calcObj.runCalcs( formId, calcObj.formulaFields );
 	}
 
 }
@@ -1225,6 +1231,11 @@ var GFMergeTag = function() {
 
 		if ( ! isVisible ) {
 			return '';
+		}
+
+		// Filtering out the email field confirmation input to prevent the values from both inputs being returned.
+		if ( field.find( '.ginput_container_email' ).hasClass( 'ginput_complex' ) ) {
+			input = input.first();
 		}
 
 		//If value has been filtered, use it. Otherwise use default logic
