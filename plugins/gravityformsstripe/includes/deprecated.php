@@ -1,5 +1,7 @@
 <?php
 
+defined( 'ABSPATH' ) || die();
+
 if ( ! class_exists( 'Stripe_InvoiceItem' ) ) {
 	/**
 	 * Class Stripe_InvoiceItem
