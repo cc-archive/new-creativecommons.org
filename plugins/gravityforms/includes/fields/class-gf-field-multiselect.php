@@ -104,7 +104,8 @@ class GF_Field_MultiSelect extends GF_Field {
 		$size          = $this->size;
 		$class_suffix  = $is_entry_detail ? '_admin' : '';
 		$class         = $size . $class_suffix;
-		$css_class     = trim( esc_attr( $class ) . ' gfield_select' );
+		$class         = esc_attr( $class );
+		$css_class     = trim( $class . ' gfield_select' );
 		$tabindex      = $this->get_tabindex();
 		$disabled_text = $is_form_editor ? 'disabled="disabled"' : '';
 
@@ -129,6 +130,7 @@ class GF_Field_MultiSelect extends GF_Field {
 		if ( empty( $size ) ) {
 			$size = 7;
 		}
+		$size = esc_attr( $size );
 
 		return sprintf( "<div class='ginput_container ginput_container_multiselect'><select multiple='multiple' {$placeholder} size='{$size}' name='input_%d[]' id='%s' class='%s' $tabindex %s>%s</select></div>", $id, esc_attr( $field_id ), $css_class, $disabled_text, $this->get_choices( $value ) );
 	}
@@ -191,19 +193,21 @@ class GF_Field_MultiSelect extends GF_Field {
 	 */
 	public function get_value_entry_detail( $value, $currency = '', $use_text = false, $format = 'html', $media = 'screen' ) {
 
-		if ( empty( $value ) || $format == 'text' ) {
+		if ( empty( $value ) || ( $format == 'text' && $this->storageType !== 'json' ) ) {
 			return $value;
 		}
 
-		$value = $this->to_array( $value );
+		$items = $this->to_array( $value );
 
-		$items = '';
-		foreach ( $value as $item ) {
-			$item_value = GFCommon::selection_display( $item, $this, $currency, $use_text );
-			$items .= '<li>' . esc_html( $item_value ) . '</li>';
+		foreach ( $items as &$item ) {
+			$item = esc_html( GFCommon::selection_display( $item, $this, $currency, $use_text ) );
 		}
 
-		return "<ul class='bulleted'>{$items}</ul>";
+		if ( $format === 'text' ) {
+			return GFCommon::implode_non_blank( ', ', $items );
+		}
+
+		return "<ul class='bulleted'><li>" . GFCommon::implode_non_blank( '</li><li>', $items ) . '</li></ul>';
 	}
 
 	/**
