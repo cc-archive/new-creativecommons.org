@@ -20,3 +20,4 @@ In addition to this repository, you will also need:
 [theme]:https://github.com/creativecommons/new-www-theme
 [plugin]:https://github.com/creativecommons/new-www-plugin
 [licenses]:https://github.com/creativecommons/creativecommons.org
+Creative Commons calls on organizations around the world to make their patents and copyrights freely available in the fight against the COVID-19 pandemic.
